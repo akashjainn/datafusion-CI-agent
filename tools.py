@@ -53,7 +53,7 @@ def run_tool(ctx, name, args):
 
 GET_LOG_SCHEMA = {
     "name": "get_log",
-    "description": "Read the failed CI run's log. Use get_log(ctx, pattern, context, start, limit) to retrieve the logs results. Pattern is a keyword / phrase that will be searched for. Context determines how many lines above and below each found keyword / phrase will be returned. If no pattern is passed in, you can pass in a start and limit to simply return a section of the log.",
+    "description": "Read the failed CI run's log. Use get_log(pattern, context, start, limit) to retrieve the logs results. Pattern is a regex keyword / phrase that will be searched for. Context determines how many lines above and below each found keyword / phrase will be returned. If no pattern is passed in, you can pass in a start and limit to simply return a section of the log. At most 20 matches and 200 lines per page will be shown. Start by searching for failure markers such as error|panicked|FAILED|##\[error\], then use start/limit to read around the line numbers the search returned. Set start and limit to return a section of the log, the log from (start) - (start + limit) will be returned, Start/Limit are ignored when pattern is set.",
     "input_schema": {
         "type": "object",
         "properties": {
