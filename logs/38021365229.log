@@ -1,0 +1,1434 @@
+﻿2026-10-10T03:40:07.2919850Z Current runner version: '2.337.0'
+##[group]Runner Image Provisioner
+Hosted Compute Agent
+Version: 20261002.596
+Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+Build Date: 2026-10-02T22:28:27Z
+Worker ID: {d0414f64-9e5c-4a53-a202-0f71850a04dd}
+Region: eastus2
+Cloud: Azure
+##[endgroup]
+##[group]Operating System
+Ubuntu
+24.04.5
+LTS
+##[endgroup]
+##[group]Runner Image
+Image: ubuntu-24.04
+Version: 20261004.327.1
+Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261004.327/images/ubuntu/Ubuntu2404-Readme.md
+Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261004.327
+##[endgroup]
+##[group]GITHUB_TOKEN Permissions
+Contents: read
+Metadata: read
+##[endgroup]
+Secret source: None
+Cache mode: write
+Prepare workflow directory
+Prepare all required actions
+Getting action download info
+Download action repository 'runs-on/action@46910bf61b41721b0579f237e186afb35477007a' (SHA:46910bf61b41721b0579f237e186afb35477007a)
+Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+Download action repository 'Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6' (SHA:6323deb102c322ba6fcbdcafc7e3dddab59af2b6)
+Complete job name: linux build test
+##[group]Checking docker version
+##[command]/usr/bin/docker version --format '{{.Server.APIVersion}}'
+'1.48'
+Docker daemon API version: '1.48'
+##[command]/usr/bin/docker version --format '{{.Client.APIVersion}}'
+'1.48'
+Docker client API version: '1.48'
+##[endgroup]
+##[group]Clean up resources from previous jobs
+##[command]/usr/bin/docker ps --all --quiet --no-trunc --filter "label=4bea17"
+##[command]/usr/bin/docker network prune --force --filter "label=4bea17"
+##[endgroup]
+##[group]Create local container network
+##[command]/usr/bin/docker network create --label 4bea17 github_network_56c15f7bb3d84486a1fac74b5a039282
+5d3622b70baf69b5c659ccdeb1c8b7fef23e8185dc0a384980ae724191726ce8
+##[endgroup]
+##[group]Starting job container
+##[command]/usr/bin/docker pull amd64/rust
+Using default tag: latest
+latest: Pulling from amd64/rust
+4846f2900730: Pulling fs layer
+62fe2e747f69: Pulling fs layer
+4dc3950125eb: Pulling fs layer
+b2eb680928d4: Pulling fs layer
+7daf4a4778d1: Pulling fs layer
+b2eb680928d4: Waiting
+7daf4a4778d1: Waiting
+62fe2e747f69: Verifying Checksum
+62fe2e747f69: Download complete
+4846f2900730: Verifying Checksum
+4846f2900730: Download complete
+4dc3950125eb: Verifying Checksum
+4dc3950125eb: Download complete
+7daf4a4778d1: Verifying Checksum
+7daf4a4778d1: Download complete
+b2eb680928d4: Verifying Checksum
+b2eb680928d4: Download complete
+4846f2900730: Pull complete
+62fe2e747f69: Pull complete
+4dc3950125eb: Pull complete
+b2eb680928d4: Pull complete
+7daf4a4778d1: Pull complete
+Digest: sha256:d675bb37f43aed69da35624d7deeeb78799860e5e355988274cb6ee0c11afa43
+Status: Downloaded newer image for amd64/rust:latest
+docker.io/amd64/rust:latest
+##[command]/usr/bin/docker create --name 769d25a6461140cba8791a20dc267b11_amd64rust_2820d5 --label 4bea17 --workdir /__w/datafusion/datafusion --network github_network_56c15f7bb3d84486a1fac74b5a039282  -e "HOME=/github/home" -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/work":"/__w" -v "/home/runner/actions-runner/cached/2.337.0/externals":"/__e":ro -v "/home/runner/work/_temp":"/__w/_temp" -v "/home/runner/work/_actions":"/__w/_actions" -v "/opt/hostedtoolcache":"/__t" -v "/home/runner/work/_temp/_github_home":"/github/home" -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" --entrypoint "tail" amd64/rust "-f" "/dev/null"
+aefa0a2b6035078ab8e7310d1dbc09b2eaa478958f25b8900a292326f8313475
+##[command]/usr/bin/docker start aefa0a2b6035078ab8e7310d1dbc09b2eaa478958f25b8900a292326f8313475
+aefa0a2b6035078ab8e7310d1dbc09b2eaa478958f25b8900a292326f8313475
+##[command]/usr/bin/docker ps --all --filter id=aefa0a2b6035078ab8e7310d1dbc09b2eaa478958f25b8900a292326f8313475 --filter status=running --no-trunc --format "{{.ID}} {{.Status}}"
+aefa0a2b6035078ab8e7310d1dbc09b2eaa478958f25b8900a292326f8313475 Up Less than a second
+##[command]/usr/bin/docker inspect --format "{{range .Config.Env}}{{println .}}{{end}}" aefa0a2b6035078ab8e7310d1dbc09b2eaa478958f25b8900a292326f8313475
+GITHUB_ACTIONS=true
+CI=true
+HOME=/github/home
+PATH=/usr/local/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+RUSTUP_HOME=/usr/local/rustup
+CARGO_HOME=/usr/local/cargo
+RUST_VERSION=1.99.0
+##[endgroup]
+##[group]Waiting for all services to be ready
+##[endgroup]
+##[group]Run runs-on/action@46910bf61b41721b0579f237e186afb35477007a
+with:
+  show_env: false
+  show_costs: inline
+  network_interface: enp39s0
+  disk_device: nvme0n1p1
+  token: ***
+  sticky_wait_timeout: 15m
+##[endgroup]
+##[command]/usr/bin/docker exec  aefa0a2b6035078ab8e7310d1dbc09b2eaa478958f25b8900a292326f8313475 sh -c "cat /etc/*release | grep ^ID"
+This action is only meant to be run on RunsOn (https://runs-on.com) runners, skipping all operations
+##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+with:
+  repository: apache/datafusion
+  token: ***
+  ssh-strict: true
+  ssh-user: git
+  persist-credentials: true
+  clean: true
+  sparse-checkout-cone-mode: true
+  fetch-depth: 1
+  fetch-tags: false
+  show-progress: true
+  lfs: false
+  submodules: false
+  set-safe-directory: true
+  allow-unsafe-pr-checkout: false
+##[endgroup]
+##[command]/usr/bin/docker exec  aefa0a2b6035078ab8e7310d1dbc09b2eaa478958f25b8900a292326f8313475 sh -c "cat /etc/*release | grep ^ID"
+Syncing repository: apache/datafusion
+##[group]Getting Git version info
+Working directory is '/__w/datafusion/datafusion'
+[command]/usr/bin/git version
+git version 2.47.3
+##[endgroup]
+Temporarily overriding HOME='/__w/_temp/3977fbd6-5bf6-48d6-92f3-fdf8a0d9d865' before making global git config changes
+Adding repository directory to the temporary git global config as a safe directory
+[command]/usr/bin/git config --global --add safe.directory /__w/datafusion/datafusion
+Deleting the contents of '/__w/datafusion/datafusion'
+##[group]Determining repository object format
+##[endgroup]
+##[group]Initializing the repository
+[command]/usr/bin/git init /__w/datafusion/datafusion
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+Initialized empty Git repository in /__w/datafusion/datafusion/.git/
+[command]/usr/bin/git remote add origin https://github.com/apache/datafusion
+##[endgroup]
+##[group]Disabling automatic garbage collection
+[command]/usr/bin/git config --local gc.auto 0
+##[endgroup]
+##[group]Setting up auth
+Removing SSH command configuration
+[command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Removing HTTP extra header
+[command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Removing includeIf entries pointing to credentials config files
+[command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+[command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+[command]/usr/bin/git config --file /__w/_temp/git-credentials-766f3d0d-3770-47f9-9714-edec1ab240ac.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+[command]/usr/bin/git config --local includeIf.gitdir:/__w/datafusion/datafusion/.git.path /__w/_temp/git-credentials-766f3d0d-3770-47f9-9714-edec1ab240ac.config
+[command]/usr/bin/git config --local includeIf.gitdir:/__w/datafusion/datafusion/.git/worktrees/*.path /__w/_temp/git-credentials-766f3d0d-3770-47f9-9714-edec1ab240ac.config
+[command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-766f3d0d-3770-47f9-9714-edec1ab240ac.config
+[command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-766f3d0d-3770-47f9-9714-edec1ab240ac.config
+##[endgroup]
+##[group]Fetching the repository
+[command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +03bf3771c8af36239054edd5998e28ad6371f5ce:refs/remotes/pull/26173/merge
+From https://github.com/apache/datafusion
+ * [new ref]         03bf3771c8af36239054edd5998e28ad6371f5ce -> pull/26173/merge
+##[endgroup]
+##[group]Determining the checkout info
+##[endgroup]
+[command]/usr/bin/git sparse-checkout disable
+[command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+##[group]Checking out the ref
+[command]/usr/bin/git checkout --progress --force refs/remotes/pull/26173/merge
+Note: switching to 'refs/remotes/pull/26173/merge'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at 03bf377 Merge b8d528513b84720f03cef8fc454111abb82dbf9b into 500744d5c25499055e3b2ca46b022bc425989203
+##[endgroup]
+[command]/usr/bin/git log -1 --format=%H
+03bf3771c8af36239054edd5998e28ad6371f5ce
+Prepare all required actions
+Getting action download info
+##[group]Run ./.github/actions/setup-builder
+with:
+  rust-version: stable
+##[endgroup]
+##[start-action display=Install Build Dependencies;id=__self.__run]
+##[group]Run RETRY=("ci/scripts/retry" timeout 120)
+^[[36;1mRETRY=("ci/scripts/retry" timeout 120)^[[0m
+^[[36;1m"${RETRY[@]}" apt-get update^[[0m
+^[[36;1m"${RETRY[@]}" apt-get install -y protobuf-compiler^[[0m
+shell: bash --noprofile --norc -e -o pipefail {0}
+##[endgroup]
++ timeout 120 apt-get update
+Hit:1 http://deb.debian.org/debian trixie InRelease
+Get:2 http://deb.debian.org/debian trixie-updates InRelease [47.3 kB]
+Get:3 http://deb.debian.org/debian-security trixie-security InRelease [43.4 kB]
+Get:4 http://deb.debian.org/debian trixie/main amd64 Packages [9678 kB]
+Get:5 http://deb.debian.org/debian trixie-updates/main amd64 Packages [4412 B]
+Get:6 http://deb.debian.org/debian-security trixie-security/main amd64 Packages [265 kB]
+Fetched 10.0 MB in 1s (13.1 MB/s)
+Reading package lists...
++ timeout 120 apt-get install -y protobuf-compiler
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libprotobuf-dev libprotobuf-lite32t64 libprotobuf32t64 libprotoc32t64
+Suggested packages:
+  protobuf-mode-el
+The following NEW packages will be installed:
+  libprotobuf-dev libprotobuf-lite32t64 libprotobuf32t64 libprotoc32t64
+  protobuf-compiler
+0 upgraded, 5 newly installed, 0 to remove and 3 not upgraded.
+Need to get 3592 kB of archives.
+After this operation, 20.5 MB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian trixie/main amd64 libprotobuf32t64 amd64 3.21.12-11+deb13u1 [981 kB]
+Get:2 http://deb.debian.org/debian trixie/main amd64 libprotobuf-lite32t64 amd64 3.21.12-11+deb13u1 [275 kB]
+Get:3 http://deb.debian.org/debian trixie/main amd64 libprotobuf-dev amd64 3.21.12-11+deb13u1 [1329 kB]
+Get:4 http://deb.debian.org/debian trixie/main amd64 libprotoc32t64 amd64 3.21.12-11+deb13u1 [922 kB]
+Get:5 http://deb.debian.org/debian trixie/main amd64 protobuf-compiler amd64 3.21.12-11+deb13u1 [85.0 kB]
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+debconf: unable to initialize frontend: Teletype
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Noninteractive
+Fetched 3592 kB in 0s (49.4 MB/s)
+Selecting previously unselected package libprotobuf32t64:amd64.
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 26064 files and directories currently installed.)
+Preparing to unpack .../libprotobuf32t64_3.21.12-11+deb13u1_amd64.deb ...
+Unpacking libprotobuf32t64:amd64 (3.21.12-11+deb13u1) ...
+Selecting previously unselected package libprotobuf-lite32t64:amd64.
+Preparing to unpack .../libprotobuf-lite32t64_3.21.12-11+deb13u1_amd64.deb ...
+Unpacking libprotobuf-lite32t64:amd64 (3.21.12-11+deb13u1) ...
+Selecting previously unselected package libprotobuf-dev:amd64.
+Preparing to unpack .../libprotobuf-dev_3.21.12-11+deb13u1_amd64.deb ...
+Unpacking libprotobuf-dev:amd64 (3.21.12-11+deb13u1) ...
+Selecting previously unselected package libprotoc32t64:amd64.
+Preparing to unpack .../libprotoc32t64_3.21.12-11+deb13u1_amd64.deb ...
+Unpacking libprotoc32t64:amd64 (3.21.12-11+deb13u1) ...
+Selecting previously unselected package protobuf-compiler.
+Preparing to unpack .../protobuf-compiler_3.21.12-11+deb13u1_amd64.deb ...
+Unpacking protobuf-compiler (3.21.12-11+deb13u1) ...
+Setting up libprotobuf-lite32t64:amd64 (3.21.12-11+deb13u1) ...
+Setting up libprotobuf32t64:amd64 (3.21.12-11+deb13u1) ...
+Setting up libprotobuf-dev:amd64 (3.21.12-11+deb13u1) ...
+Setting up libprotoc32t64:amd64 (3.21.12-11+deb13u1) ...
+Setting up protobuf-compiler (3.21.12-11+deb13u1) ...
+Processing triggers for libc-bin (2.41-12+deb13u4) ...
+##[end-action id=__self.__run;outcome=success;conclusion=success;duration_ms=3051]
+##[start-action display=Setup Rust toolchain;id=__self.__run_2]
+##[group]Run RETRY=("ci/scripts/retry" timeout 120)
+^[[36;1mRETRY=("ci/scripts/retry" timeout 120)^[[0m
+^[[36;1mecho "Installing stable"^[[0m
+^[[36;1m"${RETRY[@]}" rustup toolchain install stable^[[0m
+^[[36;1m"${RETRY[@]}" rustup default stable^[[0m
+^[[36;1m"${RETRY[@]}" rustup component add rustfmt^[[0m
+shell: bash --noprofile --norc -e -o pipefail {0}
+##[endgroup]
+Installing stable
++ timeout 120 rustup toolchain install stable
+info: syncing channel updates for stable-x86_64-unknown-linux-gnu
+info: latest update on 2026-10-01 for version 1.99.0 (b940084d7 2026-09-28)
+info: downloading 3 components
+
+  stable-x86_64-unknown-linux-gnu installed - rustc 1.99.0 (b940084d7 2026-09-28)
+
++ timeout 120 rustup default stable
+info: using existing install for stable-x86_64-unknown-linux-gnu
+info: default toolchain set to stable-x86_64-unknown-linux-gnu
+
+info: note that the toolchain '1.97.0-x86_64-unknown-linux-gnu' is currently in use (overridden by '/__w/datafusion/datafusion/rust-toolchain.toml')
+  stable-x86_64-unknown-linux-gnu unchanged - rustc 1.99.0 (b940084d7 2026-09-28)
+
++ timeout 120 rustup component add rustfmt
+info: syncing channel updates for 1.97.0-x86_64-unknown-linux-gnu
+info: latest update on 2026-07-09 for version 1.97.0 (2d8144b78 2026-07-07)
+info: downloading 5 components
+warn: the missing active toolchain `1.97.0-x86_64-unknown-linux-gnu` has been auto-installed
+warn: auto-installation is deprecated for most `rustup` commands
+warn: scripts relying on this behavior in `rustup` may stop working in the future
+warn: to install the active toolchain, use `rustup install` instead
+warn: see <https://github.com/rust-lang/rustup/issues/4836> for more info
+info: component rustfmt is up to date
+##[end-action id=__self.__run_2;outcome=success;conclusion=success;duration_ms=16030]
+##[start-action display=Configure rust runtime env;id=__self.__self]
+Prepare all required actions
+##[group]Run ./.github/actions/setup-rust-runtime
+##[endgroup]
+##[start-action display=Configure runtime env;id=__self.__self.__run]
+##[group]Run echo "RUST_BACKTRACE=1" >> $GITHUB_ENV
+^[[36;1mecho "RUST_BACKTRACE=1" >> $GITHUB_ENV^[[0m
+^[[36;1mecho "RUSTFLAGS=-C debuginfo=line-tables-only -C incremental=false" >> $GITHUB_ENV^[[0m
+^[[36;1m# Work around intermittent "[16] Error in the HTTP2 framing layer"^[[0m
+^[[36;1m# failures from curl when cargo fetches crates from crates.io.^[[0m
+^[[36;1m# Disabling HTTP/2 multiplexing forces cargo to serialize requests,^[[0m
+^[[36;1m# and raising retries makes transient network hiccups self-heal.^[[0m
+^[[36;1m#^[[0m
+^[[36;1m# Reference:^[[0m
+^[[36;1m# https://doc.rust-lang.org/cargo/reference/config.html?#httpmultiplexing^[[0m
+^[[36;1m# https://doc.rust-lang.org/cargo/reference/config.html?#netretry^[[0m
+^[[36;1mecho "CARGO_HTTP_MULTIPLEXING=false" >> $GITHUB_ENV^[[0m
+^[[36;1mecho "CARGO_NET_RETRY=10" >> $GITHUB_ENV^[[0m
+^[[36;1mecho "CARGO_HTTP_RETRY=10" >> $GITHUB_ENV^[[0m
+shell: bash --noprofile --norc -e -o pipefail {0}
+##[endgroup]
+##[end-action id=__self.__self.__run;outcome=success;conclusion=success;duration_ms=56]
+##[end-action id=__self.__self;outcome=success;conclusion=success;duration_ms=62]
+##[start-action display=Fixup git permissions;id=__self.__run_3]
+##[group]Run git config --global --add safe.directory "$GITHUB_WORKSPACE"
+^[[36;1mgit config --global --add safe.directory "$GITHUB_WORKSPACE"^[[0m
+shell: bash --noprofile --norc -e -o pipefail {0}
+env:
+  RUST_BACKTRACE: 1
+  RUSTFLAGS: -C debuginfo=line-tables-only -C incremental=false
+  CARGO_HTTP_MULTIPLEXING: false
+  CARGO_NET_RETRY: 10
+  CARGO_HTTP_RETRY: 10
+##[endgroup]
+##[end-action id=__self.__run_3;outcome=success;conclusion=success;duration_ms=55]
+##[start-action display=Remove unnecessary preinstalled software;id=__self.__run_4]
+##[group]Run echo "Disk space before cleanup:"
+^[[36;1mecho "Disk space before cleanup:"^[[0m
+^[[36;1mdf -h ^[[0m
+^[[36;1mapt-get clean^[[0m
+^[[36;1m# remove tool cache: about 8.5GB (github has host /opt/hostedtoolcache mounted as /__t)^[[0m
+^[[36;1mrm -rf /__t/* || true^[[0m
+^[[36;1m# remove Haskell runtime: about 6.3GB (host /usr/local/.ghcup)^[[0m
+^[[36;1mrm -rf /host/usr/local/.ghcup || true^[[0m
+^[[36;1m# remove Android library: about 7.8GB (host /usr/local/lib/android)^[[0m
+^[[36;1mrm -rf /host/usr/local/lib/android || true^[[0m
+^[[36;1mecho "Disk space after cleanup:"^[[0m
+^[[36;1mdf -h^[[0m
+shell: bash --noprofile --norc -e -o pipefail {0}
+env:
+  RUST_BACKTRACE: 1
+  RUSTFLAGS: -C debuginfo=line-tables-only -C incremental=false
+  CARGO_HTTP_MULTIPLEXING: false
+  CARGO_NET_RETRY: 10
+  CARGO_HTTP_RETRY: 10
+##[endgroup]
+Disk space before cleanup:
+Filesystem      Size  Used Avail Use% Mounted on
+overlay         145G   62G   84G  43% /
+tmpfs            64M     0   64M   0% /dev
+shm              64M     0   64M   0% /dev/shm
+/dev/root       145G   62G   84G  43% /__w
+tmpfs           3.2G  1.1M  3.2G   1% /run/docker.sock
+tmpfs           4.0K     0  4.0K   0% /proc/acpi
+Disk space after cleanup:
+Filesystem      Size  Used Avail Use% Mounted on
+overlay         145G   57G   89G  39% /
+tmpfs            64M     0   64M   0% /dev
+shm              64M     0   64M   0% /dev/shm
+/dev/root       145G   57G   89G  39% /__w
+tmpfs           3.2G  1.1M  3.2G   1% /run/docker.sock
+tmpfs           4.0K     0  4.0K   0% /proc/acpi
+##[end-action id=__self.__run_4;outcome=success;conclusion=success;duration_ms=30044]
+##[group]Run Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6
+with:
+  shared-key: amd-ci-check
+  save-if: false
+  prefix-key: v0-rust
+  add-job-id-key: true
+  add-rust-environment-hash-key: true
+  cache-targets: true
+  cache-all-crates: false
+  cache-workspace-crates: false
+  cache-provider: github
+  cache-bin: true
+  lookup-only: false
+  cmd-format: {0}
+env:
+  RUST_BACKTRACE: 1
+  RUSTFLAGS: -C debuginfo=line-tables-only -C incremental=false
+  CARGO_HTTP_MULTIPLEXING: false
+  CARGO_NET_RETRY: 10
+  CARGO_HTTP_RETRY: 10
+##[endgroup]
+##[command]/usr/bin/docker exec  aefa0a2b6035078ab8e7310d1dbc09b2eaa478958f25b8900a292326f8313475 sh -c "cat /etc/*release | grep ^ID"
+##[group]Cache Configuration
+Cache Provider:
+    github
+Workspaces:
+    /__w/datafusion/datafusion
+Cache Paths:
+    /usr/local/cargo/bin
+    /usr/local/cargo/.crates.toml
+    /usr/local/cargo/.crates2.json
+    /usr/local/cargo/registry
+    /usr/local/cargo/git
+    /__w/datafusion/datafusion/target
+Restore Key:
+    v0-rust-amd-ci-check-Linux-x64-9ac4212a
+Cache Key:
+    v0-rust-amd-ci-check-Linux-x64-9ac4212a-0073135a
+.. Prefix:
+  - v0-rust-amd-ci-check-Linux-x64
+.. Environment considered:
+  - Rust Versions:
+    - 1.97.0 x86_64-unknown-linux-gnu 2d8144b7880597b6e6d3dfd63a9a9efae3f533d3
+    - 1.99.0 x86_64-unknown-linux-gnu b940084d7eb6a299eb4bfeb8e34901bc051e7ac4
+  - CARGO_HOME
+  - CARGO_HTTP_MULTIPLEXING
+  - CARGO_HTTP_RETRY
+  - CARGO_INCREMENTAL
+  - CARGO_NET_RETRY
+  - RUST_BACKTRACE
+  - RUST_VERSION
+  - RUSTFLAGS
+  - RUSTUP_HOME
+.. Lockfiles considered:
+  - /__w/datafusion/datafusion/benchmarks/Cargo.toml
+  - /__w/datafusion/datafusion/Cargo.lock
+  - /__w/datafusion/datafusion/datafusion-cli/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion-examples/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion-examples/examples/ffi/ffi_example_table_provider/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion-examples/examples/ffi/ffi_module_interface/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion-examples/examples/ffi/ffi_module_loader/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/catalog-listing/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/catalog/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/common-runtime/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/common/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/core/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/datasource-arrow/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/datasource-avro/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/datasource-csv/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/datasource-json/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/datasource-parquet/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/datasource/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/doc/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/execution/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/expr-common/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/expr/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/ffi/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/functions-aggregate-common/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/functions-aggregate/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/functions-nested/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/functions-table/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/functions-window-common/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/functions-window/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/functions/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/macros/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/optimizer/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/physical-expr-adapter/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/physical-expr-common/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/physical-expr/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/physical-optimizer/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/physical-plan/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/proto-common/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/proto-common/gen/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/proto-models/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/proto-models/gen/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/proto/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/pruning/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/session/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/spark/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/sql/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/sqllogictest/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/substrait/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/wasmtest/Cargo.toml
+  - /__w/datafusion/datafusion/dev/depcheck/rust-toolchain.toml
+  - /__w/datafusion/datafusion/rust-toolchain.toml
+  - /__w/datafusion/datafusion/test-utils/Cargo.toml
+##[endgroup]
+
+... Restoring cache ...
+No cache found.
+##[group]Run # Adding `--locked` here to assert that the `Cargo.lock` file is up to
+^[[36;1m# Adding `--locked` here to assert that the `Cargo.lock` file is up to^[[0m
+^[[36;1m# date with the manifest. When this fails, please make sure to commit^[[0m
+^[[36;1m# the changes to `Cargo.lock` after building with the updated manifest.^[[0m
+^[[36;1mcargo check --profile ci --workspace --all-targets --features integration-tests --locked^[[0m
+shell: sh -e {0}
+env:
+  RUST_BACKTRACE: 1
+  RUSTFLAGS: -C debuginfo=line-tables-only -C incremental=false
+  CARGO_HTTP_MULTIPLEXING: false
+  CARGO_NET_RETRY: 10
+  CARGO_HTTP_RETRY: 10
+  CACHE_ON_FAILURE: false
+  CARGO_INCREMENTAL: 0
+##[endgroup]
+    Updating git repository `https://github.com/Jefffrey/arrow-rs.git`
+    Updating git submodule `https://github.com/apache/parquet-testing.git`
+    Updating git submodule `https://github.com/apache/arrow-testing`
+    Updating crates.io index
+error: cannot update the lock file /__w/datafusion/datafusion/Cargo.lock because --locked was passed to prevent this
+help: to generate the lock file without accessing the network, remove the --locked flag and use --offline instead.
+##[error]Process completed with exit code 101.
+Post job cleanup.
+Post job cleanup.
+##[command]/usr/bin/docker exec  aefa0a2b6035078ab8e7310d1dbc09b2eaa478958f25b8900a292326f8313475 sh -c "cat /etc/*release | grep ^ID"
+[command]/usr/bin/git version
+git version 2.47.3
+Copying '/github/home/.gitconfig' to '/__w/_temp/4158d2c6-bc8f-43d0-810a-b56a1c5f5037/.gitconfig'
+Temporarily overriding HOME='/__w/_temp/4158d2c6-bc8f-43d0-810a-b56a1c5f5037' before making global git config changes
+Adding repository directory to the temporary git global config as a safe directory
+[command]/usr/bin/git config --global --add safe.directory /__w/datafusion/datafusion
+Removing SSH command configuration
+[command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Removing HTTP extra header
+[command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Removing includeIf entries pointing to credentials config files
+[command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+includeif.gitdir:/__w/datafusion/datafusion/.git.path
+includeif.gitdir:/__w/datafusion/datafusion/.git/worktrees/*.path
+includeif.gitdir:/github/workspace/.git.path
+includeif.gitdir:/github/workspace/.git/worktrees/*.path
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/__w/datafusion/datafusion/.git.path
+/__w/_temp/git-credentials-766f3d0d-3770-47f9-9714-edec1ab240ac.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/__w/datafusion/datafusion/.git.path \/__w\/_temp\/git\-credentials\-766f3d0d\-3770\-47f9\-9714\-edec1ab240ac\.config
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/__w/datafusion/datafusion/.git/worktrees/*.path
+/__w/_temp/git-credentials-766f3d0d-3770-47f9-9714-edec1ab240ac.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/__w/datafusion/datafusion/.git/worktrees/*.path \/__w\/_temp\/git\-credentials\-766f3d0d\-3770\-47f9\-9714\-edec1ab240ac\.config
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+/github/runner_temp/git-credentials-766f3d0d-3770-47f9-9714-edec1ab240ac.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-766f3d0d\-3770\-47f9\-9714\-edec1ab240ac\.config
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+/github/runner_temp/git-credentials-766f3d0d-3770-47f9-9714-edec1ab240ac.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-766f3d0d\-3770\-47f9\-9714\-edec1ab240ac\.config
+[command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Removing credentials config '/__w/_temp/git-credentials-766f3d0d-3770-47f9-9714-edec1ab240ac.config'
+Post job cleanup.
+##[command]/usr/bin/docker exec  aefa0a2b6035078ab8e7310d1dbc09b2eaa478958f25b8900a292326f8313475 sh -c "cat /etc/*release | grep ^ID"
+This action is only meant to be run on RunsOn (https://runs-on.com) runners, skipping all operations
+Stop and remove container: 769d25a6461140cba8791a20dc267b11_amd64rust_2820d5
+##[command]/usr/bin/docker rm --force aefa0a2b6035078ab8e7310d1dbc09b2eaa478958f25b8900a292326f8313475
+aefa0a2b6035078ab8e7310d1dbc09b2eaa478958f25b8900a292326f8313475
+Remove container network: github_network_56c15f7bb3d84486a1fac74b5a039282
+##[command]/usr/bin/docker network rm github_network_56c15f7bb3d84486a1fac74b5a039282
+github_network_56c15f7bb3d84486a1fac74b5a039282
+Cleaning up orphan processes
+﻿2026-10-10T03:40:07.4717836Z Current runner version: '2.337.0'
+##[group]Runner Image Provisioner
+Hosted Compute Agent
+Version: 20261002.596
+Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+Build Date: 2026-10-02T22:28:27Z
+Worker ID: {f3bdcfbc-23fe-47df-86b3-b44b6d66c66d}
+Region: centralus
+Cloud: Azure
+##[endgroup]
+##[group]Operating System
+Ubuntu
+24.04.5
+LTS
+##[endgroup]
+##[group]Runner Image
+Image: ubuntu-24.04
+Version: 20261004.327.1
+Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261004.327/images/ubuntu/Ubuntu2404-Readme.md
+Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261004.327
+##[endgroup]
+##[group]GITHUB_TOKEN Permissions
+Contents: read
+Metadata: read
+##[endgroup]
+Secret source: None
+Cache mode: write
+Prepare workflow directory
+Prepare all required actions
+Getting action download info
+Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+Complete job name: Verify Vendored Code
+##[group]Checking docker version
+##[command]/usr/bin/docker version --format '{{.Server.APIVersion}}'
+'1.48'
+Docker daemon API version: '1.48'
+##[command]/usr/bin/docker version --format '{{.Client.APIVersion}}'
+'1.48'
+Docker client API version: '1.48'
+##[endgroup]
+##[group]Clean up resources from previous jobs
+##[command]/usr/bin/docker ps --all --quiet --no-trunc --filter "label=bab1c4"
+##[command]/usr/bin/docker network prune --force --filter "label=bab1c4"
+##[endgroup]
+##[group]Create local container network
+##[command]/usr/bin/docker network create --label bab1c4 github_network_bec1a8a492794d45b3c731fbc64e0a49
+4511958e957b8a56afa63bfc0438f1a65204c17735cb85b68c882bacb9cb336f
+##[endgroup]
+##[group]Starting job container
+##[command]/usr/bin/docker pull amd64/rust
+Using default tag: latest
+latest: Pulling from amd64/rust
+4846f2900730: Pulling fs layer
+62fe2e747f69: Pulling fs layer
+4dc3950125eb: Pulling fs layer
+b2eb680928d4: Pulling fs layer
+7daf4a4778d1: Pulling fs layer
+b2eb680928d4: Waiting
+7daf4a4778d1: Waiting
+62fe2e747f69: Verifying Checksum
+62fe2e747f69: Download complete
+4846f2900730: Verifying Checksum
+4846f2900730: Download complete
+4dc3950125eb: Verifying Checksum
+4dc3950125eb: Download complete
+b2eb680928d4: Verifying Checksum
+b2eb680928d4: Download complete
+7daf4a4778d1: Verifying Checksum
+7daf4a4778d1: Download complete
+4846f2900730: Pull complete
+62fe2e747f69: Pull complete
+4dc3950125eb: Pull complete
+b2eb680928d4: Pull complete
+7daf4a4778d1: Pull complete
+Digest: sha256:d675bb37f43aed69da35624d7deeeb78799860e5e355988274cb6ee0c11afa43
+Status: Downloaded newer image for amd64/rust:latest
+docker.io/amd64/rust:latest
+##[command]/usr/bin/docker create --name 32626064d4bb43699e3487274fc47cd1_amd64rust_f732fb --label bab1c4 --workdir /__w/datafusion/datafusion --network github_network_bec1a8a492794d45b3c731fbc64e0a49  -e "HOME=/github/home" -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/work":"/__w" -v "/home/runner/actions-runner/cached/2.337.0/externals":"/__e":ro -v "/home/runner/work/_temp":"/__w/_temp" -v "/home/runner/work/_actions":"/__w/_actions" -v "/opt/hostedtoolcache":"/__t" -v "/home/runner/work/_temp/_github_home":"/github/home" -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" --entrypoint "tail" amd64/rust "-f" "/dev/null"
+3eb8503188bddfba497203c23a6e3ca15f60290736c8e29c867b7c670fdd7083
+##[command]/usr/bin/docker start 3eb8503188bddfba497203c23a6e3ca15f60290736c8e29c867b7c670fdd7083
+3eb8503188bddfba497203c23a6e3ca15f60290736c8e29c867b7c670fdd7083
+##[command]/usr/bin/docker ps --all --filter id=3eb8503188bddfba497203c23a6e3ca15f60290736c8e29c867b7c670fdd7083 --filter status=running --no-trunc --format "{{.ID}} {{.Status}}"
+3eb8503188bddfba497203c23a6e3ca15f60290736c8e29c867b7c670fdd7083 Up Less than a second
+##[command]/usr/bin/docker inspect --format "{{range .Config.Env}}{{println .}}{{end}}" 3eb8503188bddfba497203c23a6e3ca15f60290736c8e29c867b7c670fdd7083
+HOME=/github/home
+GITHUB_ACTIONS=true
+CI=true
+PATH=/usr/local/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+RUSTUP_HOME=/usr/local/rustup
+CARGO_HOME=/usr/local/cargo
+RUST_VERSION=1.99.0
+##[endgroup]
+##[group]Waiting for all services to be ready
+##[endgroup]
+##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+with:
+  repository: apache/datafusion
+  token: ***
+  ssh-strict: true
+  ssh-user: git
+  persist-credentials: true
+  clean: true
+  sparse-checkout-cone-mode: true
+  fetch-depth: 1
+  fetch-tags: false
+  show-progress: true
+  lfs: false
+  submodules: false
+  set-safe-directory: true
+  allow-unsafe-pr-checkout: false
+##[endgroup]
+##[command]/usr/bin/docker exec  3eb8503188bddfba497203c23a6e3ca15f60290736c8e29c867b7c670fdd7083 sh -c "cat /etc/*release | grep ^ID"
+Syncing repository: apache/datafusion
+##[group]Getting Git version info
+Working directory is '/__w/datafusion/datafusion'
+[command]/usr/bin/git version
+git version 2.47.3
+##[endgroup]
+Temporarily overriding HOME='/__w/_temp/5f93ef73-fb11-4432-9ef2-195c46c33629' before making global git config changes
+Adding repository directory to the temporary git global config as a safe directory
+[command]/usr/bin/git config --global --add safe.directory /__w/datafusion/datafusion
+Deleting the contents of '/__w/datafusion/datafusion'
+##[group]Determining repository object format
+##[endgroup]
+##[group]Initializing the repository
+[command]/usr/bin/git init /__w/datafusion/datafusion
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+Initialized empty Git repository in /__w/datafusion/datafusion/.git/
+[command]/usr/bin/git remote add origin https://github.com/apache/datafusion
+##[endgroup]
+##[group]Disabling automatic garbage collection
+[command]/usr/bin/git config --local gc.auto 0
+##[endgroup]
+##[group]Setting up auth
+Removing SSH command configuration
+[command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Removing HTTP extra header
+[command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Removing includeIf entries pointing to credentials config files
+[command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+[command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+[command]/usr/bin/git config --file /__w/_temp/git-credentials-784d6182-4a0b-422c-9498-8487e6b85a2f.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+[command]/usr/bin/git config --local includeIf.gitdir:/__w/datafusion/datafusion/.git.path /__w/_temp/git-credentials-784d6182-4a0b-422c-9498-8487e6b85a2f.config
+[command]/usr/bin/git config --local includeIf.gitdir:/__w/datafusion/datafusion/.git/worktrees/*.path /__w/_temp/git-credentials-784d6182-4a0b-422c-9498-8487e6b85a2f.config
+[command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-784d6182-4a0b-422c-9498-8487e6b85a2f.config
+[command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-784d6182-4a0b-422c-9498-8487e6b85a2f.config
+##[endgroup]
+##[group]Fetching the repository
+[command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +03bf3771c8af36239054edd5998e28ad6371f5ce:refs/remotes/pull/26173/merge
+From https://github.com/apache/datafusion
+ * [new ref]         03bf3771c8af36239054edd5998e28ad6371f5ce -> pull/26173/merge
+##[endgroup]
+##[group]Determining the checkout info
+##[endgroup]
+[command]/usr/bin/git sparse-checkout disable
+[command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+##[group]Checking out the ref
+[command]/usr/bin/git checkout --progress --force refs/remotes/pull/26173/merge
+Note: switching to 'refs/remotes/pull/26173/merge'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at 03bf377 Merge b8d528513b84720f03cef8fc454111abb82dbf9b into 500744d5c25499055e3b2ca46b022bc425989203
+##[endgroup]
+[command]/usr/bin/git log -1 --format=%H
+03bf3771c8af36239054edd5998e28ad6371f5ce
+Prepare all required actions
+Getting action download info
+##[group]Run ./.github/actions/setup-builder
+with:
+  rust-version: stable
+##[endgroup]
+##[start-action display=Install Build Dependencies;id=__self.__run]
+##[group]Run RETRY=("ci/scripts/retry" timeout 120)
+^[[36;1mRETRY=("ci/scripts/retry" timeout 120)^[[0m
+^[[36;1m"${RETRY[@]}" apt-get update^[[0m
+^[[36;1m"${RETRY[@]}" apt-get install -y protobuf-compiler^[[0m
+shell: bash --noprofile --norc -e -o pipefail {0}
+##[endgroup]
++ timeout 120 apt-get update
+Hit:1 http://deb.debian.org/debian trixie InRelease
+Get:2 http://deb.debian.org/debian trixie-updates InRelease [47.3 kB]
+Get:3 http://deb.debian.org/debian-security trixie-security InRelease [43.4 kB]
+Get:4 http://deb.debian.org/debian trixie/main amd64 Packages [9678 kB]
+Get:5 http://deb.debian.org/debian trixie-updates/main amd64 Packages [4412 B]
+Get:6 http://deb.debian.org/debian-security trixie-security/main amd64 Packages [265 kB]
+Fetched 10.0 MB in 1s (11.7 MB/s)
+Reading package lists...
++ timeout 120 apt-get install -y protobuf-compiler
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libprotobuf-dev libprotobuf-lite32t64 libprotobuf32t64 libprotoc32t64
+Suggested packages:
+  protobuf-mode-el
+The following NEW packages will be installed:
+  libprotobuf-dev libprotobuf-lite32t64 libprotobuf32t64 libprotoc32t64
+  protobuf-compiler
+0 upgraded, 5 newly installed, 0 to remove and 3 not upgraded.
+Need to get 3592 kB of archives.
+After this operation, 20.5 MB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian trixie/main amd64 libprotobuf32t64 amd64 3.21.12-11+deb13u1 [981 kB]
+Get:2 http://deb.debian.org/debian trixie/main amd64 libprotobuf-lite32t64 amd64 3.21.12-11+deb13u1 [275 kB]
+Get:3 http://deb.debian.org/debian trixie/main amd64 libprotobuf-dev amd64 3.21.12-11+deb13u1 [1329 kB]
+Get:4 http://deb.debian.org/debian trixie/main amd64 libprotoc32t64 amd64 3.21.12-11+deb13u1 [922 kB]
+Get:5 http://deb.debian.org/debian trixie/main amd64 protobuf-compiler amd64 3.21.12-11+deb13u1 [85.0 kB]
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+debconf: unable to initialize frontend: Teletype
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Noninteractive
+Fetched 3592 kB in 0s (22.0 MB/s)
+Selecting previously unselected package libprotobuf32t64:amd64.
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 26064 files and directories currently installed.)
+Preparing to unpack .../libprotobuf32t64_3.21.12-11+deb13u1_amd64.deb ...
+Unpacking libprotobuf32t64:amd64 (3.21.12-11+deb13u1) ...
+Selecting previously unselected package libprotobuf-lite32t64:amd64.
+Preparing to unpack .../libprotobuf-lite32t64_3.21.12-11+deb13u1_amd64.deb ...
+Unpacking libprotobuf-lite32t64:amd64 (3.21.12-11+deb13u1) ...
+Selecting previously unselected package libprotobuf-dev:amd64.
+Preparing to unpack .../libprotobuf-dev_3.21.12-11+deb13u1_amd64.deb ...
+Unpacking libprotobuf-dev:amd64 (3.21.12-11+deb13u1) ...
+Selecting previously unselected package libprotoc32t64:amd64.
+Preparing to unpack .../libprotoc32t64_3.21.12-11+deb13u1_amd64.deb ...
+Unpacking libprotoc32t64:amd64 (3.21.12-11+deb13u1) ...
+Selecting previously unselected package protobuf-compiler.
+Preparing to unpack .../protobuf-compiler_3.21.12-11+deb13u1_amd64.deb ...
+Unpacking protobuf-compiler (3.21.12-11+deb13u1) ...
+Setting up libprotobuf-lite32t64:amd64 (3.21.12-11+deb13u1) ...
+Setting up libprotobuf32t64:amd64 (3.21.12-11+deb13u1) ...
+Setting up libprotobuf-dev:amd64 (3.21.12-11+deb13u1) ...
+Setting up libprotoc32t64:amd64 (3.21.12-11+deb13u1) ...
+Setting up protobuf-compiler (3.21.12-11+deb13u1) ...
+Processing triggers for libc-bin (2.41-12+deb13u4) ...
+##[end-action id=__self.__run;outcome=success;conclusion=success;duration_ms=3126]
+##[start-action display=Setup Rust toolchain;id=__self.__run_2]
+##[group]Run RETRY=("ci/scripts/retry" timeout 120)
+^[[36;1mRETRY=("ci/scripts/retry" timeout 120)^[[0m
+^[[36;1mecho "Installing stable"^[[0m
+^[[36;1m"${RETRY[@]}" rustup toolchain install stable^[[0m
+^[[36;1m"${RETRY[@]}" rustup default stable^[[0m
+^[[36;1m"${RETRY[@]}" rustup component add rustfmt^[[0m
+shell: bash --noprofile --norc -e -o pipefail {0}
+##[endgroup]
+Installing stable
++ timeout 120 rustup toolchain install stable
+info: syncing channel updates for stable-x86_64-unknown-linux-gnu
+info: latest update on 2026-10-01 for version 1.99.0 (b940084d7 2026-09-28)
+info: downloading 3 components
+
+  stable-x86_64-unknown-linux-gnu installed - rustc 1.99.0 (b940084d7 2026-09-28)
+
++ timeout 120 rustup default stable
+info: using existing install for stable-x86_64-unknown-linux-gnu
+info: default toolchain set to stable-x86_64-unknown-linux-gnu
+
+info: note that the toolchain '1.97.0-x86_64-unknown-linux-gnu' is currently in use (overridden by '/__w/datafusion/datafusion/rust-toolchain.toml')
+  stable-x86_64-unknown-linux-gnu unchanged - rustc 1.99.0 (b940084d7 2026-09-28)
+
++ timeout 120 rustup component add rustfmt
+info: syncing channel updates for 1.97.0-x86_64-unknown-linux-gnu
+info: latest update on 2026-07-09 for version 1.97.0 (2d8144b78 2026-07-07)
+info: downloading 5 components
+warn: the missing active toolchain `1.97.0-x86_64-unknown-linux-gnu` has been auto-installed
+warn: auto-installation is deprecated for most `rustup` commands
+warn: scripts relying on this behavior in `rustup` may stop working in the future
+warn: to install the active toolchain, use `rustup install` instead
+warn: see <https://github.com/rust-lang/rustup/issues/4836> for more info
+info: component rustfmt is up to date
+##[end-action id=__self.__run_2;outcome=success;conclusion=success;duration_ms=15634]
+##[start-action display=Configure rust runtime env;id=__self.__self]
+Prepare all required actions
+##[group]Run ./.github/actions/setup-rust-runtime
+##[endgroup]
+##[start-action display=Configure runtime env;id=__self.__self.__run]
+##[group]Run echo "RUST_BACKTRACE=1" >> $GITHUB_ENV
+^[[36;1mecho "RUST_BACKTRACE=1" >> $GITHUB_ENV^[[0m
+^[[36;1mecho "RUSTFLAGS=-C debuginfo=line-tables-only -C incremental=false" >> $GITHUB_ENV^[[0m
+^[[36;1m# Work around intermittent "[16] Error in the HTTP2 framing layer"^[[0m
+^[[36;1m# failures from curl when cargo fetches crates from crates.io.^[[0m
+^[[36;1m# Disabling HTTP/2 multiplexing forces cargo to serialize requests,^[[0m
+^[[36;1m# and raising retries makes transient network hiccups self-heal.^[[0m
+^[[36;1m#^[[0m
+^[[36;1m# Reference:^[[0m
+^[[36;1m# https://doc.rust-lang.org/cargo/reference/config.html?#httpmultiplexing^[[0m
+^[[36;1m# https://doc.rust-lang.org/cargo/reference/config.html?#netretry^[[0m
+^[[36;1mecho "CARGO_HTTP_MULTIPLEXING=false" >> $GITHUB_ENV^[[0m
+^[[36;1mecho "CARGO_NET_RETRY=10" >> $GITHUB_ENV^[[0m
+^[[36;1mecho "CARGO_HTTP_RETRY=10" >> $GITHUB_ENV^[[0m
+shell: bash --noprofile --norc -e -o pipefail {0}
+##[endgroup]
+##[end-action id=__self.__self.__run;outcome=success;conclusion=success;duration_ms=47]
+##[end-action id=__self.__self;outcome=success;conclusion=success;duration_ms=54]
+##[start-action display=Fixup git permissions;id=__self.__run_3]
+##[group]Run git config --global --add safe.directory "$GITHUB_WORKSPACE"
+^[[36;1mgit config --global --add safe.directory "$GITHUB_WORKSPACE"^[[0m
+shell: bash --noprofile --norc -e -o pipefail {0}
+env:
+  RUST_BACKTRACE: 1
+  RUSTFLAGS: -C debuginfo=line-tables-only -C incremental=false
+  CARGO_HTTP_MULTIPLEXING: false
+  CARGO_NET_RETRY: 10
+  CARGO_HTTP_RETRY: 10
+##[endgroup]
+##[end-action id=__self.__run_3;outcome=success;conclusion=success;duration_ms=48]
+##[start-action display=Remove unnecessary preinstalled software;id=__self.__run_4]
+##[group]Run echo "Disk space before cleanup:"
+^[[36;1mecho "Disk space before cleanup:"^[[0m
+^[[36;1mdf -h ^[[0m
+^[[36;1mapt-get clean^[[0m
+^[[36;1m# remove tool cache: about 8.5GB (github has host /opt/hostedtoolcache mounted as /__t)^[[0m
+^[[36;1mrm -rf /__t/* || true^[[0m
+^[[36;1m# remove Haskell runtime: about 6.3GB (host /usr/local/.ghcup)^[[0m
+^[[36;1mrm -rf /host/usr/local/.ghcup || true^[[0m
+^[[36;1m# remove Android library: about 7.8GB (host /usr/local/lib/android)^[[0m
+^[[36;1mrm -rf /host/usr/local/lib/android || true^[[0m
+^[[36;1mecho "Disk space after cleanup:"^[[0m
+^[[36;1mdf -h^[[0m
+shell: bash --noprofile --norc -e -o pipefail {0}
+env:
+  RUST_BACKTRACE: 1
+  RUSTFLAGS: -C debuginfo=line-tables-only -C incremental=false
+  CARGO_HTTP_MULTIPLEXING: false
+  CARGO_NET_RETRY: 10
+  CARGO_HTTP_RETRY: 10
+##[endgroup]
+Disk space before cleanup:
+Filesystem      Size  Used Avail Use% Mounted on
+overlay         145G   62G   84G  43% /
+tmpfs            64M     0   64M   0% /dev
+shm              64M     0   64M   0% /dev/shm
+/dev/root       145G   62G   84G  43% /__w
+tmpfs           3.2G  1.1M  3.2G   1% /run/docker.sock
+tmpfs           4.0K     0  4.0K   0% /proc/acpi
+Disk space after cleanup:
+Filesystem      Size  Used Avail Use% Mounted on
+overlay         145G   57G   89G  39% /
+tmpfs            64M     0   64M   0% /dev
+shm              64M     0   64M   0% /dev/shm
+/dev/root       145G   57G   89G  39% /__w
+tmpfs           3.2G  1.1M  3.2G   1% /run/docker.sock
+tmpfs           4.0K     0  4.0K   0% /proc/acpi
+##[end-action id=__self.__run_4;outcome=success;conclusion=success;duration_ms=63112]
+##[group]Run ./regen.sh
+^[[36;1m./regen.sh^[[0m
+shell: sh -e {0}
+env:
+  RUST_BACKTRACE: 1
+  RUSTFLAGS: -C debuginfo=line-tables-only -C incremental=false
+  CARGO_HTTP_MULTIPLEXING: false
+  CARGO_NET_RETRY: 10
+  CARGO_HTTP_RETRY: 10
+##[endgroup]
+    Updating git repository `https://github.com/Jefffrey/arrow-rs.git`
+    Updating git submodule `https://github.com/apache/parquet-testing.git`
+    Updating git submodule `https://github.com/apache/arrow-testing`
+    Updating crates.io index
+     Locking 17 packages to latest compatible versions
+      Adding arrow v59.3.1 (https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa)
+      Adding arrow-arith v59.3.1 (https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa)
+      Adding arrow-array v59.3.1 (https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa)
+      Adding arrow-avro v59.3.1 (https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa)
+      Adding arrow-buffer v59.3.1 (https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa)
+      Adding arrow-cast v59.3.1 (https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa)
+      Adding arrow-csv v59.3.1 (https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa)
+      Adding arrow-data v59.3.1 (https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa)
+      Adding arrow-flight v59.3.1 (https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa)
+      Adding arrow-ipc v59.3.1 (https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa)
+      Adding arrow-json v59.3.1 (https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa)
+      Adding arrow-ord v59.3.1 (https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa)
+      Adding arrow-row v59.3.1 (https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa)
+      Adding arrow-schema v59.3.1 (https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa)
+      Adding arrow-select v59.3.1 (https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa)
+      Adding arrow-string v59.3.1 (https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa)
+      Adding parquet v59.3.1 (https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa)
+ Downloading crates ...
+  Downloaded anyhow v1.0.103
+  Downloaded bitflags v2.11.1
+  Downloaded aho-corasick v1.1.4
+  Downloaded equivalent v1.0.2
+  Downloaded fixedbitset v0.5.7
+  Downloaded itertools v0.14.0
+  Downloaded hashbrown v0.17.1
+  Downloaded log v0.4.33
+  Downloaded once_cell v1.21.4
+  Downloaded prettyplease v0.2.37
+  Downloaded prost-build v0.14.4
+  Downloaded quote v1.0.47
+  Downloaded tempfile v3.27.0
+  Downloaded regex-syntax v0.8.11
+  Downloaded either v1.15.0
+  Downloaded foldhash v0.1.5
+  Downloaded indexmap v2.14.0
+  Downloaded memchr v2.8.3
+  Downloaded prost-derive v0.14.4
+  Downloaded petgraph v0.8.3
+  Downloaded unicode-ident v1.0.24
+  Downloaded regex-automata v0.4.16
+  Downloaded fastrand v2.4.1
+  Downloaded pbjson-build v0.9.0
+  Downloaded libc v0.2.189
+  Downloaded prost-types v0.14.4
+  Downloaded syn v2.0.119
+  Downloaded multimap v0.10.1
+  Downloaded hashbrown v0.15.5
+  Downloaded errno v0.3.14
+  Downloaded regex v1.13.1
+  Downloaded proc-macro2 v1.0.106
+  Downloaded rustix v1.1.4
+  Downloaded prost v0.14.4
+  Downloaded bytes v1.12.1
+  Downloaded heck v0.5.0
+  Downloaded linux-raw-sys v0.12.1
+   Compiling unicode-ident v1.0.24
+   Compiling proc-macro2 v1.0.106
+   Compiling quote v1.0.47
+   Compiling anyhow v1.0.103
+   Compiling either v1.15.0
+   Compiling itertools v0.14.0
+   Compiling syn v2.0.119
+   Compiling bytes v1.12.1
+   Compiling rustix v1.1.4
+   Compiling prettyplease v0.2.37
+   Compiling bitflags v2.11.1
+   Compiling hashbrown v0.17.1
+   Compiling linux-raw-sys v0.12.1
+   Compiling equivalent v1.0.2
+   Compiling foldhash v0.1.5
+   Compiling regex-syntax v0.8.11
+   Compiling indexmap v2.14.0
+   Compiling hashbrown v0.15.5
+   Compiling regex-automata v0.4.16
+   Compiling prost-derive v0.14.4
+   Compiling once_cell v1.21.4
+   Compiling fastrand v2.4.1
+   Compiling heck v0.5.0
+   Compiling fixedbitset v0.5.7
+   Compiling petgraph v0.8.3
+   Compiling prost v0.14.4
+   Compiling prost-types v0.14.4
+   Compiling regex v1.13.1
+   Compiling tempfile v3.27.0
+   Compiling log v0.4.33
+   Compiling multimap v0.10.1
+   Compiling prost-build v0.14.4
+   Compiling pbjson-build v0.9.0
+   Compiling gen v0.1.0 (/__w/datafusion/datafusion/datafusion/proto-models/gen)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 22.15s
+     Running `target/debug/gen`
+Copying datafusion/proto-models/src/datafusion.rs to datafusion/proto-models/src/generated/prost.rs
+##[group]Run git diff --exit-code
+^[[36;1mgit diff --exit-code^[[0m
+shell: sh -e {0}
+env:
+  RUST_BACKTRACE: 1
+  RUSTFLAGS: -C debuginfo=line-tables-only -C incremental=false
+  CARGO_HTTP_MULTIPLEXING: false
+  CARGO_NET_RETRY: 10
+  CARGO_HTTP_RETRY: 10
+##[endgroup]
+diff --git a/Cargo.lock b/Cargo.lock
+index 02bebb4..2463351 100644
+--- a/Cargo.lock
++++ b/Cargo.lock
+@@ -112,7 +112,7 @@ version = "1.1.5"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "40c48f72fd53cd289104fc64099abca73db4166ad86ea0b4341abe65af83dadc"
+ dependencies = [
+- "windows-sys 0.60.2",
++ "windows-sys 0.61.2",
+ ]
+ 
+ [[package]]
+@@ -123,7 +123,7 @@ checksum = "291e6a250ff86cd4a820112fb8898808a366d8f9f58ce16d1f538353ad55747d"
+ dependencies = [
+  "anstyle",
+  "once_cell_polyfill",
+- "windows-sys 0.60.2",
++ "windows-sys 0.61.2",
+ ]
+ 
+ [[package]]
+@@ -164,9 +164,8 @@ checksum = "7c02d123df017efcdfbd739ef81735b36c5ba83ec3c59c80a9d7ecc718f92e50"
+ 
+ [[package]]
+ name = "arrow"
+-version = "59.2.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "61d285d16bce7d0be61912f7928342b673067b6b7d7ef6cc179258ba7de1fecf"
++version = "59.3.1"
++source = "git+https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa4fca24b5f06daa65fec1751a4a233259"
+ dependencies = [
+  "arrow-arith",
+  "arrow-array",
+@@ -187,9 +186,8 @@ dependencies = [
+ 
+ [[package]]
+ name = "arrow-arith"
+-version = "59.2.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "757ef1836251e88222542a7da2623bc1c9cb9e20afefa6db2c41e79991cd91d4"
++version = "59.3.1"
++source = "git+https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa4fca24b5f06daa65fec1751a4a233259"
+ dependencies = [
+  "arrow-array",
+  "arrow-buffer",
+@@ -201,9 +199,8 @@ dependencies = [
+ 
+ [[package]]
+ name = "arrow-array"
+-version = "59.2.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "bc9a4a4b2b5ecd0e04df03471661cb61f28bed3c7fd50994715129b01b2edb97"
++version = "59.3.1"
++source = "git+https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa4fca24b5f06daa65fec1751a4a233259"
+ dependencies = [
+  "ahash",
+  "arrow-buffer",
+@@ -221,9 +218,8 @@ dependencies = [
+ 
+ [[package]]
+ name = "arrow-avro"
+-version = "59.2.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "9fb45cd6bd2b25c0965793b83200eaca82214273a8030fbbc2d783e4c7c65a61"
++version = "59.3.1"
++source = "git+https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa4fca24b5f06daa65fec1751a4a233259"
+ dependencies = [
+  "arrow-array",
+  "arrow-buffer",
+@@ -245,9 +241,8 @@ dependencies = [
+ 
+ [[package]]
+ name = "arrow-buffer"
+-version = "59.2.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "c12b576ef18c1deb80925a248b25ad84f419198d791b8e293fc6aaa60441fe90"
++version = "59.3.1"
++source = "git+https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa4fca24b5f06daa65fec1751a4a233259"
+ dependencies = [
+  "bytes",
+  "half",
+@@ -257,9 +252,8 @@ dependencies = [
+ 
+ [[package]]
+ name = "arrow-cast"
+-version = "59.2.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "68338a9096a5dc9bc11927c58c43a8526d96bf6abd2012ef6c0c9f505991cc79"
++version = "59.3.1"
++source = "git+https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa4fca24b5f06daa65fec1751a4a233259"
+ dependencies = [
+  "arrow-array",
+  "arrow-buffer",
+@@ -279,9 +273,8 @@ dependencies = [
+ 
+ [[package]]
+ name = "arrow-csv"
+-version = "59.2.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "25011b52b346407d497ef0030e12b45e4f2d0cc279efc09c4f3d09106db30e36"
++version = "59.3.1"
++source = "git+https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa4fca24b5f06daa65fec1751a4a233259"
+ dependencies = [
+  "arrow-array",
+  "arrow-cast",
+@@ -294,9 +287,8 @@ dependencies = [
+ 
+ [[package]]
+ name = "arrow-data"
+-version = "59.2.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "723fe4aeed7604e00b9883a465af4ff0a0e6c44c03e41a68c3d1cbc403e0e44d"
++version = "59.3.1"
++source = "git+https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa4fca24b5f06daa65fec1751a4a233259"
+ dependencies = [
+  "arrow-buffer",
+  "arrow-schema",
+@@ -307,9 +299,8 @@ dependencies = [
+ 
+ [[package]]
+ name = "arrow-flight"
+-version = "59.2.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "2bebfacc9d71f0728f6774164e4d4254b5e504d2b46812d0512d8290ec119a64"
++version = "59.3.1"
++source = "git+https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa4fca24b5f06daa65fec1751a4a233259"
+ dependencies = [
+  "arrow-arith",
+  "arrow-array",
+@@ -334,9 +325,8 @@ dependencies = [
+ 
+ [[package]]
+ name = "arrow-ipc"
+-version = "59.2.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "149437b14371f5b9ec60f5ddc751483ae99d7a7072653c0075e5e469156eea7b"
++version = "59.3.1"
++source = "git+https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa4fca24b5f06daa65fec1751a4a233259"
+ dependencies = [
+  "arrow-array",
+  "arrow-buffer",
+@@ -350,9 +340,8 @@ dependencies = [
+ 
+ [[package]]
+ name = "arrow-json"
+-version = "59.2.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "f18b9123ccfec418a663f821c9a034af339711678c11ffe00d3ec07da5ff9f7e"
++version = "59.3.1"
++source = "git+https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa4fca24b5f06daa65fec1751a4a233259"
+ dependencies = [
+  "arrow-array",
+  "arrow-buffer",
+@@ -375,9 +364,8 @@ dependencies = [
+ 
+ [[package]]
+ name = "arrow-ord"
+-version = "59.2.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "e6c08dff0686cf23ca4f562803f191ccbeb726dbae6309cd4b4aaf65e0f2c979"
++version = "59.3.1"
++source = "git+https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa4fca24b5f06daa65fec1751a4a233259"
+ dependencies = [
+  "arrow-array",
+  "arrow-buffer",
+@@ -388,9 +376,8 @@ dependencies = [
+ 
+ [[package]]
+ name = "arrow-row"
+-version = "59.2.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "bbec439386df71ad570e6758a946111322b9e9dc8db83b5527321f0b4c9119c2"
++version = "59.3.1"
++source = "git+https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa4fca24b5f06daa65fec1751a4a233259"
+ dependencies = [
+  "arrow-array",
+  "arrow-buffer",
+@@ -401,9 +388,8 @@ dependencies = [
+ 
+ [[package]]
+ name = "arrow-schema"
+-version = "59.2.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "e6fed2ca0d1eade57e811cbe73b98ad50cc08a1183e13b2d2aa43a7df593f40e"
++version = "59.3.1"
++source = "git+https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa4fca24b5f06daa65fec1751a4a233259"
+ dependencies = [
+  "bitflags",
+  "serde",
+@@ -413,9 +399,8 @@ dependencies = [
+ 
+ [[package]]
+ name = "arrow-select"
+-version = "59.2.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "466b19cf75130b891dc1b23a84b343c714c62c64c9c62e365c76aa0ff90a53fb"
++version = "59.3.1"
++source = "git+https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa4fca24b5f06daa65fec1751a4a233259"
+ dependencies = [
+  "ahash",
+  "arrow-array",
+@@ -427,9 +412,8 @@ dependencies = [
+ 
+ [[package]]
+ name = "arrow-string"
+-version = "59.2.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "c838a25bb3691e919e0f617616ac51a4ff8517a952e29ca133cf0c22b2ce65b1"
++version = "59.3.1"
++source = "git+https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa4fca24b5f06daa65fec1751a4a233259"
+ dependencies = [
+  "arrow-array",
+  "arrow-buffer",
+@@ -2804,7 +2788,7 @@ dependencies = [
+  "libc",
+  "option-ext",
+  "redox_users",
+- "windows-sys 0.60.2",
++ "windows-sys 0.61.2",
+ ]
+ 
+ [[package]]
+@@ -2943,7 +2927,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "39cab71617ae0d63f51a36d69f866391735b51691dbda63cf6f96d042b63efeb"
+ dependencies = [
+  "libc",
+- "windows-sys 0.52.0",
++ "windows-sys 0.61.2",
+ ]
+ 
+ [[package]]
+@@ -4215,7 +4199,7 @@ version = "0.50.3"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "7957b9740744892f114936ab4a57b3f487491bbeafaf8083688b16841a4240e5"
+ dependencies = [
+- "windows-sys 0.60.2",
++ "windows-sys 0.61.2",
+ ]
+ 
+ [[package]]
+@@ -4499,9 +4483,8 @@ dependencies = [
+ 
+ [[package]]
+ name = "parquet"
+-version = "59.2.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "7065842956a20c2a536924ce8e4d9955f7422451511b9eb7500d7bfe5077e59c"
++version = "59.3.1"
++source = "git+https://github.com/Jefffrey/arrow-rs.git?rev=03fd70fa4fca24b5f06daa65fec1751a4a233259#03fd70fa4fca24b5f06daa65fec1751a4a233259"
+ dependencies = [
+  "ahash",
+  "arrow-array",
+@@ -5376,7 +5359,7 @@ dependencies = [
+  "errno",
+  "libc",
+  "linux-raw-sys",
+- "windows-sys 0.52.0",
++ "windows-sys 0.61.2",
+ ]
+ 
+ [[package]]
+@@ -5848,7 +5831,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "3a766e1110788c36f4fa1c2b71b387a7815aa65f88ce0229841826633d93723e"
+ dependencies = [
+  "libc",
+- "windows-sys 0.60.2",
++ "windows-sys 0.61.2",
+ ]
+ 
+ [[package]]
+@@ -5948,7 +5931,7 @@ dependencies = [
+  "cfg-if",
+  "libc",
+  "psm",
+- "windows-sys 0.60.2",
++ "windows-sys 0.61.2",
+ ]
+ 
+ [[package]]
+@@ -6128,7 +6111,7 @@ dependencies = [
+  "getrandom 0.4.2",
+  "once_cell",
+  "rustix",
+- "windows-sys 0.52.0",
++ "windows-sys 0.61.2",
+ ]
+ 
+ [[package]]
+@@ -7069,7 +7052,7 @@ version = "0.1.11"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "c2a7b1c03c876122aa43f3020e6c3c3ee5c05081c9a00739faf7503aeba10d22"
+ dependencies = [
+- "windows-sys 0.52.0",
++ "windows-sys 0.61.2",
+ ]
+ 
+ [[package]]
+##[error]Process completed with exit code 1.
+Post job cleanup.
+Post job cleanup.
+##[command]/usr/bin/docker exec  3eb8503188bddfba497203c23a6e3ca15f60290736c8e29c867b7c670fdd7083 sh -c "cat /etc/*release | grep ^ID"
+[command]/usr/bin/git version
+git version 2.47.3
+Copying '/github/home/.gitconfig' to '/__w/_temp/49ae20f6-f00e-4252-8168-a0b06f724f9d/.gitconfig'
+Temporarily overriding HOME='/__w/_temp/49ae20f6-f00e-4252-8168-a0b06f724f9d' before making global git config changes
+Adding repository directory to the temporary git global config as a safe directory
+[command]/usr/bin/git config --global --add safe.directory /__w/datafusion/datafusion
+Removing SSH command configuration
+[command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Removing HTTP extra header
+[command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Removing includeIf entries pointing to credentials config files
+[command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+includeif.gitdir:/__w/datafusion/datafusion/.git.path
+includeif.gitdir:/__w/datafusion/datafusion/.git/worktrees/*.path
+includeif.gitdir:/github/workspace/.git.path
+includeif.gitdir:/github/workspace/.git/worktrees/*.path
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/__w/datafusion/datafusion/.git.path
+/__w/_temp/git-credentials-784d6182-4a0b-422c-9498-8487e6b85a2f.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/__w/datafusion/datafusion/.git.path \/__w\/_temp\/git\-credentials\-784d6182\-4a0b\-422c\-9498\-8487e6b85a2f\.config
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/__w/datafusion/datafusion/.git/worktrees/*.path
+/__w/_temp/git-credentials-784d6182-4a0b-422c-9498-8487e6b85a2f.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/__w/datafusion/datafusion/.git/worktrees/*.path \/__w\/_temp\/git\-credentials\-784d6182\-4a0b\-422c\-9498\-8487e6b85a2f\.config
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+/github/runner_temp/git-credentials-784d6182-4a0b-422c-9498-8487e6b85a2f.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-784d6182\-4a0b\-422c\-9498\-8487e6b85a2f\.config
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+/github/runner_temp/git-credentials-784d6182-4a0b-422c-9498-8487e6b85a2f.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-784d6182\-4a0b\-422c\-9498\-8487e6b85a2f\.config
+[command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Removing credentials config '/__w/_temp/git-credentials-784d6182-4a0b-422c-9498-8487e6b85a2f.config'
+Stop and remove container: 32626064d4bb43699e3487274fc47cd1_amd64rust_f732fb
+##[command]/usr/bin/docker rm --force 3eb8503188bddfba497203c23a6e3ca15f60290736c8e29c867b7c670fdd7083
+3eb8503188bddfba497203c23a6e3ca15f60290736c8e29c867b7c670fdd7083
+Remove container network: github_network_bec1a8a492794d45b3c731fbc64e0a49
+##[command]/usr/bin/docker network rm github_network_bec1a8a492794d45b3c731fbc64e0a49
+github_network_bec1a8a492794d45b3c731fbc64e0a49
+Cleaning up orphan processes

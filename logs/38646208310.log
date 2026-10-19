@@ -1,0 +1,281 @@
+﻿2026-10-14T22:55:13.8133465Z Current runner version: '2.337.0'
+##[group]Runner Image Provisioner
+Hosted Compute Agent
+Version: 20261012.601
+Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+Build Date: 2026-10-12T17:48:21Z
+Worker ID: {d6cf9cd9-eeaf-46cd-902f-e199084f6ea0}
+Region: westus
+Cloud: Azure
+##[endgroup]
+##[group]Operating System
+Ubuntu
+24.04.5
+LTS
+##[endgroup]
+##[group]Runner Image
+Image: ubuntu-24.04
+Version: 20261012.334.1
+Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+##[endgroup]
+##[group]GITHUB_TOKEN Permissions
+Contents: read
+Metadata: read
+##[endgroup]
+Secret source: None
+Cache mode: write
+Prepare workflow directory
+Prepare all required actions
+Getting action download info
+Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+Download action repository 'taiki-e/install-action@861a07ce7084f55488e375df125cdc99bba60eb7' (SHA:861a07ce7084f55488e375df125cdc99bba60eb7)
+Complete job name: security_audit
+##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+with:
+  repository: apache/datafusion
+  token: ***
+  ssh-strict: true
+  ssh-user: git
+  persist-credentials: true
+  clean: true
+  sparse-checkout-cone-mode: true
+  fetch-depth: 1
+  fetch-tags: false
+  show-progress: true
+  lfs: false
+  submodules: false
+  set-safe-directory: true
+  allow-unsafe-pr-checkout: false
+##[endgroup]
+Syncing repository: apache/datafusion
+##[group]Getting Git version info
+Working directory is '/home/runner/work/datafusion/datafusion'
+[command]/usr/bin/git version
+git version 2.55.0
+##[endgroup]
+Temporarily overriding HOME='/home/runner/work/_temp/ad2906a9-caa3-4663-9df6-7d478b9348b0' before making global git config changes
+Adding repository directory to the temporary git global config as a safe directory
+[command]/usr/bin/git config --global --add safe.directory /home/runner/work/datafusion/datafusion
+Deleting the contents of '/home/runner/work/datafusion/datafusion'
+##[group]Determining repository object format
+##[endgroup]
+##[group]Initializing the repository
+[command]/usr/bin/git init /home/runner/work/datafusion/datafusion
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: will change to "main" in Git 3.0. To configure the initial branch name
+hint: to use in all of your new repositories, which will suppress this warning,
+hint: call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+hint:
+hint: Disable this message with "git config set advice.defaultBranchName false"
+Initialized empty Git repository in /home/runner/work/datafusion/datafusion/.git/
+[command]/usr/bin/git remote add origin https://github.com/apache/datafusion
+##[endgroup]
+##[group]Disabling automatic garbage collection
+[command]/usr/bin/git config --local gc.auto 0
+##[endgroup]
+##[group]Setting up auth
+Removing SSH command configuration
+[command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Removing HTTP extra header
+[command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Removing includeIf entries pointing to credentials config files
+[command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+[command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+[command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-41022a27-3065-4cb4-8e1e-47aee01fa18b.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+[command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/datafusion/datafusion/.git.path /home/runner/work/_temp/git-credentials-41022a27-3065-4cb4-8e1e-47aee01fa18b.config
+[command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/datafusion/datafusion/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-41022a27-3065-4cb4-8e1e-47aee01fa18b.config
+[command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-41022a27-3065-4cb4-8e1e-47aee01fa18b.config
+[command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-41022a27-3065-4cb4-8e1e-47aee01fa18b.config
+##[endgroup]
+##[group]Fetching the repository
+[command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +b00275a8a2a4a44c730b0bb1c05b26d00a8a0349:refs/remotes/pull/26266/merge
+From https://github.com/apache/datafusion
+ * [new ref]         b00275a8a2a4a44c730b0bb1c05b26d00a8a0349 -> pull/26266/merge
+##[endgroup]
+##[group]Determining the checkout info
+##[endgroup]
+[command]/usr/bin/git sparse-checkout disable
+[command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+##[group]Checking out the ref
+[command]/usr/bin/git checkout --progress --force refs/remotes/pull/26266/merge
+Note: switching to 'refs/remotes/pull/26266/merge'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at b00275a Merge 3991012d58698a1c3f8f09566a521a3a165c1450 into 390d2107d10b03af078fb8cddf48e4fdbb734053
+##[endgroup]
+[command]/usr/bin/git log -1 --format=%H
+b00275a8a2a4a44c730b0bb1c05b26d00a8a0349
+##[group]Run taiki-e/install-action@861a07ce7084f55488e375df125cdc99bba60eb7
+with:
+  tool: cargo-audit
+  checksum: true
+  fallback: cargo-binstall
+##[endgroup]
+##[start-action display=Run bail() {;id=__taiki-e_install-action.__run]
+##[group]Run bail() {
+^[[36;1mbail() {^[[0m
+^[[36;1m  printf '::error::install-action: %s\n' "$*"^[[0m
+^[[36;1m  exit 1^[[0m
+^[[36;1m}^[[0m
+^[[36;1m# If /bin/sh is dash, environment variable containing % is not imported, but is fine^[[0m
+^[[36;1m# because it also means that it will not be exposed to subprocess.^[[0m
+^[[36;1mif /usr/bin/env | grep -Eq '^BASH_FUNC_'; then^[[0m
+^[[36;1m  bail 'bash function injection via BASH_FUNC_ environment variable is not allowed for security reasons'^[[0m
+^[[36;1mfi^[[0m
+^[[36;1mif ! command -v bash >/dev/null; then^[[0m
+^[[36;1m  if grep -Eq '^ID=alpine' /etc/os-release; then^[[0m
+^[[36;1m    printf '::group::Install packages required for install-action (bash)\n'^[[0m
+^[[36;1m    # NB: sync with apk_install in main.sh^[[0m
+^[[36;1m    if command -v sudo >/dev/null; then^[[0m
+^[[36;1m      sudo apk --no-cache add bash^[[0m
+^[[36;1m    elif command -v doas >/dev/null; then^[[0m
+^[[36;1m      doas apk --no-cache add bash^[[0m
+^[[36;1m    else^[[0m
+^[[36;1m      apk --no-cache add bash^[[0m
+^[[36;1m    fi^[[0m
+^[[36;1m    printf '::endgroup::\n'^[[0m
+^[[36;1m  else^[[0m
+^[[36;1m    bail 'this action requires bash'^[[0m
+^[[36;1m  fi^[[0m
+^[[36;1mfi^[[0m
+^[[36;1mbash --noprofile --norc "${GITHUB_ACTION_PATH:?}/main.sh"^[[0m
+shell: /usr/bin/env -u ENV -u BASH_ENV -u CDPATH -u SHELLOPTS -u BASHOPTS /bin/sh -eu {0}
+env:
+  INPUT_TOOL: cargo-audit
+  INPUT_CHECKSUM: true
+  INPUT_FALLBACK: cargo-binstall
+  DEFAULT_GITHUB_TOKEN: ***
+  ACTION_USER_AGENT: taiki-e/install-action (861a07ce7084f55488e375df125cdc99bba60eb7)
+  RUNNER_OS: Linux
+  RUNNER_ARCH: X64
+##[endgroup]
+info: host platform: x86_64_linux
+info: installing cargo-audit@latest
+info: downloading https://github.com/rustsec/rustsec/releases/download/cargo-audit/v0.22.2/cargo-audit-x86_64-unknown-linux-musl-v0.22.2.tgz
+info: verifying sha256 checksum for cargo-audit-x86_64-unknown-linux-musl-v0.22.2.tgz
+info: cargo-audit installed at /home/runner/.cargo/bin/cargo-audit
++ cargo-audit audit --version
+cargo-audit-audit 0.22.2
+
+##[end-action id=__taiki-e_install-action.__run;outcome=success;conclusion=success;duration_ms=422]
+##[start-action display=Run Set-StrictMode -Version Latest;id=__taiki-e_install-action.__run_2]
+##[end-action id=__taiki-e_install-action.__run_2;outcome=skipped;conclusion=skipped;duration_ms=0]
+##[group]Run bash ci/scripts/security_audit.sh
+^[[36;1mbash ci/scripts/security_audit.sh^[[0m
+shell: /usr/bin/bash -e {0}
+##[endgroup]
+[security_audit.sh] `cargo audit`
+info: syncing channel updates for 1.99.0-x86_64-unknown-linux-gnu
+info: latest update on 2026-10-01 for version 1.99.0 (b940084d7 2026-09-28)
+info: downloading 5 components
+warn: the missing active toolchain `1.99.0-x86_64-unknown-linux-gnu` has been auto-installed
+warn: this might cause rustup commands to take longer time to finish than expected
+info: you may opt out with `RUSTUP_AUTO_INSTALL=0` or `rustup set auto-install disable`
+    Fetching advisory database from `https://github.com/RustSec/advisory-db.git`
+      Loaded 1329 security advisories (from /home/runner/.cargo/advisory-db)
+    Updating crates.io index
+    Scanning Cargo.lock for vulnerabilities (677 crate dependencies)
+Crate:     rustls
+Version:   0.23.45
+Title:     Buffered application data sent to outer server after ECH rejection
+Date:      2026-10-14
+error: 4 vulnerabilities found!
+warning: 1 allowed warning found
+ID:        RUSTSEC-2026-0347
+URL:       https://rustsec.org/advisories/RUSTSEC-2026-0347
+Severity:  2.3 (low)
+Solution:  Upgrade to >=0.23.46
+
+Crate:     rustls
+Version:   0.23.45
+Title:     Brotli certificate decompression can allocate up to 1 GiB before authentication
+Date:      2026-10-14
+ID:        RUSTSEC-2026-0348
+URL:       https://rustsec.org/advisories/RUSTSEC-2026-0348
+Severity:  3.7 (low)
+Solution:  Upgrade to >=0.23.46
+
+Crate:     rustls
+Version:   0.23.45
+Title:     Unauthenticated ServerHello can downgrade later connections to classical key exchange
+Date:      2026-10-14
+ID:        RUSTSEC-2026-0349
+URL:       https://rustsec.org/advisories/RUSTSEC-2026-0349
+Severity:  3.7 (low)
+Solution:  Upgrade to >=0.23.46
+
+Crate:     rustls
+Version:   0.23.45
+Title:     `Debug` impls for client session values expose TLS secrets
+Date:      2026-10-14
+ID:        RUSTSEC-2026-0346
+URL:       https://rustsec.org/advisories/RUSTSEC-2026-0346
+Severity:  4 (medium)
+Solution:  Upgrade to >=0.23.46
+
+Crate:     unsafe-libyaml
+Version:   0.2.11
+Warning:   unmaintained
+Title:     unsafe-libyaml is unmaintained
+Date:      2024-03-25
+ID:        RUSTSEC-2024-0449
+URL:       https://rustsec.org/advisories/RUSTSEC-2024-0449
+
+##[error]Process completed with exit code 1.
+Post job cleanup.
+[command]/usr/bin/git version
+git version 2.55.0
+Temporarily overriding HOME='/home/runner/work/_temp/88070c8d-7b4a-459f-b3cb-487ea4418615' before making global git config changes
+Adding repository directory to the temporary git global config as a safe directory
+[command]/usr/bin/git config --global --add safe.directory /home/runner/work/datafusion/datafusion
+Removing SSH command configuration
+[command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Removing HTTP extra header
+[command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Removing includeIf entries pointing to credentials config files
+[command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+includeif.gitdir:/home/runner/work/datafusion/datafusion/.git.path
+includeif.gitdir:/home/runner/work/datafusion/datafusion/.git/worktrees/*.path
+includeif.gitdir:/github/workspace/.git.path
+includeif.gitdir:/github/workspace/.git/worktrees/*.path
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/datafusion/datafusion/.git.path
+/home/runner/work/_temp/git-credentials-41022a27-3065-4cb4-8e1e-47aee01fa18b.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/datafusion/datafusion/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-41022a27\-3065\-4cb4\-8e1e\-47aee01fa18b\.config
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/datafusion/datafusion/.git/worktrees/*.path
+/home/runner/work/_temp/git-credentials-41022a27-3065-4cb4-8e1e-47aee01fa18b.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/datafusion/datafusion/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-41022a27\-3065\-4cb4\-8e1e\-47aee01fa18b\.config
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+/github/runner_temp/git-credentials-41022a27-3065-4cb4-8e1e-47aee01fa18b.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-41022a27\-3065\-4cb4\-8e1e\-47aee01fa18b\.config
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+/github/runner_temp/git-credentials-41022a27-3065-4cb4-8e1e-47aee01fa18b.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-41022a27\-3065\-4cb4\-8e1e\-47aee01fa18b\.config
+[command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Removing credentials config '/home/runner/work/_temp/git-credentials-41022a27-3065-4cb4-8e1e-47aee01fa18b.config'
+Cleaning up orphan processes

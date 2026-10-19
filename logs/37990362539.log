@@ -1,0 +1,264 @@
+﻿2026-10-09T20:57:02.5630606Z Current runner version: '2.337.0'
+##[group]Runner Image Provisioner
+Hosted Compute Agent
+Version: 20261002.596
+Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+Build Date: 2026-10-02T22:28:27Z
+Worker ID: {7203ca93-285e-4909-af88-c1eea72a30e2}
+Region: westus3
+Cloud: Azure
+##[endgroup]
+##[group]Operating System
+Ubuntu
+24.04.5
+LTS
+##[endgroup]
+##[group]Runner Image
+Image: ubuntu-24.04
+Version: 20261004.327.1
+Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261004.327/images/ubuntu/Ubuntu2404-Readme.md
+Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261004.327
+##[endgroup]
+##[group]GITHUB_TOKEN Permissions
+Contents: read
+Metadata: read
+##[endgroup]
+Secret source: None
+Cache mode: write
+Prepare workflow directory
+Prepare all required actions
+Getting action download info
+Download action repository 'runs-on/action@17b59092eb37ebfdbb034460892887c09100eaa3' (SHA:17b59092eb37ebfdbb034460892887c09100eaa3)
+Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+Download action repository 'Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6' (SHA:6323deb102c322ba6fcbdcafc7e3dddab59af2b6)
+Download action repository 'actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a' (SHA:043fb46d1a93c77aae656e7c1c64a875d1fc6a0a)
+Complete job name: linux build test
+##[group]Checking docker version
+##[command]/usr/bin/docker version --format '{{.Server.APIVersion}}'
+'1.48'
+Docker daemon API version: '1.48'
+##[command]/usr/bin/docker version --format '{{.Client.APIVersion}}'
+'1.48'
+Docker client API version: '1.48'
+##[endgroup]
+##[group]Clean up resources from previous jobs
+##[command]/usr/bin/docker ps --all --quiet --no-trunc --filter "label=d707c1"
+##[command]/usr/bin/docker network prune --force --filter "label=d707c1"
+##[endgroup]
+##[group]Create local container network
+##[command]/usr/bin/docker network create --label d707c1 github_network_dabf12797dba4c728f870253fd314cc4
+3078f3783775dc8f5b347f9514c7272b0bdea2f5237003015567e1bdb060248c
+##[endgroup]
+##[group]Starting job container
+##[command]/usr/bin/docker pull amd64/rust
+Using default tag: latest
+Error response from daemon: toomanyrequests: You have reached your unauthenticated pull rate limit. https://www.docker.com/increase-rate-limit
+##[warning]Docker pull failed with exit code 1, back off 8.179 seconds before retry.
+##[command]/usr/bin/docker pull amd64/rust
+Using default tag: latest
+Error response from daemon: toomanyrequests: You have reached your unauthenticated pull rate limit. https://www.docker.com/increase-rate-limit
+##[warning]Docker pull failed with exit code 1, back off 6.288 seconds before retry.
+##[command]/usr/bin/docker pull amd64/rust
+Using default tag: latest
+Error response from daemon: toomanyrequests: You have reached your unauthenticated pull rate limit. https://www.docker.com/increase-rate-limit
+##[error]Docker pull failed with exit code 1
+Remove container network: github_network_dabf12797dba4c728f870253fd314cc4
+##[command]/usr/bin/docker network rm github_network_dabf12797dba4c728f870253fd314cc4
+github_network_dabf12797dba4c728f870253fd314cc4
+Cleaning up orphan processes
+﻿2026-10-09T20:57:02.1436850Z Current runner version: '2.337.0'
+##[group]Runner Image Provisioner
+Hosted Compute Agent
+Version: 20261002.596
+Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+Build Date: 2026-10-02T22:28:27Z
+Worker ID: {a2dd6a5a-6bed-4a7c-9d1c-ac4c10862ba4}
+Region: eastus
+Cloud: Azure
+##[endgroup]
+##[group]Operating System
+Ubuntu
+24.04.5
+LTS
+##[endgroup]
+##[group]Runner Image
+Image: ubuntu-24.04
+Version: 20261004.327.1
+Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261004.327/images/ubuntu/Ubuntu2404-Readme.md
+Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261004.327
+##[endgroup]
+##[group]GITHUB_TOKEN Permissions
+Contents: read
+Metadata: read
+##[endgroup]
+Secret source: None
+Cache mode: write
+Prepare workflow directory
+Prepare all required actions
+Getting action download info
+Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+Complete job name: Verify Vendored Code
+##[group]Checking docker version
+##[command]/usr/bin/docker version --format '{{.Server.APIVersion}}'
+'1.48'
+Docker daemon API version: '1.48'
+##[command]/usr/bin/docker version --format '{{.Client.APIVersion}}'
+'1.48'
+Docker client API version: '1.48'
+##[endgroup]
+##[group]Clean up resources from previous jobs
+##[command]/usr/bin/docker ps --all --quiet --no-trunc --filter "label=17becf"
+##[command]/usr/bin/docker network prune --force --filter "label=17becf"
+##[endgroup]
+##[group]Create local container network
+##[command]/usr/bin/docker network create --label 17becf github_network_eeb1047a9a154d7aa5335d7752298d08
+3045deb3d6fd27e77deb354b8386a4303860aaa0c289d96665a86952c7488932
+##[endgroup]
+##[group]Starting job container
+##[command]/usr/bin/docker pull amd64/rust
+Using default tag: latest
+Error response from daemon: toomanyrequests: You have reached your unauthenticated pull rate limit. https://www.docker.com/increase-rate-limit
+##[warning]Docker pull failed with exit code 1, back off 8.745 seconds before retry.
+##[command]/usr/bin/docker pull amd64/rust
+Using default tag: latest
+Error response from daemon: toomanyrequests: You have reached your unauthenticated pull rate limit. https://www.docker.com/increase-rate-limit
+##[warning]Docker pull failed with exit code 1, back off 2.398 seconds before retry.
+##[command]/usr/bin/docker pull amd64/rust
+Using default tag: latest
+Error response from daemon: toomanyrequests: You have reached your unauthenticated pull rate limit. https://www.docker.com/increase-rate-limit
+##[error]Docker pull failed with exit code 1
+Remove container network: github_network_eeb1047a9a154d7aa5335d7752298d08
+##[command]/usr/bin/docker network rm github_network_eeb1047a9a154d7aa5335d7752298d08
+github_network_eeb1047a9a154d7aa5335d7752298d08
+Cleaning up orphan processes
+﻿2026-10-09T20:57:02.8256550Z Current runner version: '2.337.0'
+##[group]Runner Image Provisioner
+Hosted Compute Agent
+Version: 20261002.596
+Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+Build Date: 2026-10-02T22:28:27Z
+Worker ID: {bf51d63e-bba4-4091-9375-b388728a6161}
+Region: westus3
+Cloud: Azure
+##[endgroup]
+##[group]Operating System
+Ubuntu
+24.04.5
+LTS
+##[endgroup]
+##[group]Runner Image
+Image: ubuntu-24.04
+Version: 20261004.327.1
+Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261004.327/images/ubuntu/Ubuntu2404-Readme.md
+Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261004.327
+##[endgroup]
+##[group]GITHUB_TOKEN Permissions
+Contents: read
+Metadata: read
+##[endgroup]
+Secret source: None
+Cache mode: write
+Prepare workflow directory
+Prepare all required actions
+Getting action download info
+Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+Complete job name: Check cargo fmt
+##[group]Checking docker version
+##[command]/usr/bin/docker version --format '{{.Server.APIVersion}}'
+'1.48'
+Docker daemon API version: '1.48'
+##[command]/usr/bin/docker version --format '{{.Client.APIVersion}}'
+'1.48'
+Docker client API version: '1.48'
+##[endgroup]
+##[group]Clean up resources from previous jobs
+##[command]/usr/bin/docker ps --all --quiet --no-trunc --filter "label=620f9f"
+##[command]/usr/bin/docker network prune --force --filter "label=620f9f"
+##[endgroup]
+##[group]Create local container network
+##[command]/usr/bin/docker network create --label 620f9f github_network_7327bb07c62a44f89d96c01855406f14
+3eb57cfb1fee568e855e1cccab6004fb3115e66e65f98b51057e269dedc65f46
+##[endgroup]
+##[group]Starting job container
+##[command]/usr/bin/docker pull amd64/rust
+Using default tag: latest
+Error response from daemon: toomanyrequests: You have reached your unauthenticated pull rate limit. https://www.docker.com/increase-rate-limit
+##[warning]Docker pull failed with exit code 1, back off 3.34 seconds before retry.
+##[command]/usr/bin/docker pull amd64/rust
+Using default tag: latest
+Error response from daemon: toomanyrequests: You have reached your unauthenticated pull rate limit. https://www.docker.com/increase-rate-limit
+##[warning]Docker pull failed with exit code 1, back off 9.626 seconds before retry.
+##[command]/usr/bin/docker pull amd64/rust
+Using default tag: latest
+Error response from daemon: toomanyrequests: You have reached your unauthenticated pull rate limit. https://www.docker.com/increase-rate-limit
+##[error]Docker pull failed with exit code 1
+Remove container network: github_network_7327bb07c62a44f89d96c01855406f14
+##[command]/usr/bin/docker network rm github_network_7327bb07c62a44f89d96c01855406f14
+github_network_7327bb07c62a44f89d96c01855406f14
+Cleaning up orphan processes
+﻿2026-10-09T20:57:02.2911669Z Current runner version: '2.337.0'
+##[group]Runner Image Provisioner
+Hosted Compute Agent
+Version: 20261002.596
+Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+Build Date: 2026-10-02T22:28:27Z
+Worker ID: {600ed8fb-c421-4a29-a816-5849901d60ee}
+Region: centralus
+Cloud: Azure
+##[endgroup]
+##[group]Operating System
+Ubuntu
+24.04.5
+LTS
+##[endgroup]
+##[group]Runner Image
+Image: ubuntu-24.04
+Version: 20261004.327.1
+Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261004.327/images/ubuntu/Ubuntu2404-Readme.md
+Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261004.327
+##[endgroup]
+##[group]GITHUB_TOKEN Permissions
+Contents: read
+Metadata: read
+##[endgroup]
+Secret source: None
+Cache mode: write
+Prepare workflow directory
+Prepare all required actions
+Getting action download info
+Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+Download action repository 'taiki-e/install-action@861a07ce7084f55488e375df125cdc99bba60eb7' (SHA:861a07ce7084f55488e375df125cdc99bba60eb7)
+Complete job name: Verify MSRV (Min Supported Rust Version)
+##[group]Checking docker version
+##[command]/usr/bin/docker version --format '{{.Server.APIVersion}}'
+'1.48'
+Docker daemon API version: '1.48'
+##[command]/usr/bin/docker version --format '{{.Client.APIVersion}}'
+'1.48'
+Docker client API version: '1.48'
+##[endgroup]
+##[group]Clean up resources from previous jobs
+##[command]/usr/bin/docker ps --all --quiet --no-trunc --filter "label=714d01"
+##[command]/usr/bin/docker network prune --force --filter "label=714d01"
+##[endgroup]
+##[group]Create local container network
+##[command]/usr/bin/docker network create --label 714d01 github_network_e6818542e2e94d788640fc3eaf740036
+6d03a09b642ecdfb9168e6c972cffe6ec0170d9d960d0cf19bf33f2372d6dd42
+##[endgroup]
+##[group]Starting job container
+##[command]/usr/bin/docker pull amd64/rust
+Using default tag: latest
+Error response from daemon: toomanyrequests: You have reached your unauthenticated pull rate limit. https://www.docker.com/increase-rate-limit
+##[warning]Docker pull failed with exit code 1, back off 4.827 seconds before retry.
+##[command]/usr/bin/docker pull amd64/rust
+Using default tag: latest
+Error response from daemon: toomanyrequests: You have reached your unauthenticated pull rate limit. https://www.docker.com/increase-rate-limit
+##[warning]Docker pull failed with exit code 1, back off 2.24 seconds before retry.
+##[command]/usr/bin/docker pull amd64/rust
+Using default tag: latest
+Error response from daemon: toomanyrequests: You have reached your unauthenticated pull rate limit. https://www.docker.com/increase-rate-limit
+##[error]Docker pull failed with exit code 1
+Remove container network: github_network_e6818542e2e94d788640fc3eaf740036
+##[command]/usr/bin/docker network rm github_network_e6818542e2e94d788640fc3eaf740036
+github_network_e6818542e2e94d788640fc3eaf740036
+Cleaning up orphan processes

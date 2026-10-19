@@ -1,0 +1,1755 @@
+﻿2026-10-12T06:31:37.1178476Z Current runner version: '2.337.0'
+##[group]Runner Image Provisioner
+Hosted Compute Agent
+Version: 20261002.596
+Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+Build Date: 2026-10-02T22:28:27Z
+Worker ID: {f7dc8223-5543-4fc9-bc15-dc211e4baa8e}
+Region: westus2
+Cloud: Azure
+##[endgroup]
+##[group]Operating System
+Ubuntu
+24.04.5
+LTS
+##[endgroup]
+##[group]Runner Image
+Image: ubuntu-24.04
+Version: 20261004.327.1
+Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261004.327/images/ubuntu/Ubuntu2404-Readme.md
+Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261004.327
+##[endgroup]
+##[group]GITHUB_TOKEN Permissions
+Contents: read
+Metadata: read
+##[endgroup]
+Secret source: None
+Cache mode: write
+Prepare workflow directory
+Prepare all required actions
+Getting action download info
+Download action repository 'runs-on/action@17b59092eb37ebfdbb034460892887c09100eaa3' (SHA:17b59092eb37ebfdbb034460892887c09100eaa3)
+Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+Download action repository 'Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6' (SHA:6323deb102c322ba6fcbdcafc7e3dddab59af2b6)
+Complete job name: clippy
+##[group]Checking docker version
+##[command]/usr/bin/docker version --format '{{.Server.APIVersion}}'
+'1.48'
+Docker daemon API version: '1.48'
+##[command]/usr/bin/docker version --format '{{.Client.APIVersion}}'
+'1.48'
+Docker client API version: '1.48'
+##[endgroup]
+##[group]Clean up resources from previous jobs
+##[command]/usr/bin/docker ps --all --quiet --no-trunc --filter "label=10d1cf"
+##[command]/usr/bin/docker network prune --force --filter "label=10d1cf"
+##[endgroup]
+##[group]Create local container network
+##[command]/usr/bin/docker network create --label 10d1cf github_network_576c236b657141c4afe687d5a0e1f96c
+8f4cc5d26ffa7a60dd2d577a5abf93478ac137d26fa427c94939f8badf685770
+##[endgroup]
+##[group]Starting job container
+##[command]/usr/bin/docker pull amd64/rust
+Using default tag: latest
+latest: Pulling from amd64/rust
+4846f2900730: Pulling fs layer
+62fe2e747f69: Pulling fs layer
+4dc3950125eb: Pulling fs layer
+b2eb680928d4: Pulling fs layer
+7daf4a4778d1: Pulling fs layer
+b2eb680928d4: Waiting
+7daf4a4778d1: Waiting
+62fe2e747f69: Verifying Checksum
+62fe2e747f69: Download complete
+4846f2900730: Verifying Checksum
+4846f2900730: Download complete
+4dc3950125eb: Verifying Checksum
+4dc3950125eb: Download complete
+b2eb680928d4: Verifying Checksum
+b2eb680928d4: Download complete
+7daf4a4778d1: Verifying Checksum
+7daf4a4778d1: Download complete
+4846f2900730: Pull complete
+62fe2e747f69: Pull complete
+4dc3950125eb: Pull complete
+b2eb680928d4: Pull complete
+7daf4a4778d1: Pull complete
+Digest: sha256:d675bb37f43aed69da35624d7deeeb78799860e5e355988274cb6ee0c11afa43
+Status: Downloaded newer image for amd64/rust:latest
+docker.io/amd64/rust:latest
+##[command]/usr/bin/docker create --name 1fe73422906f46ebbc25c8191e6b4a08_amd64rust_adf15f --label 10d1cf --workdir /__w/datafusion/datafusion --network github_network_576c236b657141c4afe687d5a0e1f96c  -e "HOME=/github/home" -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/work":"/__w" -v "/home/runner/actions-runner/cached/2.337.0/externals":"/__e":ro -v "/home/runner/work/_temp":"/__w/_temp" -v "/home/runner/work/_actions":"/__w/_actions" -v "/opt/hostedtoolcache":"/__t" -v "/home/runner/work/_temp/_github_home":"/github/home" -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" --entrypoint "tail" amd64/rust "-f" "/dev/null"
+517d075f54e84fc4ef7c4a2652c46db4944683145c46711d7956d68bbeecc953
+##[command]/usr/bin/docker start 517d075f54e84fc4ef7c4a2652c46db4944683145c46711d7956d68bbeecc953
+517d075f54e84fc4ef7c4a2652c46db4944683145c46711d7956d68bbeecc953
+##[command]/usr/bin/docker ps --all --filter id=517d075f54e84fc4ef7c4a2652c46db4944683145c46711d7956d68bbeecc953 --filter status=running --no-trunc --format "{{.ID}} {{.Status}}"
+517d075f54e84fc4ef7c4a2652c46db4944683145c46711d7956d68bbeecc953 Up Less than a second
+##[command]/usr/bin/docker inspect --format "{{range .Config.Env}}{{println .}}{{end}}" 517d075f54e84fc4ef7c4a2652c46db4944683145c46711d7956d68bbeecc953
+HOME=/github/home
+GITHUB_ACTIONS=true
+CI=true
+PATH=/usr/local/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+RUSTUP_HOME=/usr/local/rustup
+CARGO_HOME=/usr/local/cargo
+RUST_VERSION=1.99.0
+##[endgroup]
+##[group]Waiting for all services to be ready
+##[endgroup]
+##[group]Run runs-on/action@17b59092eb37ebfdbb034460892887c09100eaa3
+with:
+  show_env: false
+  show_costs: inline
+  network_interface: enp39s0
+  disk_device: nvme0n1p1
+  token: ***
+  sticky_wait_timeout: 15m
+##[endgroup]
+##[command]/usr/bin/docker exec  517d075f54e84fc4ef7c4a2652c46db4944683145c46711d7956d68bbeecc953 sh -c "cat /etc/*release | grep ^ID"
+This action is only meant to be run on RunsOn (https://runs-on.com) runners, skipping all operations
+##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+with:
+  submodules: true
+  fetch-depth: 1
+  repository: apache/datafusion
+  token: ***
+  ssh-strict: true
+  ssh-user: git
+  persist-credentials: true
+  clean: true
+  sparse-checkout-cone-mode: true
+  fetch-tags: false
+  show-progress: true
+  lfs: false
+  set-safe-directory: true
+  allow-unsafe-pr-checkout: false
+##[endgroup]
+##[command]/usr/bin/docker exec  517d075f54e84fc4ef7c4a2652c46db4944683145c46711d7956d68bbeecc953 sh -c "cat /etc/*release | grep ^ID"
+Syncing repository: apache/datafusion
+##[group]Getting Git version info
+Working directory is '/__w/datafusion/datafusion'
+[command]/usr/bin/git version
+git version 2.47.3
+##[endgroup]
+Temporarily overriding HOME='/__w/_temp/89838ae0-1d0e-41e4-a9d7-0a56dd9f52c5' before making global git config changes
+Adding repository directory to the temporary git global config as a safe directory
+[command]/usr/bin/git config --global --add safe.directory /__w/datafusion/datafusion
+Deleting the contents of '/__w/datafusion/datafusion'
+##[group]Determining repository object format
+##[endgroup]
+##[group]Initializing the repository
+[command]/usr/bin/git init /__w/datafusion/datafusion
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+Initialized empty Git repository in /__w/datafusion/datafusion/.git/
+[command]/usr/bin/git remote add origin https://github.com/apache/datafusion
+##[endgroup]
+##[group]Disabling automatic garbage collection
+[command]/usr/bin/git config --local gc.auto 0
+##[endgroup]
+##[group]Setting up auth
+Removing SSH command configuration
+[command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Removing HTTP extra header
+[command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Removing includeIf entries pointing to credentials config files
+[command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+[command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+[command]/usr/bin/git config --file /__w/_temp/git-credentials-1f8b1a4a-d3ee-4b50-9d42-7f89a3afcaa0.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+[command]/usr/bin/git config --local includeIf.gitdir:/__w/datafusion/datafusion/.git.path /__w/_temp/git-credentials-1f8b1a4a-d3ee-4b50-9d42-7f89a3afcaa0.config
+[command]/usr/bin/git config --local includeIf.gitdir:/__w/datafusion/datafusion/.git/worktrees/*.path /__w/_temp/git-credentials-1f8b1a4a-d3ee-4b50-9d42-7f89a3afcaa0.config
+[command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-1f8b1a4a-d3ee-4b50-9d42-7f89a3afcaa0.config
+[command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-1f8b1a4a-d3ee-4b50-9d42-7f89a3afcaa0.config
+##[endgroup]
+##[group]Fetching the repository
+[command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +7825483b9edcf70dd31fb0dcb795e637efc4c235:refs/remotes/pull/26009/merge
+From https://github.com/apache/datafusion
+ * [new ref]         7825483b9edcf70dd31fb0dcb795e637efc4c235 -> pull/26009/merge
+##[endgroup]
+##[group]Determining the checkout info
+##[endgroup]
+[command]/usr/bin/git sparse-checkout disable
+[command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+##[group]Checking out the ref
+[command]/usr/bin/git checkout --progress --force refs/remotes/pull/26009/merge
+Note: switching to 'refs/remotes/pull/26009/merge'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at 7825483 Merge 11cfd5d2c63d0e4d9f3e7e40273393992e4e87c9 into b295a672ce6fcef216c94aaca88987c98449803c
+##[endgroup]
+##[group]Setting up auth for fetching submodules
+[command]/usr/bin/git config --file /__w/_temp/git-credentials-1f8b1a4a-d3ee-4b50-9d42-7f89a3afcaa0.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+[command]/usr/bin/git config --global include.path /__w/_temp/git-credentials-1f8b1a4a-d3ee-4b50-9d42-7f89a3afcaa0.config
+[command]/usr/bin/git config --global --unset-all url.https://github.com/.insteadOf
+[command]/usr/bin/git config --global --add url.https://github.com/.insteadOf git@github.com:
+[command]/usr/bin/git config --global --add url.https://github.com/.insteadOf org-47359@github.com:
+##[endgroup]
+##[group]Fetching submodules
+[command]/usr/bin/git submodule sync
+[command]/usr/bin/git -c protocol.version=2 submodule update --init --force --depth=1
+Submodule 'datafusion-testing' (https://github.com/apache/datafusion-testing.git) registered for path 'datafusion-testing'
+Submodule 'parquet-testing' (https://github.com/apache/parquet-testing.git) registered for path 'parquet-testing'
+Submodule 'testing' (https://github.com/apache/arrow-testing) registered for path 'testing'
+Cloning into '/__w/datafusion/datafusion/datafusion-testing'...
+Cloning into '/__w/datafusion/datafusion/parquet-testing'...
+Cloning into '/__w/datafusion/datafusion/testing'...
+Submodule path 'datafusion-testing': checked out '81c7440e08b9fe81a982e6b0b7e0fe3a6e82fb78'
+From https://github.com/apache/parquet-testing
+ * branch            107b36603e051aee26bd93e04b871034f6c756c0 -> FETCH_HEAD
+Submodule path 'parquet-testing': checked out '107b36603e051aee26bd93e04b871034f6c756c0'
+From https://github.com/apache/arrow-testing
+ * branch            7df2b70baf4f081ebf8e0c6bd22745cf3cbfd824 -> FETCH_HEAD
+Submodule path 'testing': checked out '7df2b70baf4f081ebf8e0c6bd22745cf3cbfd824'
+[command]/usr/bin/git submodule foreach git config --local gc.auto 0
+Entering 'datafusion-testing'
+Entering 'parquet-testing'
+Entering 'testing'
+##[endgroup]
+##[group]Persisting credentials for submodules
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'url\.https\:\/\/github\.com\/\.insteadOf' && git config --local --unset-all 'url.https://github.com/.insteadOf' || :"
+Entering 'datafusion-testing'
+Entering 'parquet-testing'
+Entering 'testing'
+[command]/usr/bin/git submodule foreach git config --local --show-origin --name-only --get-regexp remote.origin.url
+Entering 'datafusion-testing'
+file:/__w/datafusion/datafusion/.git/modules/datafusion-testing/config	remote.origin.url
+Entering 'parquet-testing'
+file:/__w/datafusion/datafusion/.git/modules/parquet-testing/config	remote.origin.url
+Entering 'testing'
+file:/__w/datafusion/datafusion/.git/modules/testing/config	remote.origin.url
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/datafusion-testing/config includeIf.gitdir:/__w/datafusion/datafusion/.git/modules/datafusion-testing.path /__w/_temp/git-credentials-1f8b1a4a-d3ee-4b50-9d42-7f89a3afcaa0.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/datafusion-testing/config includeIf.gitdir:/github/workspace/.git/modules/datafusion-testing.path /github/runner_temp/git-credentials-1f8b1a4a-d3ee-4b50-9d42-7f89a3afcaa0.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/parquet-testing/config includeIf.gitdir:/__w/datafusion/datafusion/.git/modules/parquet-testing.path /__w/_temp/git-credentials-1f8b1a4a-d3ee-4b50-9d42-7f89a3afcaa0.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/parquet-testing/config includeIf.gitdir:/github/workspace/.git/modules/parquet-testing.path /github/runner_temp/git-credentials-1f8b1a4a-d3ee-4b50-9d42-7f89a3afcaa0.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/testing/config includeIf.gitdir:/__w/datafusion/datafusion/.git/modules/testing.path /__w/_temp/git-credentials-1f8b1a4a-d3ee-4b50-9d42-7f89a3afcaa0.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/testing/config includeIf.gitdir:/github/workspace/.git/modules/testing.path /github/runner_temp/git-credentials-1f8b1a4a-d3ee-4b50-9d42-7f89a3afcaa0.config
+[command]/usr/bin/git submodule foreach git config --local --add 'url.https://github.com/.insteadOf' 'git@github.com:'
+Entering 'datafusion-testing'
+Entering 'parquet-testing'
+Entering 'testing'
+[command]/usr/bin/git submodule foreach git config --local --add 'url.https://github.com/.insteadOf' 'org-47359@github.com:'
+Entering 'datafusion-testing'
+Entering 'parquet-testing'
+Entering 'testing'
+##[endgroup]
+[command]/usr/bin/git log -1 --format=%H
+7825483b9edcf70dd31fb0dcb795e637efc4c235
+Prepare all required actions
+Getting action download info
+##[group]Run ./.github/actions/setup-builder
+with:
+  rust-version: stable
+##[endgroup]
+##[start-action display=Install Build Dependencies;id=__self.__run]
+##[group]Run RETRY=("ci/scripts/retry" timeout 120)
+^[[36;1mRETRY=("ci/scripts/retry" timeout 120)^[[0m
+^[[36;1m"${RETRY[@]}" apt-get update^[[0m
+^[[36;1m"${RETRY[@]}" apt-get install -y protobuf-compiler^[[0m
+shell: bash --noprofile --norc -e -o pipefail {0}
+##[endgroup]
++ timeout 120 apt-get update
+Hit:1 http://deb.debian.org/debian trixie InRelease
+Get:2 http://deb.debian.org/debian trixie-updates InRelease [47.3 kB]
+Get:3 http://deb.debian.org/debian-security trixie-security InRelease [43.4 kB]
+Get:4 http://deb.debian.org/debian trixie/main amd64 Packages [9678 kB]
+Get:5 http://deb.debian.org/debian trixie-updates/main amd64 Packages [4412 B]
+Get:6 http://deb.debian.org/debian-security trixie-security/main amd64 Packages [266 kB]
+Fetched 10.0 MB in 1s (11.7 MB/s)
+Reading package lists...
++ timeout 120 apt-get install -y protobuf-compiler
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libprotobuf-dev libprotobuf-lite32t64 libprotobuf32t64 libprotoc32t64
+Suggested packages:
+  protobuf-mode-el
+The following NEW packages will be installed:
+  libprotobuf-dev libprotobuf-lite32t64 libprotobuf32t64 libprotoc32t64
+  protobuf-compiler
+0 upgraded, 5 newly installed, 0 to remove and 3 not upgraded.
+Need to get 3592 kB of archives.
+After this operation, 20.5 MB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian trixie/main amd64 libprotobuf32t64 amd64 3.21.12-11+deb13u1 [981 kB]
+Get:2 http://deb.debian.org/debian trixie/main amd64 libprotobuf-lite32t64 amd64 3.21.12-11+deb13u1 [275 kB]
+Get:3 http://deb.debian.org/debian trixie/main amd64 libprotobuf-dev amd64 3.21.12-11+deb13u1 [1329 kB]
+Get:4 http://deb.debian.org/debian trixie/main amd64 libprotoc32t64 amd64 3.21.12-11+deb13u1 [922 kB]
+Get:5 http://deb.debian.org/debian trixie/main amd64 protobuf-compiler amd64 3.21.12-11+deb13u1 [85.0 kB]
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+debconf: unable to initialize frontend: Teletype
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Noninteractive
+Fetched 3592 kB in 0s (33.4 MB/s)
+Selecting previously unselected package libprotobuf32t64:amd64.
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 26064 files and directories currently installed.)
+Preparing to unpack .../libprotobuf32t64_3.21.12-11+deb13u1_amd64.deb ...
+Unpacking libprotobuf32t64:amd64 (3.21.12-11+deb13u1) ...
+Selecting previously unselected package libprotobuf-lite32t64:amd64.
+Preparing to unpack .../libprotobuf-lite32t64_3.21.12-11+deb13u1_amd64.deb ...
+Unpacking libprotobuf-lite32t64:amd64 (3.21.12-11+deb13u1) ...
+Selecting previously unselected package libprotobuf-dev:amd64.
+Preparing to unpack .../libprotobuf-dev_3.21.12-11+deb13u1_amd64.deb ...
+Unpacking libprotobuf-dev:amd64 (3.21.12-11+deb13u1) ...
+Selecting previously unselected package libprotoc32t64:amd64.
+Preparing to unpack .../libprotoc32t64_3.21.12-11+deb13u1_amd64.deb ...
+Unpacking libprotoc32t64:amd64 (3.21.12-11+deb13u1) ...
+Selecting previously unselected package protobuf-compiler.
+Preparing to unpack .../protobuf-compiler_3.21.12-11+deb13u1_amd64.deb ...
+Unpacking protobuf-compiler (3.21.12-11+deb13u1) ...
+Setting up libprotobuf-lite32t64:amd64 (3.21.12-11+deb13u1) ...
+Setting up libprotobuf32t64:amd64 (3.21.12-11+deb13u1) ...
+Setting up libprotobuf-dev:amd64 (3.21.12-11+deb13u1) ...
+Setting up libprotoc32t64:amd64 (3.21.12-11+deb13u1) ...
+Setting up protobuf-compiler (3.21.12-11+deb13u1) ...
+Processing triggers for libc-bin (2.41-12+deb13u4) ...
+##[end-action id=__self.__run;outcome=success;conclusion=success;duration_ms=3361]
+##[start-action display=Setup Rust toolchain;id=__self.__run_2]
+##[group]Run RETRY=("ci/scripts/retry" timeout 120)
+^[[36;1mRETRY=("ci/scripts/retry" timeout 120)^[[0m
+^[[36;1mecho "Installing stable"^[[0m
+^[[36;1m"${RETRY[@]}" rustup toolchain install stable^[[0m
+^[[36;1m"${RETRY[@]}" rustup default stable^[[0m
+^[[36;1m"${RETRY[@]}" rustup component add rustfmt^[[0m
+shell: bash --noprofile --norc -e -o pipefail {0}
+##[endgroup]
+Installing stable
++ timeout 120 rustup toolchain install stable
+info: syncing channel updates for stable-x86_64-unknown-linux-gnu
+info: latest update on 2026-10-01 for version 1.99.0 (b940084d7 2026-09-28)
+info: downloading 3 components
+
+  stable-x86_64-unknown-linux-gnu installed - rustc 1.99.0 (b940084d7 2026-09-28)
+
++ timeout 120 rustup default stable
+info: using existing install for stable-x86_64-unknown-linux-gnu
+info: default toolchain set to stable-x86_64-unknown-linux-gnu
+
+  stable-x86_64-unknown-linux-gnu unchanged - rustc 1.99.0 (b940084d7 2026-09-28)
+
+info: note that the toolchain '1.99.0-x86_64-unknown-linux-gnu' is currently in use (overridden by '/__w/datafusion/datafusion/rust-toolchain.toml')
++ timeout 120 rustup component add rustfmt
+info: syncing channel updates for 1.99.0-x86_64-unknown-linux-gnu
+info: latest update on 2026-10-01 for version 1.99.0 (b940084d7 2026-09-28)
+info: downloading 2 components
+info: component rustfmt is up to date
+##[end-action id=__self.__run_2;outcome=success;conclusion=success;duration_ms=9049]
+##[start-action display=Configure rust runtime env;id=__self.__self]
+Prepare all required actions
+##[group]Run ./.github/actions/setup-rust-runtime
+##[endgroup]
+##[start-action display=Configure runtime env;id=__self.__self.__run]
+##[group]Run echo "RUST_BACKTRACE=1" >> $GITHUB_ENV
+^[[36;1mecho "RUST_BACKTRACE=1" >> $GITHUB_ENV^[[0m
+^[[36;1mecho "RUSTFLAGS=-C debuginfo=line-tables-only -C incremental=false" >> $GITHUB_ENV^[[0m
+^[[36;1m# Work around intermittent "[16] Error in the HTTP2 framing layer"^[[0m
+^[[36;1m# failures from curl when cargo fetches crates from crates.io.^[[0m
+^[[36;1m# Disabling HTTP/2 multiplexing forces cargo to serialize requests,^[[0m
+^[[36;1m# and raising retries makes transient network hiccups self-heal.^[[0m
+^[[36;1m#^[[0m
+^[[36;1m# Reference:^[[0m
+^[[36;1m# https://doc.rust-lang.org/cargo/reference/config.html?#httpmultiplexing^[[0m
+^[[36;1m# https://doc.rust-lang.org/cargo/reference/config.html?#netretry^[[0m
+^[[36;1mecho "CARGO_HTTP_MULTIPLEXING=false" >> $GITHUB_ENV^[[0m
+^[[36;1mecho "CARGO_NET_RETRY=10" >> $GITHUB_ENV^[[0m
+^[[36;1mecho "CARGO_HTTP_RETRY=10" >> $GITHUB_ENV^[[0m
+shell: bash --noprofile --norc -e -o pipefail {0}
+##[endgroup]
+##[end-action id=__self.__self.__run;outcome=success;conclusion=success;duration_ms=56]
+##[end-action id=__self.__self;outcome=success;conclusion=success;duration_ms=63]
+##[start-action display=Fixup git permissions;id=__self.__run_3]
+##[group]Run git config --global --add safe.directory "$GITHUB_WORKSPACE"
+^[[36;1mgit config --global --add safe.directory "$GITHUB_WORKSPACE"^[[0m
+shell: bash --noprofile --norc -e -o pipefail {0}
+env:
+  RUST_BACKTRACE: 1
+  RUSTFLAGS: -C debuginfo=line-tables-only -C incremental=false
+  CARGO_HTTP_MULTIPLEXING: false
+  CARGO_NET_RETRY: 10
+  CARGO_HTTP_RETRY: 10
+##[endgroup]
+##[end-action id=__self.__run_3;outcome=success;conclusion=success;duration_ms=60]
+##[start-action display=Remove unnecessary preinstalled software;id=__self.__run_4]
+##[group]Run echo "Disk space before cleanup:"
+^[[36;1mecho "Disk space before cleanup:"^[[0m
+^[[36;1mdf -h ^[[0m
+^[[36;1mapt-get clean^[[0m
+^[[36;1m# remove tool cache: about 8.5GB (github has host /opt/hostedtoolcache mounted as /__t)^[[0m
+^[[36;1mrm -rf /__t/* || true^[[0m
+^[[36;1m# remove Haskell runtime: about 6.3GB (host /usr/local/.ghcup)^[[0m
+^[[36;1mrm -rf /host/usr/local/.ghcup || true^[[0m
+^[[36;1m# remove Android library: about 7.8GB (host /usr/local/lib/android)^[[0m
+^[[36;1mrm -rf /host/usr/local/lib/android || true^[[0m
+^[[36;1mecho "Disk space after cleanup:"^[[0m
+^[[36;1mdf -h^[[0m
+shell: bash --noprofile --norc -e -o pipefail {0}
+env:
+  RUST_BACKTRACE: 1
+  RUSTFLAGS: -C debuginfo=line-tables-only -C incremental=false
+  CARGO_HTTP_MULTIPLEXING: false
+  CARGO_NET_RETRY: 10
+  CARGO_HTTP_RETRY: 10
+##[endgroup]
+Disk space before cleanup:
+Filesystem      Size  Used Avail Use% Mounted on
+overlay         145G   62G   83G  43% /
+tmpfs            64M     0   64M   0% /dev
+shm              64M     0   64M   0% /dev/shm
+/dev/root       145G   62G   83G  43% /__w
+tmpfs           3.2G  1.1M  3.2G   1% /run/docker.sock
+tmpfs           4.0K     0  4.0K   0% /proc/acpi
+Disk space after cleanup:
+Filesystem      Size  Used Avail Use% Mounted on
+overlay         145G   57G   88G  40% /
+tmpfs            64M     0   64M   0% /dev
+shm              64M     0   64M   0% /dev/shm
+/dev/root       145G   57G   88G  40% /__w
+tmpfs           3.2G  1.1M  3.2G   1% /run/docker.sock
+tmpfs           4.0K     0  4.0K   0% /proc/acpi
+##[end-action id=__self.__run_4;outcome=success;conclusion=success;duration_ms=29896]
+##[group]Run rustup component add clippy
+^[[36;1mrustup component add clippy^[[0m
+shell: sh -e {0}
+env:
+  RUST_BACKTRACE: 1
+  RUSTFLAGS: -C debuginfo=line-tables-only -C incremental=false
+  CARGO_HTTP_MULTIPLEXING: false
+  CARGO_NET_RETRY: 10
+  CARGO_HTTP_RETRY: 10
+##[endgroup]
+##[group]Run Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6
+with:
+  save-if: false
+  shared-key: amd-ci-clippy
+  prefix-key: v0-rust
+  add-job-id-key: true
+  add-rust-environment-hash-key: true
+  cache-targets: true
+  cache-all-crates: false
+  cache-workspace-crates: false
+  cache-provider: github
+  cache-bin: true
+  lookup-only: false
+  cmd-format: {0}
+env:
+  RUST_BACKTRACE: 1
+  RUSTFLAGS: -C debuginfo=line-tables-only -C incremental=false
+  CARGO_HTTP_MULTIPLEXING: false
+  CARGO_NET_RETRY: 10
+  CARGO_HTTP_RETRY: 10
+##[endgroup]
+##[command]/usr/bin/docker exec  517d075f54e84fc4ef7c4a2652c46db4944683145c46711d7956d68bbeecc953 sh -c "cat /etc/*release | grep ^ID"
+Waiting for background step(s) to complete: Install Clippy, Rust Dependency Cache
+info: component clippy is up to date
+##[group]Cache Configuration
+Cache Provider:
+    github
+Workspaces:
+    /__w/datafusion/datafusion
+Cache Paths:
+    /usr/local/cargo/bin
+    /usr/local/cargo/.crates.toml
+    /usr/local/cargo/.crates2.json
+    /usr/local/cargo/registry
+    /usr/local/cargo/git
+    /__w/datafusion/datafusion/target
+Restore Key:
+    v0-rust-amd-ci-clippy-Linux-x64-e25d9b4b
+Cache Key:
+    v0-rust-amd-ci-clippy-Linux-x64-e25d9b4b-b7492c11
+.. Prefix:
+  - v0-rust-amd-ci-clippy-Linux-x64
+.. Environment considered:
+  - Rust Versions:
+    - 1.99.0 x86_64-unknown-linux-gnu b940084d7eb6a299eb4bfeb8e34901bc051e7ac4
+  - CARGO_HOME
+  - CARGO_HTTP_MULTIPLEXING
+  - CARGO_HTTP_RETRY
+  - CARGO_INCREMENTAL
+  - CARGO_NET_RETRY
+  - RUST_BACKTRACE
+  - RUST_VERSION
+  - RUSTFLAGS
+  - RUSTUP_HOME
+.. Lockfiles considered:
+  - /__w/datafusion/datafusion/.cargo/config.toml
+  - /__w/datafusion/datafusion/benchmarks/Cargo.toml
+  - /__w/datafusion/datafusion/Cargo.lock
+  - /__w/datafusion/datafusion/datafusion-cli/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion-examples/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion-examples/examples/ffi/ffi_example_table_provider/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion-examples/examples/ffi/ffi_module_interface/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion-examples/examples/ffi/ffi_module_loader/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/catalog-listing/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/catalog/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/common-runtime/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/common/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/core/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/datasource-arrow/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/datasource-avro/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/datasource-csv/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/datasource-json/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/datasource-parquet/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/datasource/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/doc/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/execution/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/expr-common/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/expr/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/ffi/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/functions-aggregate-common/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/functions-aggregate/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/functions-nested/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/functions-table/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/functions-window-common/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/functions-window/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/functions/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/macros/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/optimizer/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/physical-expr-adapter/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/physical-expr-common/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/physical-expr/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/physical-optimizer/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/physical-plan/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/proto-common/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/proto-common/gen/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/proto-models/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/proto-models/gen/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/proto/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/pruning/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/session/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/spark/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/sql/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/sqllogictest/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/substrait/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/wasmtest/Cargo.toml
+  - /__w/datafusion/datafusion/dev/depcheck/rust-toolchain.toml
+  - /__w/datafusion/datafusion/rust-toolchain.toml
+  - /__w/datafusion/datafusion/test-utils/Cargo.toml
+  - /__w/datafusion/datafusion/xtask/Cargo.toml
+##[endgroup]
+
+... Restoring cache ...
+No cache found.
+Finished waiting for background step(s).
+  Install Clippy: Succeeded
+  Rust Dependency Cache: Succeeded
+##[group]Run ci/scripts/rust_clippy.sh
+^[[36;1mci/scripts/rust_clippy.sh^[[0m
+shell: sh -e {0}
+env:
+  RUST_BACKTRACE: 1
+  RUSTFLAGS: -C debuginfo=line-tables-only -C incremental=false
+  CARGO_HTTP_MULTIPLEXING: false
+  CARGO_NET_RETRY: 10
+  CARGO_HTTP_RETRY: 10
+  CACHE_ON_FAILURE: false
+  CARGO_INCREMENTAL: 0
+##[endgroup]
+[rust_clippy.sh] `cargo clippy --all-targets --workspace --features avro,integration-tests,extended_tests -- -D warnings`
+    Updating crates.io index
+ Downloading crates ...
+  Downloaded ahash v0.8.12
+  Downloaded adler2 v2.0.1
+  Downloaded alloca v0.4.0
+  Downloaded aho-corasick v1.1.4
+  Downloaded anstream v1.0.0
+  Downloaded anstyle-query v1.1.5
+  Downloaded arc-swap v1.9.1
+  Downloaded arrow-arith v60.0.0
+  Downloaded arrow-buffer v60.0.0
+  Downloaded arrow-csv v60.0.0
+  Downloaded arrow-row v60.0.0
+  Downloaded arrow-ipc v60.0.0
+  Downloaded arrow-string v60.0.0
+  Downloaded async-ffi v0.5.1
+  Downloaded atomic-waker v1.1.2
+  Downloaded async-stream-impl v0.3.6
+  Downloaded aws-credential-types v1.3.0
+  Downloaded aws-runtime v1.9.2
+  Downloaded aws-smithy-http v0.64.0
+  Downloaded aws-sdk-sts v1.114.0
+  Downloaded aws-smithy-runtime-api v1.16.0
+  Downloaded aws-smithy-observability v0.3.0
+  Downloaded aws-smithy-types v1.6.3
+  Downloaded axum v0.8.9
+  Downloaded base64 v0.22.1
+  Downloaded bigdecimal v0.4.11
+  Downloaded blake3 v1.8.7
+  Downloaded bollard v0.20.2
+  Downloaded bstr v1.12.1
+  Downloaded brotli v9.0.0
+  Downloaded bytes-utils v0.1.4
+  Downloaded cc v1.2.61
+  Downloaded chacha20 v0.10.2
+  Downloaded ciborium v0.2.2
+  Downloaded clap v4.6.7
+  Downloaded clap_lex v1.1.0
+  Downloaded compression-core v0.4.33
+  Downloaded colorchoice v1.0.5
+  Downloaded const-random v0.1.18
+  Downloaded cpufeatures v0.2.17
+  Downloaded crc-catalog v2.5.0
+  Downloaded criterion v0.8.2
+  Downloaded crossbeam-epoch v0.9.20
+  Downloaded crypto-common v0.1.7
+  Downloaded csv-core v0.1.13
+  Downloaded darling v0.23.0
+  Downloaded dashmap v6.2.1
+  Downloaded digest v0.10.7
+  Downloaded dirs-sys v0.5.0
+  Downloaded docker_credential v1.3.2
+  Downloaded educe v0.6.0
+  Downloaded env_logger v0.11.11
+  Downloaded enum-ordinalize v4.3.2
+  Downloaded escape8259 v0.5.3
+  Downloaded ferroid v2.0.0
+  Downloaded fixedbitset v0.5.7
+  Downloaded fnv v1.0.7
+  Downloaded form_urlencoded v1.2.2
+  Downloaded futures v0.3.34
+  Downloaded futures-executor v0.3.34
+  Downloaded futures-sink v0.3.34
+  Downloaded futures-util v0.3.34
+  Downloaded getrandom v0.3.4
+  Downloaded globset v0.4.18
+  Downloaded hashbrown v0.12.3
+  Downloaded hashbrown v0.16.1
+  Downloaded hex v0.4.3
+  Downloaded http v0.2.12
+  Downloaded http-body v1.0.1
+  Downloaded httpdate v1.0.3
+  Downloaded hyper v1.9.0
+  Downloaded hyper-util v0.1.20
+  Downloaded icu_collections v2.2.0
+  Downloaded icu_normalizer_data v2.2.0
+  Downloaded icu_provider v2.2.0
+  Downloaded idna_adapter v1.2.1
+  Downloaded indicatif v0.18.6
+  Downloaded ipnet v2.12.0
+  Downloaded itoa v1.0.18
+  Downloaded itertools v0.13.0
+  Downloaded js-sys v0.3.95
+  Downloaded lexical-parse-float v1.0.6
+  Downloaded lexical-write-float v1.0.6
+  Downloaded libc v0.2.190
+  Downloaded libtest-mimic v0.8.2
+  Downloaded liblzma-sys v0.4.8
+  Downloaded log v0.4.34
+  Downloaded linux-raw-sys v0.12.1
+  Downloaded matchers v0.2.0
+  Downloaded md-5 v0.11.0
+  Downloaded mime v0.3.17
+  Downloaded multimap v0.10.1
+  Downloaded nom v8.0.0
+  Downloaded num-bigint v0.4.6
+  Downloaded num-conv v0.2.1
+  Downloaded num-rational v0.4.2
+  Downloaded object_store v0.14.2
+  Downloaded openssl-probe v0.2.1
+  Downloaded owo-colors v4.3.0
+  Downloaded parking_lot_core v0.9.12
+  Downloaded parse-display-derive v0.9.1
+  Downloaded pbjson-build v0.9.0
+  Downloaded petgraph v0.8.3
+  Downloaded pin-project v1.1.13
+  Downloaded pin-utils v0.1.0
+  Downloaded plotters-backend v0.3.7
+  Downloaded potential_utf v0.1.5
+  Downloaded pretty_assertions v1.4.1
+  Downloaded proc-macro2 v1.0.106
+  Downloaded prost-derive v0.14.4
+  Downloaded quick-xml v0.41.0
+  Downloaded quinn-udp v0.5.14
+  Downloaded rand v0.8.6
+  Downloaded rand_chacha v0.3.1
+  Downloaded rand_core v0.9.5
+  Downloaded rayon v1.12.0
+  Downloaded recursive-proc-macro-impl v0.1.1
+  Downloaded regex v1.13.1
+  Downloaded regex-syntax v0.8.11
+  Downloaded reqwest v0.13.5
+  Downloaded rstest_macros v0.27.0
+  Downloaded rustc_version v0.4.1
+  Downloaded rustls-native-certs v0.8.3
+  Downloaded rustls-webpki v0.103.15
+  Downloaded ryu v1.0.23
+  Downloaded schemars v0.9.0
+  Downloaded scopeguard v1.2.0
+  Downloaded serde v1.0.229
+  Downloaded serde_derive_internals v0.29.1
+  Downloaded serde_spanned v1.1.1
+  Downloaded serde_with_macros v3.21.0
+  Downloaded serde_with v3.21.0
+  Downloaded signal-hook-registry v1.4.8
+  Downloaded similar v2.7.0
+  Downloaded sha2-const-stable v0.1.0
+  Downloaded smallvec v1.15.1
+  Downloaded spin v0.10.1
+  Downloaded sqlparser_derive v0.6.0
+  Downloaded stabby-macros v72.1.16
+  Downloaded strip-ansi-escapes v0.2.1
+  Downloaded structmeta-derive v0.3.0
+  Downloaded subst v0.3.8
+  Downloaded syn v2.0.119
+  Downloaded synstructure v0.13.2
+  Downloaded testcontainers v0.27.3
+  Downloaded thiserror-impl v2.0.21
+  Downloaded time-core v0.1.8
+  Downloaded tinystr v0.8.3
+  Downloaded tinyvec_macros v0.1.1
+  Downloaded tokio-rustls v0.26.4
+  Downloaded toml v1.1.6+spec-1.1.0
+  Downloaded toml_parser v1.1.3+spec-1.1.0
+  Downloaded tonic-prost v0.14.5
+  Downloaded tower-layer v0.3.3
+  Downloaded tracing-attributes v0.1.31
+  Downloaded tracing-subscriber v0.3.23
+  Downloaded typenum v1.20.0
+  Downloaded typify-macro v0.5.0
+  Downloaded unicode-width v0.1.14
+  Downloaded ureq-proto v0.6.0
+  Downloaded unsafe-libyaml v0.2.11
+  Downloaded utf8-zero v0.8.1
+  Downloaded uuid v1.27.0
+  Downloaded vte v0.14.1
+  Downloaded wasm-bindgen v0.2.118
+  Downloaded wasm-bindgen-macro-support v0.2.118
+  Downloaded wasm-bindgen-test-macro v0.3.68
+  Downloaded writeable v0.6.3
+  Downloaded yansi v1.0.1
+  Downloaded zerocopy v0.8.48
+  Downloaded zerofrom-derive v0.1.7
+  Downloaded zerovec v0.11.6
+  Downloaded zerovec-derive v0.11.3
+  Downloaded allocator-api2 v0.2.21
+  Downloaded zstd-sys v2.1.0+zstd.1.5.7
+  Downloaded anstyle-parse v1.0.0
+  Downloaded arrayvec v0.7.6
+  Downloaded arrow-data v60.0.0
+  Downloaded arrow-avro v60.0.0
+  Downloaded arrow-ord v60.0.0
+  Downloaded astral-tokio-tar v0.6.2
+  Downloaded async-stream v0.3.6
+  Downloaded autocfg v1.5.0
+  Downloaded aws-sigv4 v1.5.1
+  Downloaded aws-smithy-json v0.63.0
+  Downloaded aws-lc-sys v0.45.0
+  Downloaded aws-smithy-runtime-api-macros v1.1.0
+  Downloaded aws-types v1.6.0
+  Downloaded base64 v0.23.1
+  Downloaded bollard-buildkit-proto v0.7.0
+  Downloaded blake2 v0.11.0
+  Downloaded bytes v1.12.1
+  Downloaded bs58 v0.5.1
+  Downloaded cfg_aliases v0.2.1
+  Downloaded chrono-tz v0.10.4
+  Downloaded clap_derive v4.6.7
+  Downloaded comfy-table v8.0.0
+  Downloaded const-oid v0.10.2
+  Downloaded cpufeatures v0.3.0
+  Downloaded crc32fast v1.5.2
+  Downloaded crossbeam-utils v0.8.21
+  Downloaded csv v1.4.0
+  Downloaded darling_core v0.23.0
+  Downloaded diff v0.1.13
+  Downloaded displaydoc v0.2.5
+  Downloaded dyn-clone v1.0.20
+  Downloaded enum-ordinalize-derive v4.3.2
+  Downloaded errno v0.3.14
+  Downloaded filetime v0.2.27
+  Downloaded flate2 v1.1.10
+  Downloaded fs-err v3.3.0
+  Downloaded futures-core v0.3.34
+  Downloaded futures-task v0.3.34
+  Downloaded getrandom v0.2.17
+  Downloaded h2 v0.4.16
+  Downloaded hashbrown v0.15.5
+  Downloaded http-body v0.4.6
+  Downloaded hmac v0.13.0
+  Downloaded humantime v2.3.0
+  Downloaded hyper-rustls v0.27.9
+  Downloaded icu_locale_core v2.2.0
+  Downloaded icu_properties_data v2.2.0
+  Downloaded indexmap v1.9.3
+  Downloaded insta-cmd v0.7.0
+  Downloaded itertools v0.14.0
+  Downloaded jobserver v0.1.34
+  Downloaded lexical-parse-integer v1.0.6
+  Downloaded libbz2-rs-sys v0.2.3
+  Downloaded libm v0.2.16
+  Downloaded linktime-proc-macro v0.2.3
+  Downloaded lru-slab v0.1.2
+  Downloaded miniz_oxide v0.9.1
+  Downloaded md-5 v0.10.6
+  Downloaded num v0.4.3
+  Downloaded nix v0.31.3
+  Downloaded num-iter v0.1.45
+  Downloaded object v0.37.3
+  Downloaded outref v0.5.2
+  Downloaded parquet v60.0.0
+  Downloaded pbjson-build v0.8.0
+  Downloaded phf v0.12.1
+  Downloaded plotters-svg v0.3.7
+  Downloaded pin-project-lite v0.2.17
+  Downloaded ppv-lite86 v0.2.21
+  Downloaded prost v0.14.4
+  Downloaded psm v0.1.31
+  Downloaded quote v1.0.47
+  Downloaded rand v0.10.1
+  Downloaded rand_core v0.10.1
+  Downloaded recursive v0.1.1
+  Downloaded regex-automata v0.4.16
+  Downloaded relative-path v1.9.3
+  Downloaded rstest_reuse v0.7.0
+  Downloaded rustls v0.23.45
+  Downloaded schemars v0.8.22
+  Downloaded rustversion v1.0.22
+  Downloaded semver v1.0.28
+  Downloaded serde_derive v1.0.229
+  Downloaded serde_tokenstream v0.2.3
+  Downloaded sha1 v0.10.6
+  Downloaded sharded-slab v0.1.7
+  Downloaded simdutf8 v0.1.5
+  Downloaded snap v1.1.1
+  Downloaded sqlparser v0.63.0
+  Downloaded stable_deref_trait v1.2.1
+  Downloaded structmeta v0.3.0
+  Downloaded substrait v0.63.0
+  Downloaded sync_wrapper v1.0.2
+  Downloaded testcontainers-modules v0.15.0
+  Downloaded time v0.3.47
+  Downloaded tinytemplate v1.2.1
+  Downloaded tokio-macros v2.7.0
+  Downloaded toml_datetime v1.1.1+spec-1.1.0
+  Downloaded tonic v0.14.6
+  Downloaded tower-service v0.3.3
+  Downloaded typify v0.5.0
+  Downloaded tracing-log v0.2.0
+  Downloaded unicode-segmentation v1.13.2
+  Downloaded untrusted v0.9.0
+  Downloaded urlencoding v2.1.3
+  Downloaded version_check v0.9.5
+  Downloaded want v0.3.1
+  Downloaded wasm-bindgen-shared v0.2.118
+  Downloaded winnow v1.0.2
+  Downloaded yoke v0.8.2
+  Downloaded zerofrom v0.1.7
+  Downloaded zlib-rs v0.6.3
+  Downloaded zstd-safe v8.0.0
+  Downloaded anes v0.1.6
+  Downloaded ar_archive_writer v0.5.1
+  Downloaded arrow-cast v60.0.0
+  Downloaded arrow-json v60.0.0
+  Downloaded async-compression v0.4.50
+  Downloaded atoi v3.1.0
+  Downloaded aws-sdk-sso v1.109.0
+  Downloaded aws-smithy-http-client v1.4.0
+  Downloaded aws-smithy-schema v0.2.0
+  Downloaded base64 v0.21.7
+  Downloaded block-buffer v0.10.4
+  Downloaded brotli-decompressor v6.0.0
+  Downloaded cast v0.3.0
+  Downloaded ciborium-io v0.2.2
+  Downloaded cmake v0.1.58
+  Downloaded console v0.16.4
+  Downloaded crc v3.4.0
+  Downloaded crossbeam-deque v0.8.6
+  Downloaded ctor v1.0.13
+  Downloaded deranged v0.5.8
+  Downloaded endian-type v0.2.0
+  Downloaded doc-comment v0.3.4
+  Downloaded etcetera v0.11.0
+  Downloaded flatbuffers v25.12.19
+  Downloaded fs_extra v1.3.0
+  Downloaded futures-macro v0.3.34
+  Downloaded getrandom v0.4.2
+  Downloaded hashbrown v0.14.5
+  Downloaded home v0.5.12
+  Downloaded httparse v1.10.1
+  Downloaded hyperlocal v0.9.1
+  Downloaded icu_properties v2.2.0
+  Downloaded indexmap v2.14.2
+  Downloaded is_terminal_polyfill v1.70.2
+  Downloaded lazy_static v1.5.0
+  Downloaded lexical-write-integer v1.0.6
+  Downloaded libmimalloc-sys v0.1.49
+  Downloaded lock_api v0.4.14
+  Downloaded memchr v2.8.3
+  Downloaded nibble_vec v0.1.0
+  Downloaded num-complex v0.4.6
+  Downloaded page_size v0.6.0
+  Downloaded once_cell v1.21.4
+  Downloaded phf_shared v0.12.1
+  Downloaded pbjson v0.8.0
+  Downloaded powerfmt v0.2.0
+  Downloaded plotters v0.3.7
+  Downloaded prost-types v0.14.4
+  Downloaded radix_trie v0.3.0
+  Downloaded rand_core v0.6.4
+  Downloaded ref-cast v1.0.25
+  Downloaded regress v0.10.5
+  Downloaded rustc-hash v2.1.2
+  Downloaded rustls-platform-verifier v0.7.0
+  Downloaded schemars v1.2.1
+  Downloaded serde_urlencoded v0.7.1
+  Downloaded serde_core v1.0.229
+  Downloaded sha2 v0.11.0
+  Downloaded siphasher v1.0.2
+  Downloaded stabby-abi v72.1.16
+  Downloaded sqllogictest v0.29.1
+  Downloaded strum_macros v0.28.0
+  Downloaded sysinfo v0.39.6
+  Downloaded thread_local v1.1.9
+  Downloaded tinyvec v1.11.0
+  Downloaded tokio-util v0.7.19
+  Downloaded tower v0.5.3
+  Downloaded tracing-core v0.1.36
+  Downloaded unicode-width v0.2.2
+  Downloaded typify-impl v0.5.0
+  Downloaded utf8_iter v1.0.4
+  Downloaded walkdir v2.5.0
+  Downloaded wasm-bindgen-test v0.3.68
+  Downloaded xmlparser v0.13.6
+  Downloaded zeroize v1.8.2
+  Downloaded zstd v0.14.0
+  Downloaded anstyle v1.0.14
+  Downloaded arrow-array v60.0.0
+  Downloaded arrow-schema v60.0.0
+  Downloaded async-trait v0.1.92
+  Downloaded aws-sdk-ssooidc v1.111.0
+  Downloaded aws-smithy-runtime v1.14.0
+  Downloaded base64-simd v0.8.0
+  Downloaded bollard-stubs v1.52.1-rc.29.1.3
+  Downloaded cfg-if v1.0.4
+  Downloaded clap_builder v4.6.7
+  Downloaded criterion-plot v0.8.2
+  Downloaded const-random-macro v0.1.16
+  Downloaded ctutils v0.4.2
+  Downloaded dirs v7.0.0
+  Downloaded env_filter v2.0.0
+  Downloaded equivalent v1.0.2
+  Downloaded futures-channel v0.3.34
+  Downloaded futures-io v0.3.34
+  Downloaded http v1.4.0
+  Downloaded hashbrown v0.17.1
+  Downloaded iana-time-zone v0.1.65
+  Downloaded idna v1.1.0
+  Downloaded lexical-util v1.0.7
+  Downloaded itertools v0.15.0
+  Downloaded link-section v0.19.3
+  Downloaded matchit v0.8.4
+  Downloaded num-traits v0.2.19
+  Downloaded nu-ansi-term v0.50.3
+  Downloaded parking_lot v0.12.5
+  Downloaded percent-encoding v2.3.2
+  Downloaded prost-build v0.14.4
+  Downloaded portable-atomic v1.13.1
+  Downloaded rand v0.9.4
+  Downloaded rayon-core v1.13.0
+  Downloaded rustls-pki-types v1.14.1
+  Downloaded ring v0.17.14
+  Downloaded serde_json v1.0.151
+  Downloaded schemars_derive v0.8.22
+  Downloaded shlex v1.3.0
+  Downloaded socket2 v0.6.3
+  Downloaded strsim v0.11.1
+  Downloaded syn v3.0.6
+  Downloaded time-macros v0.2.27
+  Downloaded tokio-stream v0.1.19
+  Downloaded tower-http v0.6.8
+  Downloaded twox-hash v2.1.4
+  Downloaded ureq v3.3.0
+  Downloaded vsimd v0.8.0
+  Downloaded wasm-bindgen-test-shared v0.2.118
+  Downloaded zerocopy-derive v0.8.48
+  Downloaded alloc-no-stdlib v3.0.0
+  Downloaded arrow v60.0.0
+  Downloaded arrow-select v60.0.0
+  Downloaded aws-lc-rs v1.18.1
+  Downloaded aws-smithy-xml v0.62.0
+  Downloaded block-buffer v0.12.0
+  Downloaded chrono v0.4.45
+  Downloaded compression-codecs v0.4.45
+  Downloaded crunchy v0.2.4
+  Downloaded digest v0.11.2
+  Downloaded fastrand v2.4.1
+  Downloaded foldhash v0.2.0
+  Downloaded glob v0.3.4
+  Downloaded http-body-util v0.1.3
+  Downloaded icu_normalizer v2.2.0
+  Downloaded iri-string v0.7.12
+  Downloaded libloading v0.9.0
+  Downloaded lz4_flex v0.14.0
+  Downloaded num-bigint v0.5.1
+  Downloaded pin-project-internal v1.1.13
+  Downloaded option-ext v0.2.0
+  Downloaded proc-macro-crate v3.5.0
+  Downloaded quinn-proto v0.11.15
+  Downloaded regex-lite v0.1.9
+  Downloaded rustyline v18.0.1
+  Downloaded serde_repr v0.1.20
+  Downloaded simd-adler32 v0.3.9
+  Downloaded stacker v0.1.25
+  Downloaded tempfile v3.27.0
+  Downloaded tokio v1.53.1
+  Downloaded tracing v0.1.44
+  Downloaded unit-prefix v0.5.2
+  Downloaded wasm-bindgen-futures v0.4.68
+  Downloaded yoke-derive v0.8.2
+  Downloaded alloc-stdlib v0.3.0
+  Downloaded arrow-flight v60.0.0
+  Downloaded aws-smithy-async v1.3.0
+  Downloaded bitflags v2.11.1
+  Downloaded ciborium-ll v0.2.2
+  Downloaded crc-fast v1.10.0
+  Downloaded dunce v1.0.5
+  Downloaded foldhash v0.1.5
+  Downloaded half v2.7.1
+  Downloaded hyper-timeout v0.5.2
+  Downloaded jiff v0.2.24
+  Downloaded num-integer v0.1.46
+  Downloaded litemap v0.8.2
+  Downloaded pbjson-types v0.8.0
+  Downloaded quinn v0.11.11
+  Downloaded ref-cast-impl v1.0.25
+  Downloaded same-file v1.0.6
+  Downloaded sha1 v0.11.0
+  Downloaded strum v0.28.0
+  Downloaded try-lock v0.2.5
+  Downloaded tiny-keccak v2.0.2
+  Downloaded utf8parse v0.2.2
+  Downloaded zerotrie v0.2.4
+  Downloaded aws-smithy-query v0.62.0
+  Downloaded arrow-cmp v60.0.0
+  Downloaded bzip2 v0.6.1
+  Downloaded crypto-common v0.2.1
+  Downloaded find-msvc-tools v0.1.9
+  Downloaded heck v0.5.0
+  Downloaded insta v1.49.0
+  Downloaded mimalloc v0.1.52
+  Downloaded rand_chacha v0.9.0
+  Downloaded parse-display v0.9.1
+  Downloaded rustix v1.1.4
+  Downloaded slab v0.4.12
+  Downloaded thiserror v2.0.21
+  Downloaded unicode-ident v1.0.24
+  Downloaded xattr v1.6.1
+  Downloaded zmij v1.0.21
+  Downloaded darling_macro v0.23.0
+  Downloaded bumpalo v3.20.2
+  Downloaded lexical-core v1.0.6
+  Downloaded generic-array v0.14.7
+  Downloaded rand_distr v0.5.1
+  Downloaded oorandom v11.1.5
+  Downloaded toml_edit v0.25.11+spec-1.1.0
+  Downloaded serde_yaml v0.9.34+deprecated
+  Downloaded wasm-bindgen-macro v0.2.118
+  Downloaded aws-config v1.12.0
+  Downloaded constant_time_eq v0.4.2
+  Downloaded hybrid-array v0.4.11
+  Downloaded mio v1.2.0
+  Downloaded rstest v0.27.0
+  Downloaded subtle v2.6.1
+  Downloaded anyhow v1.0.103
+  Downloaded cmov v0.5.4
+  Downloaded ident_case v1.0.1
+  Downloaded prettyplease v0.2.37
+  Downloaded toml_writer v1.1.2+spec-1.1.0
+  Downloaded axum-core v0.5.6
+  Downloaded liblzma v0.4.8
+  Downloaded stabby v72.1.16
+  Downloaded either v1.15.0
+  Downloaded seq-macro v0.3.6
+  Downloaded futures-timer v3.0.3
+  Downloaded async-recursion v1.1.1
+  Downloaded pkg-config v0.3.33
+  Downloaded url v2.5.8
+   Compiling quote v1.0.47
+   Compiling proc-macro2 v1.0.106
+   Compiling unicode-ident v1.0.24
+    Checking cfg-if v1.0.4
+   Compiling libc v0.2.190
+    Checking memchr v2.8.3
+   Compiling serde_core v1.0.229
+    Checking bytes v1.12.1
+   Compiling syn v2.0.119
+   Compiling syn v3.0.6
+    Checking once_cell v1.21.4
+    Checking itoa v1.0.18
+   Compiling autocfg v1.5.0
+   Compiling shlex v1.3.0
+   Compiling find-msvc-tools v0.1.9
+   Compiling jobserver v0.1.34
+   Compiling libm v0.2.16
+   Compiling cc v1.2.61
+   Compiling num-traits v0.2.19
+    Checking pin-project-lite v0.2.17
+    Checking equivalent v1.0.2
+    Checking allocator-api2 v0.2.21
+    Checking foldhash v0.2.0
+    Checking smallvec v1.15.1
+    Checking futures-core v0.3.34
+    Checking hashbrown v0.17.1
+    Checking futures-sink v0.3.34
+   Compiling parking_lot_core v0.9.12
+    Checking scopeguard v1.2.0
+    Checking lock_api v0.4.14
+    Checking slab v0.4.12
+    Checking futures-channel v0.3.34
+   Compiling serde_derive v1.0.229
+    Checking indexmap v2.14.2
+    Checking errno v0.3.14
+    Checking signal-hook-registry v1.4.8
+    Checking parking_lot v0.12.5
+   Compiling futures-macro v0.3.34
+   Compiling tokio-macros v2.7.0
+    Checking socket2 v0.6.3
+    Checking mio v1.2.0
+    Checking futures-task v0.3.34
+    Checking futures-io v0.3.34
+    Checking tokio v1.53.1
+    Checking num-integer v0.1.46
+    Checking futures-util v0.3.34
+   Compiling pkg-config v0.3.33
+    Checking http v1.4.0
+    Checking tracing-core v0.1.36
+   Compiling serde v1.0.229
+   Compiling tracing-attributes v0.1.31
+   Compiling zmij v1.0.21
+    Checking bitflags v2.11.1
+    Checking http-body v1.0.1
+    Checking log v0.4.34
+    Checking fnv v1.0.7
+    Checking either v1.15.0
+    Checking zeroize v1.8.2
+   Compiling zerocopy v0.8.48
+   Compiling zerocopy-derive v0.8.48
+    Checking http-body-util v0.1.3
+    Checking tracing v0.1.44
+   Compiling getrandom v0.4.2
+   Compiling version_check v0.9.5
+   Compiling serde_json v1.0.151
+    Checking rand_core v0.10.1
+    Checking ryu v1.0.23
+    Checking tokio-util v0.7.19
+    Checking percent-encoding v2.3.2
+   Compiling semver v1.0.28
+   Compiling cmake v0.1.58
+   Compiling httparse v1.10.1
+    Checking base64 v0.22.1
+   Compiling dunce v1.0.5
+   Compiling fs_extra v1.3.0
+    Checking getrandom v0.2.17
+    Checking tower-service v0.3.3
+   Compiling getrandom v0.3.4
+   Compiling aws-lc-sys v0.45.0
+    Checking typenum v1.20.0
+   Compiling ring v0.17.14
+    Checking atomic-waker v1.1.2
+    Checking try-lock v0.2.5
+   Compiling aws-lc-rs v1.18.1
+    Checking want v0.3.1
+    Checking h2 v0.4.16
+   Compiling rustc_version v0.4.1
+   Compiling synstructure v0.13.2
+    Checking httpdate v1.0.3
+    Checking hyper v1.9.0
+    Checking rustls-pki-types v1.14.1
+    Checking sync_wrapper v1.0.2
+    Checking aho-corasick v1.1.4
+    Checking ipnet v2.12.0
+    Checking regex-syntax v0.8.11
+    Checking cpufeatures v0.3.0
+    Checking untrusted v0.9.0
+    Checking tower-layer v0.3.3
+    Checking hyper-util v0.1.20
+    Checking regex-automata v0.4.16
+   Compiling zerofrom-derive v0.1.7
+   Compiling rustls v0.23.45
+    Checking tower v0.5.3
+    Checking zerofrom v0.1.7
+   Compiling yoke-derive v0.8.2
+    Checking half v2.7.1
+    Checking stable_deref_trait v1.2.1
+    Checking subtle v2.6.1
+    Checking iana-time-zone v0.1.65
+    Checking chrono v0.4.45
+    Checking regex v1.13.1
+    Checking num-complex v0.4.6
+    Checking yoke v0.8.2
+   Compiling zerovec-derive v0.11.3
+   Compiling anyhow v1.0.103
+    Checking siphasher v1.0.2
+    Checking phf_shared v0.12.1
+   Compiling ahash v0.8.12
+    Checking num-bigint v0.5.1
+   Compiling displaydoc v0.2.5
+    Checking zerovec v0.11.6
+   Compiling chrono-tz v0.10.4
+    Checking arrow-buffer v60.0.0
+   Compiling itertools v0.14.0
+    Checking phf v0.12.1
+    Checking hybrid-array v0.4.11
+    Checking arrow-schema v60.0.0
+    Checking openssl-probe v0.2.1
+    Checking rustls-native-certs v0.8.3
+    Checking arrow-data v60.0.0
+   Compiling prost-derive v0.14.4
+    Checking cmov v0.5.4
+   Compiling thiserror v2.0.21
+    Checking ctutils v0.4.2
+    Checking crypto-common v0.2.1
+    Checking block-buffer v0.12.0
+    Checking tinystr v0.8.3
+    Checking form_urlencoded v1.2.2
+   Compiling thiserror-impl v2.0.21
+    Checking writeable v0.6.3
+    Checking const-oid v0.10.2
+    Checking litemap v0.8.2
+    Checking icu_locale_core v2.2.0
+    Checking digest v0.11.2
+    Checking potential_utf v0.1.5
+    Checking zerotrie v0.2.4
+    Checking utf8_iter v1.0.4
+   Compiling icu_properties_data v2.2.0
+   Compiling icu_normalizer_data v2.2.0
+    Checking icu_collections v2.2.0
+    Checking icu_provider v2.2.0
+    Checking chacha20 v0.10.2
+   Compiling generic-array v0.14.7
+   Compiling zstd-sys v2.1.0+zstd.1.5.7
+   Compiling async-trait v0.1.92
+    Checking arrow-array v60.0.0
+    Checking unicode-width v0.2.2
+    Checking rand v0.10.1
+    Checking icu_properties v2.2.0
+    Checking arrow-cmp v60.0.0
+    Checking icu_normalizer v2.2.0
+   Compiling zstd-safe v8.0.0
+    Checking hex v0.4.3
+    Checking lexical-util v1.0.7
+    Checking idna_adapter v1.2.1
+    Checking arrow-select v60.0.0
+    Checking futures-executor v0.3.34
+   Compiling object v0.37.3
+    Checking futures v0.3.34
+    Checking idna v1.1.0
+    Checking block-buffer v0.10.4
+    Checking crypto-common v0.1.7
+    Checking base64 v0.23.1
+    Checking digest v0.10.7
+    Checking url v2.5.8
+    Checking lexical-parse-integer v1.0.6
+    Checking lexical-write-integer v1.0.6
+    Checking unicode-segmentation v1.13.2
+   Compiling crc32fast v1.5.2
+    Checking same-file v1.0.6
+    Checking walkdir v2.5.0
+    Checking lexical-write-float v1.0.6
+    Checking lexical-parse-float v1.0.6
+    Checking prost v0.14.4
+   Compiling flatbuffers v25.12.19
+    Checking uuid v1.27.0
+    Checking simd-adler32 v0.3.9
+    Checking adler2 v2.0.1
+   Compiling cfg_aliases v0.2.1
+   Compiling nix v0.31.3
+    Checking miniz_oxide v0.9.1
+    Checking lexical-core v1.0.6
+   Compiling ar_archive_writer v0.5.1
+    Checking comfy-table v8.0.0
+    Checking arrow-ord v60.0.0
+    Checking twox-hash v2.1.4
+   Compiling psm v0.1.31
+    Checking serde_urlencoded v0.7.1
+    Checking atoi v3.1.0
+    Checking zlib-rs v0.6.3
+    Checking arrow-cast v60.0.0
+    Checking flate2 v1.1.10
+    Checking lz4_flex v0.14.0
+   Compiling stacker v0.1.25
+    Checking iri-string v0.7.12
+   Compiling snap v1.1.1
+    Checking alloc-no-stdlib v3.0.0
+    Checking alloc-stdlib v0.3.0
+    Checking zstd v0.14.0
+    Checking arrow-ipc v60.0.0
+    Checking tower-http v0.6.8
+    Checking csv-core v0.1.13
+    Checking spin v0.10.1
+    Checking humantime v2.3.0
+    Checking simdutf8 v0.1.5
+    Checking crc-fast v1.10.0
+    Checking csv v1.4.0
+    Checking brotli-decompressor v6.0.0
+    Checking arrow-string v60.0.0
+    Checking arrow-row v60.0.0
+    Checking arrow-arith v60.0.0
+    Checking md-5 v0.11.0
+    Checking itertools v0.15.0
+    Checking quick-xml v0.41.0
+   Compiling recursive-proc-macro-impl v0.1.1
+    Checking recursive v0.1.1
+    Checking brotli v9.0.0
+    Checking arrow-csv v60.0.0
+    Checking arrow-json v60.0.0
+   Compiling sqlparser_derive v0.6.0
+   Compiling rustix v1.1.4
+   Compiling seq-macro v0.3.6
+    Checking sqlparser v0.63.0
+    Checking arrow v60.0.0
+   Compiling pin-project-internal v1.1.13
+    Checking fastrand v2.4.1
+    Checking linux-raw-sys v0.12.1
+   Compiling crossbeam-utils v0.8.21
+    Checking pin-project v1.1.13
+    Checking ppv-lite86 v0.2.21
+    Checking rand_core v0.9.5
+    Checking rand_chacha v0.9.0
+    Checking rand v0.9.4
+    Checking tempfile v3.27.0
+    Checking datafusion-doc v55.1.0 (/__w/datafusion/datafusion/datafusion/doc)
+   Compiling heck v0.5.0
+    Checking hashbrown v0.14.5
+   Compiling datafusion-macros v55.1.0 (/__w/datafusion/datafusion/datafusion/macros)
+    Checking dashmap v6.2.1
+    Checking foldhash v0.1.5
+    Checking hashbrown v0.15.5
+    Checking fixedbitset v0.5.7
+    Checking sha2 v0.11.0
+    Checking petgraph v0.8.3
+   Compiling blake3 v1.8.7
+    Checking arrayvec v0.7.6
+    Checking constant_time_eq v0.4.2
+    Checking blake2 v0.11.0
+    Checking utf8parse v0.2.2
+    Checking anstyle-parse v1.0.0
+    Checking colorchoice v1.0.5
+    Checking anstyle v1.0.14
+    Checking anstyle-query v1.1.5
+    Checking is_terminal_polyfill v1.70.2
+    Checking strsim v0.11.1
+    Checking anstream v1.0.0
+    Checking clap_lex v1.1.0
+   Compiling clap_derive v4.6.7
+    Checking clap_builder v4.6.7
+    Checking itertools v0.13.0
+    Checking clap v4.6.7
+   Compiling crossbeam-epoch v0.9.20
+    Checking cast v0.3.0
+   Compiling rayon-core v1.13.0
+    Checking crossbeam-deque v0.8.6
+   Compiling alloca v0.4.0
+    Checking oorandom v11.1.5
+    Checking plotters-backend v0.3.7
+    Checking ciborium-io v0.2.2
+    Checking ciborium-ll v0.2.2
+    Checking plotters-svg v0.3.7
+    Checking plotters v0.3.7
+    Checking rayon v1.12.0
+    Checking ciborium v0.2.2
+    Checking criterion-plot v0.8.2
+    Checking tinytemplate v1.2.1
+    Checking page_size v0.6.0
+    Checking anes v0.1.6
+    Checking datafusion-common-runtime v55.1.0 (/__w/datafusion/datafusion/datafusion/common-runtime)
+    Checking criterion v0.8.2
+   Compiling liblzma-sys v0.4.8
+    Checking libbz2-rs-sys v0.2.3
+    Checking bzip2 v0.6.1
+    Checking compression-core v0.4.33
+    Checking glob v0.3.4
+    Checking num-bigint v0.4.6
+    Checking tokio-stream v0.1.19
+   Compiling bigdecimal v0.4.11
+    Checking crc-catalog v2.5.0
+    Checking crc v3.4.0
+   Compiling strum_macros v0.28.0
+    Checking console v0.16.4
+    Checking similar v2.7.0
+    Checking bstr v1.12.1
+    Checking vte v0.14.1
+    Checking strip-ansi-escapes v0.2.1
+    Checking globset v0.4.18
+    Checking insta v1.49.0
+    Checking env_filter v2.0.0
+    Checking jiff v0.2.24
+   Compiling winnow v1.0.2
+   Compiling toml_parser v1.1.3+spec-1.1.0
+    Checking env_logger v0.11.11
+   Compiling toml_datetime v1.1.1+spec-1.1.0
+   Compiling toml_edit v0.25.11+spec-1.1.0
+   Compiling proc-macro-crate v3.5.0
+   Compiling rstest_macros v0.27.0
+    Checking liblzma v0.4.8
+    Checking compression-codecs v0.4.45
+    Checking arrow-avro v60.0.0
+    Checking async-compression v0.4.50
+   Compiling relative-path v1.9.3
+    Checking futures-timer v3.0.3
+    Checking link-section v0.19.3
+   Compiling linktime-proc-macro v0.2.3
+   Compiling doc-comment v0.3.4
+   Compiling libmimalloc-sys v0.1.49
+    Checking ctor v1.0.13
+   Compiling rustversion v1.0.22
+    Checking rand_distr v0.5.1
+    Checking sysinfo v0.39.6
+    Checking mimalloc v0.1.52
+    Checking prost-types v0.14.4
+    Checking mime v0.3.17
+    Checking powerfmt v0.2.0
+    Checking deranged v0.5.8
+    Checking axum-core v0.5.6
+    Checking time-core v0.1.8
+    Checking matchit v0.8.4
+    Checking num-conv v0.2.1
+    Checking axum v0.8.9
+    Checking time v0.3.47
+    Checking hyper-timeout v0.5.2
+    Checking http v0.2.12
+    Checking outref v0.5.2
+    Checking vsimd v0.8.0
+    Checking base64-simd v0.8.0
+    Checking tonic v0.14.6
+    Checking http-body v0.4.6
+    Checking bytes-utils v0.1.4
+    Checking rstest v0.27.0
+    Checking pin-utils v0.1.0
+    Checking aws-smithy-async v1.3.0
+    Checking aws-smithy-types v1.6.3
+   Compiling aws-smithy-runtime-api-macros v1.1.0
+   Compiling stabby-macros v72.1.16
+    Checking aws-smithy-runtime-api v1.16.0
+   Compiling stabby-abi v72.1.16
+    Checking tonic-prost v0.14.5
+    Checking sha2-const-stable v0.1.0
+   Compiling stabby v72.1.16
+    Checking sha1 v0.11.0
+   Compiling prettyplease v0.2.37
+    Checking nu-ansi-term v0.50.3
+    Checking nom v8.0.0
+    Checking libloading v0.9.0
+    Checking lazy_static v1.5.0
+    Checking async-ffi v0.5.1
+    Checking sharded-slab v0.1.7
+    Checking tracing-log v0.2.0
+    Checking serde_spanned v1.1.1
+    Checking thread_local v1.1.9
+    Checking toml_writer v1.1.2+spec-1.1.0
+    Checking toml v1.1.6+spec-1.1.0
+    Checking tracing-subscriber v0.3.23
+   Compiling rand_core v0.6.4
+    Checking aws-smithy-schema v0.2.0
+    Checking arrow-flight v60.0.0
+    Checking strum v0.28.0
+   Compiling rand_chacha v0.3.1
+   Compiling rand v0.8.6
+   Compiling portable-atomic v1.13.1
+   Compiling rstest_reuse v0.7.0
+    Checking aws-credential-types v1.3.0
+    Checking aws-smithy-http v0.64.0
+    Checking rustls-webpki v0.103.15
+   Compiling aws-types v1.6.0
+    Checking aws-smithy-observability v0.3.0
+    Checking hmac v0.13.0
+    Checking tokio-rustls v0.26.4
+    Checking hyper-rustls v0.27.9
+    Checking rustls-platform-verifier v0.7.0
+   Compiling serde_derive_internals v0.29.1
+    Checking reqwest v0.13.5
+    Checking aws-smithy-http-client v1.4.0
+    Checking object_store v0.14.2
+   Compiling wasm-bindgen-shared v0.2.118
+   Compiling schemars v0.8.22
+   Compiling hashbrown v0.16.1
+   Compiling schemars_derive v0.8.22
+    Checking aws-smithy-runtime v1.14.0
+    Checking aws-sigv4 v1.5.1
+    Checking parquet v60.0.0
+   Compiling multimap v0.10.1
+   Compiling ident_case v1.0.1
+   Compiling dyn-clone v1.0.20
+   Compiling darling_core v0.23.0
+   Compiling prost-build v0.14.4
+    Checking aws-runtime v1.9.2
+   Compiling regress v0.10.5
+   Compiling pbjson-build v0.8.0
+    Checking datafusion-common v55.1.0 (/__w/datafusion/datafusion/datafusion/common)
+    Checking aws-smithy-json v0.63.0
+    Checking arc-swap v1.9.1
+    Checking ureq-proto v0.6.0
+    Checking home v0.5.12
+    Checking regex-lite v0.1.9
+   Compiling bollard-buildkit-proto v0.7.0
+    Checking xmlparser v0.13.6
+    Checking utf8-zero v0.8.1
+    Checking ureq v3.3.0
+    Checking aws-smithy-xml v0.62.0
+   Compiling typify-impl v0.5.0
+   Compiling darling_macro v0.23.0
+   Compiling serde_tokenstream v0.2.3
+   Compiling structmeta-derive v0.3.0
+    Checking urlencoding v2.1.3
+    Checking datafusion-proto-common v55.1.0 (/__w/datafusion/datafusion/datafusion/proto-common)
+    Checking datafusion-expr-common v55.1.0 (/__w/datafusion/datafusion/datafusion/expr-common)
+    Checking test-utils v0.1.0 (/__w/datafusion/datafusion/test-utils)
+   Compiling structmeta v0.3.0
+    Checking aws-smithy-query v0.62.0
+   Compiling darling v0.23.0
+    Checking datafusion-proto-models v55.1.0 (/__w/datafusion/datafusion/datafusion/proto-models)
+    Checking num-rational v0.4.2
+    Checking num-iter v0.1.45
+   Compiling async-stream-impl v0.3.6
+   Compiling serde_repr v0.1.20
+    Checking nibble_vec v0.1.0
+    Checking cpufeatures v0.2.17
+    Checking option-ext v0.2.0
+    Checking endian-type v0.2.0
+   Compiling unsafe-libyaml v0.2.11
+   Compiling bumpalo v3.20.2
+   Compiling typify-macro v0.5.0
+   Compiling wasm-bindgen-macro-support v0.2.118
+   Compiling serde_yaml v0.9.34+deprecated
+   Compiling typify v0.5.0
+    Checking radix_trie v0.3.0
+    Checking bollard-stubs v1.52.1-rc.29.1.3
+    Checking datafusion-physical-expr-common v55.1.0 (/__w/datafusion/datafusion/datafusion/physical-expr-common)
+    Checking dirs-sys v0.5.0
+    Checking sha1 v0.10.6
+    Checking async-stream v0.3.6
+    Checking num v0.4.3
+    Checking datafusion-functions-aggregate-common v55.1.0 (/__w/datafusion/datafusion/datafusion/functions-aggregate-common)
+    Checking datafusion-functions-window-common v55.1.0 (/__w/datafusion/datafusion/datafusion/functions-window-common)
+   Compiling serde_with_macros v3.21.0
+    Checking aws-sdk-sts v1.114.0
+    Checking datafusion-expr v55.1.0 (/__w/datafusion/datafusion/datafusion/expr)
+   Compiling parse-display-derive v0.9.1
+    Checking aws-sdk-ssooidc v1.111.0
+    Checking aws-sdk-sso v1.109.0
+   Compiling pbjson-types v0.8.0
+   Compiling wasm-bindgen v0.2.118
+    Checking xattr v1.6.1
+    Checking hyperlocal v0.9.1
+    Checking filetime v0.2.27
+    Checking base64 v0.21.7
+    Checking rustc-hash v2.1.2
+    Checking astral-tokio-tar v0.6.2
+    Checking docker_credential v1.3.2
+    Checking aws-config v1.12.0
+    Checking parse-display v0.9.1
+    Checking serde_with v3.21.0
+   Compiling wasm-bindgen-macro v0.2.118
+    Checking dirs v7.0.0
+   Compiling substrait v0.63.0
+    Checking bollard v0.20.2
+    Checking rustyline v18.0.1
+    Checking ferroid v2.0.0
+    Checking pbjson v0.8.0
+   Compiling enum-ordinalize-derive v4.3.2
+   Compiling fs-err v3.3.0
+    Checking etcetera v0.11.0
+   Compiling owo-colors v4.3.0
+   Compiling enum-ordinalize v4.3.2
+    Checking testcontainers v0.27.3
+    Checking datafusion-execution v55.1.0 (/__w/datafusion/datafusion/datafusion/execution)
+    Checking datafusion-physical-expr v55.1.0 (/__w/datafusion/datafusion/datafusion/physical-expr)
+    Checking datafusion-functions v55.1.0 (/__w/datafusion/datafusion/datafusion/functions)
+    Checking escape8259 v0.5.3
+    Checking unicode-width v0.1.14
+    Checking subst v0.3.8
+    Checking libtest-mimic v0.8.2
+    Checking testcontainers-modules v0.15.0
+   Compiling educe v0.6.0
+    Checking datafusion-functions-aggregate v55.1.0 (/__w/datafusion/datafusion/datafusion/functions-aggregate)
+    Checking datafusion-physical-plan v55.1.0 (/__w/datafusion/datafusion/datafusion/physical-plan)
+    Checking datafusion-physical-expr-adapter v55.1.0 (/__w/datafusion/datafusion/datafusion/physical-expr-adapter)
+    Checking datafusion-functions-nested v55.1.0 (/__w/datafusion/datafusion/datafusion/functions-nested)
+    Checking datafusion-functions-window v55.1.0 (/__w/datafusion/datafusion/datafusion/functions-window)
+    Checking datafusion-optimizer v55.1.0 (/__w/datafusion/datafusion/datafusion/optimizer)
+    Checking datafusion-sql v55.1.0 (/__w/datafusion/datafusion/datafusion/sql)
+    Checking pbjson-build v0.9.0
+    Checking insta-cmd v0.7.0
+    Checking md-5 v0.10.6
+   Compiling async-recursion v1.1.1
+    Checking unit-prefix v0.5.2
+    Checking indicatif v0.18.6
+    Checking sqllogictest v0.29.1
+    Checking js-sys v0.3.95
+    Checking datafusion-session v55.1.0 (/__w/datafusion/datafusion/datafusion/session)
+    Checking datafusion-datasource v55.1.0 (/__w/datafusion/datafusion/datafusion/datasource)
+    Checking diff v0.1.13
+    Checking yansi v1.0.1
+    Checking datafusion-pruning v55.1.0 (/__w/datafusion/datafusion/datafusion/pruning)
+    Checking datafusion-catalog v55.1.0 (/__w/datafusion/datafusion/datafusion/catalog)
+    Checking datafusion-datasource-parquet v55.1.0 (/__w/datafusion/datafusion/datafusion/datasource-parquet)
+    Checking datafusion-functions-table v55.1.0 (/__w/datafusion/datafusion/datafusion/functions-table)
+    Checking datafusion-catalog-listing v55.1.0 (/__w/datafusion/datafusion/datafusion/catalog-listing)
+    Checking datafusion-datasource-csv v55.1.0 (/__w/datafusion/datafusion/datafusion/datasource-csv)
+    Checking datafusion-datasource-arrow v55.1.0 (/__w/datafusion/datafusion/datafusion/datasource-arrow)
+    Checking datafusion-datasource-avro v55.1.0 (/__w/datafusion/datafusion/datafusion/datasource-avro)
+    Checking datafusion-datasource-json v55.1.0 (/__w/datafusion/datafusion/datafusion/datasource-json)
+    Checking datafusion-physical-optimizer v55.1.0 (/__w/datafusion/datafusion/datafusion/physical-optimizer)
+    Checking pretty_assertions v1.4.1
+    Checking wasm-bindgen-futures v0.4.68
+    Checking datafusion-proto v55.1.0 (/__w/datafusion/datafusion/datafusion/proto)
+   Compiling wasm-bindgen-test-macro v0.3.68
+    Checking wasm-bindgen-test-shared v0.2.118
+    Checking wasm-bindgen-test v0.3.68
+    Checking datafusion-ffi v55.1.0 (/__w/datafusion/datafusion/datafusion/ffi)
+    Checking datafusion v55.1.0 (/__w/datafusion/datafusion/datafusion/core)
+    Checking datafusion-spark v55.1.0 (/__w/datafusion/datafusion/datafusion/spark)
+    Checking datafusion-examples v55.1.0 (/__w/datafusion/datafusion/datafusion-examples)
+    Checking datafusion-benchmarks v55.1.0 (/__w/datafusion/datafusion/benchmarks)
+    Checking datafusion-cli v55.1.0 (/__w/datafusion/datafusion/datafusion-cli)
+    Checking datafusion-substrait v55.1.0 (/__w/datafusion/datafusion/datafusion/substrait)
+    Checking datafusion-sqllogictest v55.1.0 (/__w/datafusion/datafusion/datafusion/sqllogictest)
+    Checking ffi_module_interface v0.1.0 (/__w/datafusion/datafusion/datafusion-examples/examples/ffi/ffi_module_interface)
+    Checking ffi_example_table_provider v0.1.0 (/__w/datafusion/datafusion/datafusion-examples/examples/ffi/ffi_example_table_provider)
+    Checking ffi_module_loader v0.1.0 (/__w/datafusion/datafusion/datafusion-examples/examples/ffi/ffi_module_loader)
+    Checking datafusion-wasmtest v55.1.0 (/__w/datafusion/datafusion/datafusion/wasmtest)
+    Checking gen v0.1.0 (/__w/datafusion/datafusion/datafusion/proto-models/gen)
+    Checking gen-common v0.1.0 (/__w/datafusion/datafusion/datafusion/proto-common/gen)
+error: function `test_unparse_null_treatment_window_and_aggregate` is never used
+    --> datafusion/sql/src/unparser/expr.rs:4004:8
+     |
+4004 |     fn test_unparse_null_treatment_window_and_aggregate() -> Result<()> {
+     |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |
+     = note: `-D dead-code` implied by `-D warnings`
+     = help: to override `-D warnings` add `#[expect(dead_code)]` or `#[allow(dead_code)]`
+
+error: could not compile `datafusion-sql` (lib test) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+##[error]Process completed with exit code 101.
+Post job cleanup.
+Post job cleanup.
+##[command]/usr/bin/docker exec  517d075f54e84fc4ef7c4a2652c46db4944683145c46711d7956d68bbeecc953 sh -c "cat /etc/*release | grep ^ID"
+[command]/usr/bin/git version
+git version 2.47.3
+Copying '/github/home/.gitconfig' to '/__w/_temp/b43263d6-d6b0-4d8d-9576-9c84bc6ce690/.gitconfig'
+Temporarily overriding HOME='/__w/_temp/b43263d6-d6b0-4d8d-9576-9c84bc6ce690' before making global git config changes
+Adding repository directory to the temporary git global config as a safe directory
+[command]/usr/bin/git config --global --add safe.directory /__w/datafusion/datafusion
+Removing SSH command configuration
+[command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Entering 'datafusion-testing'
+Entering 'parquet-testing'
+Entering 'testing'
+Removing HTTP extra header
+[command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Entering 'datafusion-testing'
+Entering 'parquet-testing'
+Entering 'testing'
+Removing includeIf entries pointing to credentials config files
+[command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+includeif.gitdir:/__w/datafusion/datafusion/.git.path
+includeif.gitdir:/__w/datafusion/datafusion/.git/worktrees/*.path
+includeif.gitdir:/github/workspace/.git.path
+includeif.gitdir:/github/workspace/.git/worktrees/*.path
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/__w/datafusion/datafusion/.git.path
+/__w/_temp/git-credentials-1f8b1a4a-d3ee-4b50-9d42-7f89a3afcaa0.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/__w/datafusion/datafusion/.git.path \/__w\/_temp\/git\-credentials\-1f8b1a4a\-d3ee\-4b50\-9d42\-7f89a3afcaa0\.config
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/__w/datafusion/datafusion/.git/worktrees/*.path
+/__w/_temp/git-credentials-1f8b1a4a-d3ee-4b50-9d42-7f89a3afcaa0.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/__w/datafusion/datafusion/.git/worktrees/*.path \/__w\/_temp\/git\-credentials\-1f8b1a4a\-d3ee\-4b50\-9d42\-7f89a3afcaa0\.config
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+/github/runner_temp/git-credentials-1f8b1a4a-d3ee-4b50-9d42-7f89a3afcaa0.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-1f8b1a4a\-d3ee\-4b50\-9d42\-7f89a3afcaa0\.config
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+/github/runner_temp/git-credentials-1f8b1a4a-d3ee-4b50-9d42-7f89a3afcaa0.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-1f8b1a4a\-d3ee\-4b50\-9d42\-7f89a3afcaa0\.config
+[command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Entering 'datafusion-testing'
+file:/__w/datafusion/datafusion/.git/modules/datafusion-testing/config	remote.origin.url
+Entering 'parquet-testing'
+file:/__w/datafusion/datafusion/.git/modules/parquet-testing/config	remote.origin.url
+Entering 'testing'
+file:/__w/datafusion/datafusion/.git/modules/testing/config	remote.origin.url
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/datafusion-testing/config --name-only --get-regexp ^includeIf\.gitdir:
+includeif.gitdir:/__w/datafusion/datafusion/.git/modules/datafusion-testing.path
+includeif.gitdir:/github/workspace/.git/modules/datafusion-testing.path
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/datafusion-testing/config --get-all includeif.gitdir:/__w/datafusion/datafusion/.git/modules/datafusion-testing.path
+/__w/_temp/git-credentials-1f8b1a4a-d3ee-4b50-9d42-7f89a3afcaa0.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/datafusion-testing/config --unset includeif.gitdir:/__w/datafusion/datafusion/.git/modules/datafusion-testing.path \/__w\/_temp\/git\-credentials\-1f8b1a4a\-d3ee\-4b50\-9d42\-7f89a3afcaa0\.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/datafusion-testing/config --get-all includeif.gitdir:/github/workspace/.git/modules/datafusion-testing.path
+/github/runner_temp/git-credentials-1f8b1a4a-d3ee-4b50-9d42-7f89a3afcaa0.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/datafusion-testing/config --unset includeif.gitdir:/github/workspace/.git/modules/datafusion-testing.path \/github\/runner_temp\/git\-credentials\-1f8b1a4a\-d3ee\-4b50\-9d42\-7f89a3afcaa0\.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/parquet-testing/config --name-only --get-regexp ^includeIf\.gitdir:
+includeif.gitdir:/__w/datafusion/datafusion/.git/modules/parquet-testing.path
+includeif.gitdir:/github/workspace/.git/modules/parquet-testing.path
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/parquet-testing/config --get-all includeif.gitdir:/__w/datafusion/datafusion/.git/modules/parquet-testing.path
+/__w/_temp/git-credentials-1f8b1a4a-d3ee-4b50-9d42-7f89a3afcaa0.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/parquet-testing/config --unset includeif.gitdir:/__w/datafusion/datafusion/.git/modules/parquet-testing.path \/__w\/_temp\/git\-credentials\-1f8b1a4a\-d3ee\-4b50\-9d42\-7f89a3afcaa0\.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/parquet-testing/config --get-all includeif.gitdir:/github/workspace/.git/modules/parquet-testing.path
+/github/runner_temp/git-credentials-1f8b1a4a-d3ee-4b50-9d42-7f89a3afcaa0.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/parquet-testing/config --unset includeif.gitdir:/github/workspace/.git/modules/parquet-testing.path \/github\/runner_temp\/git\-credentials\-1f8b1a4a\-d3ee\-4b50\-9d42\-7f89a3afcaa0\.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/testing/config --name-only --get-regexp ^includeIf\.gitdir:
+includeif.gitdir:/__w/datafusion/datafusion/.git/modules/testing.path
+includeif.gitdir:/github/workspace/.git/modules/testing.path
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/testing/config --get-all includeif.gitdir:/__w/datafusion/datafusion/.git/modules/testing.path
+/__w/_temp/git-credentials-1f8b1a4a-d3ee-4b50-9d42-7f89a3afcaa0.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/testing/config --unset includeif.gitdir:/__w/datafusion/datafusion/.git/modules/testing.path \/__w\/_temp\/git\-credentials\-1f8b1a4a\-d3ee\-4b50\-9d42\-7f89a3afcaa0\.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/testing/config --get-all includeif.gitdir:/github/workspace/.git/modules/testing.path
+/github/runner_temp/git-credentials-1f8b1a4a-d3ee-4b50-9d42-7f89a3afcaa0.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/testing/config --unset includeif.gitdir:/github/workspace/.git/modules/testing.path \/github\/runner_temp\/git\-credentials\-1f8b1a4a\-d3ee\-4b50\-9d42\-7f89a3afcaa0\.config
+Removing credentials config '/__w/_temp/git-credentials-1f8b1a4a-d3ee-4b50-9d42-7f89a3afcaa0.config'
+Post job cleanup.
+##[command]/usr/bin/docker exec  517d075f54e84fc4ef7c4a2652c46db4944683145c46711d7956d68bbeecc953 sh -c "cat /etc/*release | grep ^ID"
+This action is only meant to be run on RunsOn (https://runs-on.com) runners, skipping all operations
+Stop and remove container: 1fe73422906f46ebbc25c8191e6b4a08_amd64rust_adf15f
+##[command]/usr/bin/docker rm --force 517d075f54e84fc4ef7c4a2652c46db4944683145c46711d7956d68bbeecc953
+517d075f54e84fc4ef7c4a2652c46db4944683145c46711d7956d68bbeecc953
+Remove container network: github_network_576c236b657141c4afe687d5a0e1f96c
+##[command]/usr/bin/docker network rm github_network_576c236b657141c4afe687d5a0e1f96c
+github_network_576c236b657141c4afe687d5a0e1f96c
+Cleaning up orphan processes

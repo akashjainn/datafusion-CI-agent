@@ -1,0 +1,49 @@
+38790725688	648b48835fcccffcf895360b5ef4a9df1b6d5056	alamb/progressive_io_scan_plan	Rust	WIP: Add parquet `progressive_io` option using `ParquetPushDecoder::scan_plan` (one-shot row group I/O with pushdown filters)
+38790179545	4fd151cba538e0f258d903cc0f21ccffb3d3e3ee	alamb/test_arrow_main_oct15	Rust	[DO NOT MERGE] Test DataFusion against arrow-rs main (pre-release testing, 2026-10-15)
+38690227577	bb42f076c8fc4925e1bed8d332cd68b9e0d6b1c3	array-agg-distinct-groups-accumulator	Rust	perf: add a GroupsAccumulator for array_agg(DISTINCT)
+38657296320	f3d85566e99d9c65311d51c842cfdfc5219eec8e	claude/datafusion-24626-0a1685	Rust	feat: allow extension `PhysicalExpr`s to decode via a per-type registry
+38603959220	259d8fb636b89e26d0678843c68f16b1e8b1f9f5	claude/storage-latency-simulation-c76ce0	Security audit	bench: model remote object storage faithfully for --simulate-latency
+38755159213	1701a211fe52f867f622f39d29e64f67bb701341	codex/deduplicate-boolean-comparisons	CodeQL	refactor(optimizer): deduplicate boolean literal comparison rules
+38729518055	0715418eb307a7ab8283308122fb84d3320417bf	dependabot/cargo/main/all-other-cargo-deps-2659b85012	Rust	chore(deps): bump the all-other-cargo-deps group across 1 directory with 7 updates
+38607926565	c634ede15d215eadc3193b9bdc0749994a6bc52b	dependabot/cargo/main/proto-33bc8ff79f	Security audit	chore(deps): bump pbjson-types from 0.8.0 to 0.9.0 in the proto group across 1 directory
+38289192294	2bf479acb6f4a9b374705db8c600599aabfdc31a	docs/versioned-docs-17071	Dev	docs: add version picker and manual release snapshots
+38397876041	34d82982132ce5100ecaec17397a718afdc910dc	ffi-table-provider-enter-runtime	Security audit	fix: Enter provider runtime when polling `FFI_TableProvider` methods
+38839758690	af34fa9c2f3ad893e81bd7b8e52f90b154546548	fix-25532-cast-target-check	CodeQL	fix: validate cast target type in interval check_support
+38428855294	4ebaee3ff112aea9142c757d229f2c75f69e06cc	fix-issue-25978	Detect breaking changes	Add tests fpr nullability of AND/OR expressions
+38433751634	569680098d4ec8423055b22ebea5cdf736f850f8	fix-join-selection-dynamic-filter	Rust	fix: skip HashJoinExec nodes carrying dynamic filters in JoinSelection
+38516388547	ad08495c80f0f886bcc4557a7c580be45c965711	fix/25477-coalesce-volatile-double-eval	Dev	fix: do not evaluate a volatile coalesce or nvl argument twice
+38859847541	c07dda3ccb0fdfb99f69c652b3a8107b34f454d1	fix/coerce-int96-legacy-lists-26393	Rust	fix(parquet): support int96 coercion in legacy list layouts
+38361770223	fd042c5d94134680834b2ac0ef522bcbfa4b634d	fix/fill-null-qualified-columns	Large files PR check	fix: reference columns by qualified name in `DataFrame::fill_null` / `fill_nan`
+38816298156	081ea084cb4e717bdf3e0cb65e886a68f0f4cd33	fix/named-window-spec-reference-26364	Rust	fix(sql): inherit partition and order by when window spec references named window (#26364)
+38362884243	7237a9ff3eeec2dca4ecf243712360359d02a892	fix/nvl-keep-argument-types	Dependencies	fix: coerce `nvl` / `ifnull` arguments like `coalesce`
+38638572803	1fd13a711d7ade859efed8621c1330b7417d5c1c	fix/oneof-signature-mismatch-plan-error	CodeQL	fix: report OneOf signature mismatches as planning errors
+38272365129	39d7bdfbdf9db13dbcd10137a3d3c1da208b2a73	fix/skip-float-linear-aggregate-rewrite	Dependencies	fix: do not rewrite `SUM(x + literal)` for floating point arguments
+38839592704	05761516b21086c49bb3824dd1d3ee21fe5dac53	fix/spark-date-part-second-decimal-26336	Rust	fix(spark): return decimal(8, 6) with fractional seconds for date_part('SECOND', ts)
+39130743749	16a3015e205c3fa1adf652c032bc656aed6777f5	fix/unnest-functional-dependencies-25844	Rust	fix: preserve functional dependencies across unnest
+38212522570	11cfd5d2c63d0e4d9f3e7e40273393992e4e87c9	fix_unparser_random	Rust	fix: Unparse `random` as `rand` for some dialects
+38930157807	cd3ded6694cc8053b3c6680e37cbac09917bcfb2	fold-set-comparison-into-core-integration	Rust	minor: combine `set_comparison` test into `core_integration` binary
+39011648275	885155a7a2538937db6cc105febf31941dd090d7	hash-join-global-bloom-filter	Rust	perf: replace the routed hash join dynamic filter with one global filter (InList or bloom filter)
+38945005540	ec69c7a2293a125fff1fbec8ad21c0e866d8674b	issue_26388_pr	CodeQL	issue fix 26388
+38633974070	f2afbf0fc9823f3d0a78643934ffc816af1d1cc5	ji/len-fn-placement-move-down	Rust	feat[functions]: use `placement` to pushdown `bit/octet/''_length`
+38847191036	71f28c365c6ef8116856b7c76c89e9f884799ffd	mcte-per-run-output	Rust	fix: keep the output of a materialized CTE per run, not in the plan
+38847194364	234c2ce5573b6731be0ec37fb1ea538b9ffdfffd	mcte-release-buffer	Rust	feat: release the output of a materialized CTE when the last scan finishes
+38721460133	39d794dc7ebe67c7b226f9014bb1c0d661c2bccc	neilc/refactor-array-filter	Security audit	perf: Optimize `array_filter`
+38487942716	22131302f28f7d049c1ed76abe493b67a964f8d9	nested-input-access	Rust	feat: NestedInputAccess capability for nested read pruning and row group / page pruning
+38472446858	ecb6baf5ef932dbfa3d7b5f4f92a5f14cdde3410	nested-scalar-eq	Dev	perf: compare nested ScalarValues by type before converting to ArrayData
+38318902455	4c7c51a5cb96816753b03c72837ec19d01dc4c4b	partition_lookup_experiment	Rust	feat(perf): compute routing and lookup hashes once
+38689956389	c08682094a056ef56c52058759efbe8209e339c4	partitioned-topk-emit-row-number	Security audit	perf: Partitioned topk emit row number
+38202271883	80fcd0f6bec36e1ea30dff2008abc2097f56a462	perf-push-down-semi-join	Rust	perf: push semi joins below inner joins and restrict decorrelated aggregates
+38971717769	d8fa664511a3be6ed57010dc8524a5d282ef38fb	perf/26071-avoid-arraydata-conversion	Rust	perf: avoid ArrayData conversion in BaselineMetrics for every column
+38759492129	0fa7ca64a8f6b3c7749b05f18aa4bb8a773aea35	property-tests	Dev	DRAFT: add a generic test suite for `ExecutionPlan`s
+38992937937	5ff7818aa5d889e52019e63f1e05ec031a092d94	pruning-predicate-once-main	Dependencies	perf: share a scan's pruning predicates between its files' FilePruners
+38565392186	1176456da0f5878329d43694578492194c530bb1	refactor/hash-join-retain-build-batches	Rust	refactor: retain hash join build batches after allocation failure
+38946558425	668522063e50d45b873bb90445c4e33c5bc37e88	rich-T-kid/bench-ndv-cap-arrow-rle-reader-v2	Dev	bench: test Arrow RLE dictionary reader optimization
+38595518292	a18cef27ab4cfd4f2fceeabe0232003c900ddb34	rich-T-kid/parquet-dict-cardinality-threshold	Rust	feat(parquet): add NDV cap for dictionary reads
+38329077088	c3a4551c6f8767483ba7d0f5c8ad6bdb591f9a45	simplify-contextual-or-ranges	Rust	feat: simplify contradictory ranges across AND/OR predicates
+38534041789	63b9bced8a0edbf131b9307de3bdadd9e7839333	smj-derive-sort-options-and-target-partition-1	Dev	feat/perf: derive SortMergeJoin sort options from input ordering and allow SMJ for a single partition
+38646208310	3991012d58698a1c3f8f09566a521a3a165c1450	spark-stack	Security audit	feat: support Spark-compatible `stack` function
+38482997801	4e1519ebbfe11a4bac3874f596ef59bbb5fc728c	spark-timezone-support	Security audit	feat: improve Spark from_utc_timestamp compatibility
+38569803182	d87f5486972106803104c6283c1a7c8abe86d456	sql-benchmark-plan-diagnostics	Rust	feat(benchmarks): add plan diagnostics to SQL benchmark runners
+38420746683	53ce3436ef6a22a44daef3772045f360cbae8031	sql-sort-pushdown-benchmarks	Rust	feat(benchmarks): add standalone sort pushdown SQL suite
+39022745974	0fbe2aae7afe908d55bf3d29ea157b10e2c4b0c7	support-null-aware-SortMergeJoinExec	Dev	feature(physical-plan): add NullAwareMode to SortMergeJoinExec
+38856117004	d0e2a51d64bb947a47518418db073e1bb1949379	xudong963/eliminate-constant-join	Rust	feat: rewrite inner joins against a single constant row into a filter

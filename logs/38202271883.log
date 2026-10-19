@@ -1,0 +1,2084 @@
+﻿2026-10-12T04:23:49.8593577Z Current runner version: '2.337.0'
+##[group]Runner Image Provisioner
+Hosted Compute Agent
+Version: 20261002.596
+Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+Build Date: 2026-10-02T22:28:27Z
+Worker ID: {322bef80-ad10-46df-93c1-fac4570bd19f}
+Region: centralus
+Cloud: Azure
+##[endgroup]
+##[group]Operating System
+Ubuntu
+24.04.5
+LTS
+##[endgroup]
+##[group]Runner Image
+Image: ubuntu-24.04
+Version: 20261004.327.1
+Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261004.327/images/ubuntu/Ubuntu2404-Readme.md
+Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261004.327
+##[endgroup]
+##[group]GITHUB_TOKEN Permissions
+Contents: read
+Metadata: read
+##[endgroup]
+Secret source: None
+Cache mode: write
+Prepare workflow directory
+Prepare all required actions
+Getting action download info
+Download action repository 'runs-on/action@17b59092eb37ebfdbb034460892887c09100eaa3' (SHA:17b59092eb37ebfdbb034460892887c09100eaa3)
+Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+Download action repository 'taiki-e/install-action@861a07ce7084f55488e375df125cdc99bba60eb7' (SHA:861a07ce7084f55488e375df125cdc99bba60eb7)
+Download action repository 'Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6' (SHA:6323deb102c322ba6fcbdcafc7e3dddab59af2b6)
+Download action repository 'codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5' (SHA:303a32d7a59b442fa8d48b6a1cc6825c09c847a5)
+Getting action download info
+Download action repository 'actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd' (SHA:ed597411d8f924073f98dfc5c65a23a2325f34cd)
+Complete job name: cargo test (amd64)
+##[group]Checking docker version
+##[command]/usr/bin/docker version --format '{{.Server.APIVersion}}'
+'1.48'
+Docker daemon API version: '1.48'
+##[command]/usr/bin/docker version --format '{{.Client.APIVersion}}'
+'1.48'
+Docker client API version: '1.48'
+##[endgroup]
+##[group]Clean up resources from previous jobs
+##[command]/usr/bin/docker ps --all --quiet --no-trunc --filter "label=9957ce"
+##[command]/usr/bin/docker network prune --force --filter "label=9957ce"
+##[endgroup]
+##[group]Create local container network
+##[command]/usr/bin/docker network create --label 9957ce github_network_f0bd5c0b21824a91984432424a334e39
+ccf8ee5417858dd6041704c73672095c735704a2486c4aa362cd562f7e7cff64
+##[endgroup]
+##[group]Starting job container
+##[command]/usr/bin/docker pull amd64/rust
+Using default tag: latest
+latest: Pulling from amd64/rust
+4846f2900730: Pulling fs layer
+62fe2e747f69: Pulling fs layer
+4dc3950125eb: Pulling fs layer
+b2eb680928d4: Pulling fs layer
+7daf4a4778d1: Pulling fs layer
+b2eb680928d4: Waiting
+7daf4a4778d1: Waiting
+4846f2900730: Verifying Checksum
+4846f2900730: Download complete
+62fe2e747f69: Verifying Checksum
+62fe2e747f69: Download complete
+4dc3950125eb: Verifying Checksum
+4dc3950125eb: Download complete
+b2eb680928d4: Verifying Checksum
+b2eb680928d4: Download complete
+7daf4a4778d1: Verifying Checksum
+7daf4a4778d1: Download complete
+4846f2900730: Pull complete
+62fe2e747f69: Pull complete
+4dc3950125eb: Pull complete
+b2eb680928d4: Pull complete
+7daf4a4778d1: Pull complete
+Digest: sha256:d675bb37f43aed69da35624d7deeeb78799860e5e355988274cb6ee0c11afa43
+Status: Downloaded newer image for amd64/rust:latest
+docker.io/amd64/rust:latest
+##[command]/usr/bin/docker create --name 48e79663c2674405b280b2f1e5e207f7_amd64rust_4ba21f --label 9957ce --workdir /__w/datafusion/datafusion --network github_network_f0bd5c0b21824a91984432424a334e39  -e "HOME=/github/home" -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/usr/local":"/host/usr/local" -v "/home/runner/work":"/__w" -v "/home/runner/actions-runner/cached/2.337.0/externals":"/__e":ro -v "/home/runner/work/_temp":"/__w/_temp" -v "/home/runner/work/_actions":"/__w/_actions" -v "/opt/hostedtoolcache":"/__t" -v "/home/runner/work/_temp/_github_home":"/github/home" -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" --entrypoint "tail" amd64/rust "-f" "/dev/null"
+22388c0d5cc8282c49ba2cf79181181c0227a0262411df83ba7e4dfd04b4ce9f
+##[command]/usr/bin/docker start 22388c0d5cc8282c49ba2cf79181181c0227a0262411df83ba7e4dfd04b4ce9f
+22388c0d5cc8282c49ba2cf79181181c0227a0262411df83ba7e4dfd04b4ce9f
+##[command]/usr/bin/docker ps --all --filter id=22388c0d5cc8282c49ba2cf79181181c0227a0262411df83ba7e4dfd04b4ce9f --filter status=running --no-trunc --format "{{.ID}} {{.Status}}"
+22388c0d5cc8282c49ba2cf79181181c0227a0262411df83ba7e4dfd04b4ce9f Up Less than a second
+##[command]/usr/bin/docker inspect --format "{{range .Config.Env}}{{println .}}{{end}}" 22388c0d5cc8282c49ba2cf79181181c0227a0262411df83ba7e4dfd04b4ce9f
+HOME=/github/home
+GITHUB_ACTIONS=true
+CI=true
+PATH=/usr/local/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+RUSTUP_HOME=/usr/local/rustup
+CARGO_HOME=/usr/local/cargo
+RUST_VERSION=1.99.0
+##[endgroup]
+##[group]Waiting for all services to be ready
+##[endgroup]
+##[group]Run runs-on/action@17b59092eb37ebfdbb034460892887c09100eaa3
+with:
+  show_env: false
+  show_costs: inline
+  network_interface: enp39s0
+  disk_device: nvme0n1p1
+  token: ***
+  sticky_wait_timeout: 15m
+##[endgroup]
+##[command]/usr/bin/docker exec  22388c0d5cc8282c49ba2cf79181181c0227a0262411df83ba7e4dfd04b4ce9f sh -c "cat /etc/*release | grep ^ID"
+This action is only meant to be run on RunsOn (https://runs-on.com) runners, skipping all operations
+##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+with:
+  submodules: true
+  fetch-depth: 1
+  repository: apache/datafusion
+  token: ***
+  ssh-strict: true
+  ssh-user: git
+  persist-credentials: true
+  clean: true
+  sparse-checkout-cone-mode: true
+  fetch-tags: false
+  show-progress: true
+  lfs: false
+  set-safe-directory: true
+  allow-unsafe-pr-checkout: false
+##[endgroup]
+##[command]/usr/bin/docker exec  22388c0d5cc8282c49ba2cf79181181c0227a0262411df83ba7e4dfd04b4ce9f sh -c "cat /etc/*release | grep ^ID"
+Syncing repository: apache/datafusion
+##[group]Getting Git version info
+Working directory is '/__w/datafusion/datafusion'
+[command]/usr/bin/git version
+git version 2.47.3
+##[endgroup]
+Temporarily overriding HOME='/__w/_temp/6b87ad61-fc8f-4ac1-a2ba-9d5860a6176a' before making global git config changes
+Adding repository directory to the temporary git global config as a safe directory
+[command]/usr/bin/git config --global --add safe.directory /__w/datafusion/datafusion
+Deleting the contents of '/__w/datafusion/datafusion'
+##[group]Determining repository object format
+##[endgroup]
+##[group]Initializing the repository
+[command]/usr/bin/git init /__w/datafusion/datafusion
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+Initialized empty Git repository in /__w/datafusion/datafusion/.git/
+[command]/usr/bin/git remote add origin https://github.com/apache/datafusion
+##[endgroup]
+##[group]Disabling automatic garbage collection
+[command]/usr/bin/git config --local gc.auto 0
+##[endgroup]
+##[group]Setting up auth
+Removing SSH command configuration
+[command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Removing HTTP extra header
+[command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Removing includeIf entries pointing to credentials config files
+[command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+[command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+[command]/usr/bin/git config --file /__w/_temp/git-credentials-809619bf-84cc-4068-bfa2-0683e71001b6.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+[command]/usr/bin/git config --local includeIf.gitdir:/__w/datafusion/datafusion/.git.path /__w/_temp/git-credentials-809619bf-84cc-4068-bfa2-0683e71001b6.config
+[command]/usr/bin/git config --local includeIf.gitdir:/__w/datafusion/datafusion/.git/worktrees/*.path /__w/_temp/git-credentials-809619bf-84cc-4068-bfa2-0683e71001b6.config
+[command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-809619bf-84cc-4068-bfa2-0683e71001b6.config
+[command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-809619bf-84cc-4068-bfa2-0683e71001b6.config
+##[endgroup]
+##[group]Fetching the repository
+[command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +a855afa0ba03d1bdfecb4e1856637d975803645f:refs/remotes/pull/26218/merge
+From https://github.com/apache/datafusion
+ * [new ref]         a855afa0ba03d1bdfecb4e1856637d975803645f -> pull/26218/merge
+##[endgroup]
+##[group]Determining the checkout info
+##[endgroup]
+[command]/usr/bin/git sparse-checkout disable
+[command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+##[group]Checking out the ref
+[command]/usr/bin/git checkout --progress --force refs/remotes/pull/26218/merge
+Note: switching to 'refs/remotes/pull/26218/merge'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at a855afa Merge 80fcd0f6bec36e1ea30dff2008abc2097f56a462 into b295a672ce6fcef216c94aaca88987c98449803c
+##[endgroup]
+##[group]Setting up auth for fetching submodules
+[command]/usr/bin/git config --file /__w/_temp/git-credentials-809619bf-84cc-4068-bfa2-0683e71001b6.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+[command]/usr/bin/git config --global include.path /__w/_temp/git-credentials-809619bf-84cc-4068-bfa2-0683e71001b6.config
+[command]/usr/bin/git config --global --unset-all url.https://github.com/.insteadOf
+[command]/usr/bin/git config --global --add url.https://github.com/.insteadOf git@github.com:
+[command]/usr/bin/git config --global --add url.https://github.com/.insteadOf org-47359@github.com:
+##[endgroup]
+##[group]Fetching submodules
+[command]/usr/bin/git submodule sync
+[command]/usr/bin/git -c protocol.version=2 submodule update --init --force --depth=1
+Submodule 'datafusion-testing' (https://github.com/apache/datafusion-testing.git) registered for path 'datafusion-testing'
+Submodule 'parquet-testing' (https://github.com/apache/parquet-testing.git) registered for path 'parquet-testing'
+Submodule 'testing' (https://github.com/apache/arrow-testing) registered for path 'testing'
+Cloning into '/__w/datafusion/datafusion/datafusion-testing'...
+Cloning into '/__w/datafusion/datafusion/parquet-testing'...
+Cloning into '/__w/datafusion/datafusion/testing'...
+Submodule path 'datafusion-testing': checked out '81c7440e08b9fe81a982e6b0b7e0fe3a6e82fb78'
+From https://github.com/apache/parquet-testing
+ * branch            107b36603e051aee26bd93e04b871034f6c756c0 -> FETCH_HEAD
+Submodule path 'parquet-testing': checked out '107b36603e051aee26bd93e04b871034f6c756c0'
+From https://github.com/apache/arrow-testing
+ * branch            7df2b70baf4f081ebf8e0c6bd22745cf3cbfd824 -> FETCH_HEAD
+Submodule path 'testing': checked out '7df2b70baf4f081ebf8e0c6bd22745cf3cbfd824'
+[command]/usr/bin/git submodule foreach git config --local gc.auto 0
+Entering 'datafusion-testing'
+Entering 'parquet-testing'
+Entering 'testing'
+##[endgroup]
+##[group]Persisting credentials for submodules
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'url\.https\:\/\/github\.com\/\.insteadOf' && git config --local --unset-all 'url.https://github.com/.insteadOf' || :"
+Entering 'datafusion-testing'
+Entering 'parquet-testing'
+Entering 'testing'
+[command]/usr/bin/git submodule foreach git config --local --show-origin --name-only --get-regexp remote.origin.url
+Entering 'datafusion-testing'
+file:/__w/datafusion/datafusion/.git/modules/datafusion-testing/config	remote.origin.url
+Entering 'parquet-testing'
+file:/__w/datafusion/datafusion/.git/modules/parquet-testing/config	remote.origin.url
+Entering 'testing'
+file:/__w/datafusion/datafusion/.git/modules/testing/config	remote.origin.url
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/datafusion-testing/config includeIf.gitdir:/__w/datafusion/datafusion/.git/modules/datafusion-testing.path /__w/_temp/git-credentials-809619bf-84cc-4068-bfa2-0683e71001b6.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/datafusion-testing/config includeIf.gitdir:/github/workspace/.git/modules/datafusion-testing.path /github/runner_temp/git-credentials-809619bf-84cc-4068-bfa2-0683e71001b6.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/parquet-testing/config includeIf.gitdir:/__w/datafusion/datafusion/.git/modules/parquet-testing.path /__w/_temp/git-credentials-809619bf-84cc-4068-bfa2-0683e71001b6.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/parquet-testing/config includeIf.gitdir:/github/workspace/.git/modules/parquet-testing.path /github/runner_temp/git-credentials-809619bf-84cc-4068-bfa2-0683e71001b6.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/testing/config includeIf.gitdir:/__w/datafusion/datafusion/.git/modules/testing.path /__w/_temp/git-credentials-809619bf-84cc-4068-bfa2-0683e71001b6.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/testing/config includeIf.gitdir:/github/workspace/.git/modules/testing.path /github/runner_temp/git-credentials-809619bf-84cc-4068-bfa2-0683e71001b6.config
+[command]/usr/bin/git submodule foreach git config --local --add 'url.https://github.com/.insteadOf' 'git@github.com:'
+Entering 'datafusion-testing'
+Entering 'parquet-testing'
+Entering 'testing'
+[command]/usr/bin/git submodule foreach git config --local --add 'url.https://github.com/.insteadOf' 'org-47359@github.com:'
+Entering 'datafusion-testing'
+Entering 'parquet-testing'
+Entering 'testing'
+##[endgroup]
+[command]/usr/bin/git log -1 --format=%H
+a855afa0ba03d1bdfecb4e1856637d975803645f
+Prepare all required actions
+Getting action download info
+##[group]Run ./.github/actions/setup-builder
+with:
+  rust-version: stable
+##[endgroup]
+##[start-action display=Install Build Dependencies;id=__self.__run]
+##[group]Run RETRY=("ci/scripts/retry" timeout 120)
+^[[36;1mRETRY=("ci/scripts/retry" timeout 120)^[[0m
+^[[36;1m"${RETRY[@]}" apt-get update^[[0m
+^[[36;1m"${RETRY[@]}" apt-get install -y protobuf-compiler^[[0m
+shell: bash --noprofile --norc -e -o pipefail {0}
+##[endgroup]
++ timeout 120 apt-get update
+Hit:1 http://deb.debian.org/debian trixie InRelease
+Get:2 http://deb.debian.org/debian trixie-updates InRelease [47.3 kB]
+Get:3 http://deb.debian.org/debian-security trixie-security InRelease [43.4 kB]
+Get:4 http://deb.debian.org/debian trixie/main amd64 Packages [9678 kB]
+Get:5 http://deb.debian.org/debian trixie-updates/main amd64 Packages [4412 B]
+Get:6 http://deb.debian.org/debian-security trixie-security/main amd64 Packages [266 kB]
+Fetched 10.0 MB in 1s (14.0 MB/s)
+Reading package lists...
++ timeout 120 apt-get install -y protobuf-compiler
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libprotobuf-dev libprotobuf-lite32t64 libprotobuf32t64 libprotoc32t64
+Suggested packages:
+  protobuf-mode-el
+The following NEW packages will be installed:
+  libprotobuf-dev libprotobuf-lite32t64 libprotobuf32t64 libprotoc32t64
+  protobuf-compiler
+0 upgraded, 5 newly installed, 0 to remove and 3 not upgraded.
+Need to get 3592 kB of archives.
+After this operation, 20.5 MB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian trixie/main amd64 libprotobuf32t64 amd64 3.21.12-11+deb13u1 [981 kB]
+Get:2 http://deb.debian.org/debian trixie/main amd64 libprotobuf-lite32t64 amd64 3.21.12-11+deb13u1 [275 kB]
+Get:3 http://deb.debian.org/debian trixie/main amd64 libprotobuf-dev amd64 3.21.12-11+deb13u1 [1329 kB]
+Get:4 http://deb.debian.org/debian trixie/main amd64 libprotoc32t64 amd64 3.21.12-11+deb13u1 [922 kB]
+Get:5 http://deb.debian.org/debian trixie/main amd64 protobuf-compiler amd64 3.21.12-11+deb13u1 [85.0 kB]
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+debconf: unable to initialize frontend: Teletype
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Noninteractive
+Fetched 3592 kB in 0s (18.9 MB/s)
+Selecting previously unselected package libprotobuf32t64:amd64.
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 26064 files and directories currently installed.)
+Preparing to unpack .../libprotobuf32t64_3.21.12-11+deb13u1_amd64.deb ...
+Unpacking libprotobuf32t64:amd64 (3.21.12-11+deb13u1) ...
+Selecting previously unselected package libprotobuf-lite32t64:amd64.
+Preparing to unpack .../libprotobuf-lite32t64_3.21.12-11+deb13u1_amd64.deb ...
+Unpacking libprotobuf-lite32t64:amd64 (3.21.12-11+deb13u1) ...
+Selecting previously unselected package libprotobuf-dev:amd64.
+Preparing to unpack .../libprotobuf-dev_3.21.12-11+deb13u1_amd64.deb ...
+Unpacking libprotobuf-dev:amd64 (3.21.12-11+deb13u1) ...
+Selecting previously unselected package libprotoc32t64:amd64.
+Preparing to unpack .../libprotoc32t64_3.21.12-11+deb13u1_amd64.deb ...
+Unpacking libprotoc32t64:amd64 (3.21.12-11+deb13u1) ...
+Selecting previously unselected package protobuf-compiler.
+Preparing to unpack .../protobuf-compiler_3.21.12-11+deb13u1_amd64.deb ...
+Unpacking protobuf-compiler (3.21.12-11+deb13u1) ...
+Setting up libprotobuf-lite32t64:amd64 (3.21.12-11+deb13u1) ...
+Setting up libprotobuf32t64:amd64 (3.21.12-11+deb13u1) ...
+Setting up libprotobuf-dev:amd64 (3.21.12-11+deb13u1) ...
+Setting up libprotoc32t64:amd64 (3.21.12-11+deb13u1) ...
+Setting up protobuf-compiler (3.21.12-11+deb13u1) ...
+Processing triggers for libc-bin (2.41-12+deb13u4) ...
+##[end-action id=__self.__run;outcome=success;conclusion=success;duration_ms=2344]
+##[start-action display=Setup Rust toolchain;id=__self.__run_2]
+##[group]Run RETRY=("ci/scripts/retry" timeout 120)
+^[[36;1mRETRY=("ci/scripts/retry" timeout 120)^[[0m
+^[[36;1mecho "Installing stable"^[[0m
+^[[36;1m"${RETRY[@]}" rustup toolchain install stable^[[0m
+^[[36;1m"${RETRY[@]}" rustup default stable^[[0m
+^[[36;1m"${RETRY[@]}" rustup component add rustfmt^[[0m
+shell: bash --noprofile --norc -e -o pipefail {0}
+##[endgroup]
+Installing stable
++ timeout 120 rustup toolchain install stable
+info: syncing channel updates for stable-x86_64-unknown-linux-gnu
+info: latest update on 2026-10-01 for version 1.99.0 (b940084d7 2026-09-28)
+info: downloading 3 components
+
+  stable-x86_64-unknown-linux-gnu installed - rustc 1.99.0 (b940084d7 2026-09-28)
+
++ timeout 120 rustup default stable
+info: using existing install for stable-x86_64-unknown-linux-gnu
+info: default toolchain set to stable-x86_64-unknown-linux-gnu
+
+  stable-x86_64-unknown-linux-gnu unchanged - rustc 1.99.0 (b940084d7 2026-09-28)
+info: note that the toolchain '1.99.0-x86_64-unknown-linux-gnu' is currently in use (overridden by '/__w/datafusion/datafusion/rust-toolchain.toml')
+
++ timeout 120 rustup component add rustfmt
+info: syncing channel updates for 1.99.0-x86_64-unknown-linux-gnu
+info: latest update on 2026-10-01 for version 1.99.0 (b940084d7 2026-09-28)
+info: downloading 2 components
+info: component rustfmt is up to date
+##[end-action id=__self.__run_2;outcome=success;conclusion=success;duration_ms=7751]
+##[start-action display=Configure rust runtime env;id=__self.__self]
+Prepare all required actions
+##[group]Run ./.github/actions/setup-rust-runtime
+##[endgroup]
+##[start-action display=Configure runtime env;id=__self.__self.__run]
+##[group]Run echo "RUST_BACKTRACE=1" >> $GITHUB_ENV
+^[[36;1mecho "RUST_BACKTRACE=1" >> $GITHUB_ENV^[[0m
+^[[36;1mecho "RUSTFLAGS=-C debuginfo=line-tables-only -C incremental=false" >> $GITHUB_ENV^[[0m
+^[[36;1m# Work around intermittent "[16] Error in the HTTP2 framing layer"^[[0m
+^[[36;1m# failures from curl when cargo fetches crates from crates.io.^[[0m
+^[[36;1m# Disabling HTTP/2 multiplexing forces cargo to serialize requests,^[[0m
+^[[36;1m# and raising retries makes transient network hiccups self-heal.^[[0m
+^[[36;1m#^[[0m
+^[[36;1m# Reference:^[[0m
+^[[36;1m# https://doc.rust-lang.org/cargo/reference/config.html?#httpmultiplexing^[[0m
+^[[36;1m# https://doc.rust-lang.org/cargo/reference/config.html?#netretry^[[0m
+^[[36;1mecho "CARGO_HTTP_MULTIPLEXING=false" >> $GITHUB_ENV^[[0m
+^[[36;1mecho "CARGO_NET_RETRY=10" >> $GITHUB_ENV^[[0m
+^[[36;1mecho "CARGO_HTTP_RETRY=10" >> $GITHUB_ENV^[[0m
+shell: bash --noprofile --norc -e -o pipefail {0}
+##[endgroup]
+##[end-action id=__self.__self.__run;outcome=success;conclusion=success;duration_ms=39]
+##[end-action id=__self.__self;outcome=success;conclusion=success;duration_ms=43]
+##[start-action display=Fixup git permissions;id=__self.__run_3]
+##[group]Run git config --global --add safe.directory "$GITHUB_WORKSPACE"
+^[[36;1mgit config --global --add safe.directory "$GITHUB_WORKSPACE"^[[0m
+shell: bash --noprofile --norc -e -o pipefail {0}
+env:
+  RUST_BACKTRACE: 1
+  RUSTFLAGS: -C debuginfo=line-tables-only -C incremental=false
+  CARGO_HTTP_MULTIPLEXING: false
+  CARGO_NET_RETRY: 10
+  CARGO_HTTP_RETRY: 10
+##[endgroup]
+##[end-action id=__self.__run_3;outcome=success;conclusion=success;duration_ms=37]
+##[start-action display=Remove unnecessary preinstalled software;id=__self.__run_4]
+##[group]Run echo "Disk space before cleanup:"
+^[[36;1mecho "Disk space before cleanup:"^[[0m
+^[[36;1mdf -h ^[[0m
+^[[36;1mapt-get clean^[[0m
+^[[36;1m# remove tool cache: about 8.5GB (github has host /opt/hostedtoolcache mounted as /__t)^[[0m
+^[[36;1mrm -rf /__t/* || true^[[0m
+^[[36;1m# remove Haskell runtime: about 6.3GB (host /usr/local/.ghcup)^[[0m
+^[[36;1mrm -rf /host/usr/local/.ghcup || true^[[0m
+^[[36;1m# remove Android library: about 7.8GB (host /usr/local/lib/android)^[[0m
+^[[36;1mrm -rf /host/usr/local/lib/android || true^[[0m
+^[[36;1mecho "Disk space after cleanup:"^[[0m
+^[[36;1mdf -h^[[0m
+shell: bash --noprofile --norc -e -o pipefail {0}
+env:
+  RUST_BACKTRACE: 1
+  RUSTFLAGS: -C debuginfo=line-tables-only -C incremental=false
+  CARGO_HTTP_MULTIPLEXING: false
+  CARGO_NET_RETRY: 10
+  CARGO_HTTP_RETRY: 10
+##[endgroup]
+Disk space before cleanup:
+Filesystem      Size  Used Avail Use% Mounted on
+overlay         145G   62G   83G  43% /
+tmpfs            64M     0   64M   0% /dev
+shm              64M     0   64M   0% /dev/shm
+/dev/root       145G   62G   83G  43% /__w
+tmpfs           3.2G  1.1M  3.2G   1% /run/docker.sock
+tmpfs           4.0K     0  4.0K   0% /proc/acpi
+Disk space after cleanup:
+Filesystem      Size  Used Avail Use% Mounted on
+overlay         145G   42G  103G  29% /
+tmpfs            64M     0   64M   0% /dev
+shm              64M     0   64M   0% /dev/shm
+/dev/root       145G   42G  103G  29% /__w
+tmpfs           3.2G  1.1M  3.2G   1% /run/docker.sock
+tmpfs           4.0K     0  4.0K   0% /proc/acpi
+##[end-action id=__self.__run_4;outcome=success;conclusion=success;duration_ms=131696]
+##[group]Run rustup component add llvm-tools-preview
+^[[36;1mrustup component add llvm-tools-preview^[[0m
+shell: sh -e {0}
+env:
+  RUST_BACKTRACE: 1
+  RUSTFLAGS: -C debuginfo=line-tables-only -C incremental=false
+  CARGO_HTTP_MULTIPLEXING: false
+  CARGO_NET_RETRY: 10
+  CARGO_HTTP_RETRY: 10
+##[endgroup]
+info: downloading component llvm-tools
+##[group]Run taiki-e/install-action@861a07ce7084f55488e375df125cdc99bba60eb7
+with:
+  tool: cargo-llvm-cov
+  checksum: true
+  fallback: cargo-binstall
+env:
+  RUST_BACKTRACE: 1
+  RUSTFLAGS: -C debuginfo=line-tables-only -C incremental=false
+  CARGO_HTTP_MULTIPLEXING: false
+  CARGO_NET_RETRY: 10
+  CARGO_HTTP_RETRY: 10
+##[endgroup]
+##[start-action display=Run bail() {;id=__taiki-e_install-action.__run]
+##[group]Run bail() {
+^[[36;1mbail() {^[[0m
+^[[36;1m  printf '::error::install-action: %s\n' "$*"^[[0m
+^[[36;1m  exit 1^[[0m
+^[[36;1m}^[[0m
+^[[36;1m# If /bin/sh is dash, environment variable containing % is not imported, but is fine^[[0m
+^[[36;1m# because it also means that it will not be exposed to subprocess.^[[0m
+^[[36;1mif /usr/bin/env | grep -Eq '^BASH_FUNC_'; then^[[0m
+^[[36;1m  bail 'bash function injection via BASH_FUNC_ environment variable is not allowed for security reasons'^[[0m
+^[[36;1mfi^[[0m
+^[[36;1mif ! command -v bash >/dev/null; then^[[0m
+^[[36;1m  if grep -Eq '^ID=alpine' /etc/os-release; then^[[0m
+^[[36;1m    printf '::group::Install packages required for install-action (bash)\n'^[[0m
+^[[36;1m    # NB: sync with apk_install in main.sh^[[0m
+^[[36;1m    if command -v sudo >/dev/null; then^[[0m
+^[[36;1m      sudo apk --no-cache add bash^[[0m
+^[[36;1m    elif command -v doas >/dev/null; then^[[0m
+^[[36;1m      doas apk --no-cache add bash^[[0m
+^[[36;1m    else^[[0m
+^[[36;1m      apk --no-cache add bash^[[0m
+^[[36;1m    fi^[[0m
+^[[36;1m    printf '::endgroup::\n'^[[0m
+^[[36;1m  else^[[0m
+^[[36;1m    bail 'this action requires bash'^[[0m
+^[[36;1m  fi^[[0m
+^[[36;1mfi^[[0m
+^[[36;1mbash --noprofile --norc "${GITHUB_ACTION_PATH:?}/main.sh"^[[0m
+shell: /usr/bin/env -u ENV -u BASH_ENV -u CDPATH -u SHELLOPTS -u BASHOPTS /bin/sh -eu {0}
+env:
+  RUST_BACKTRACE: 1
+  RUSTFLAGS: -C debuginfo=line-tables-only -C incremental=false
+  CARGO_HTTP_MULTIPLEXING: false
+  CARGO_NET_RETRY: 10
+  CARGO_HTTP_RETRY: 10
+  INPUT_TOOL: cargo-llvm-cov
+  INPUT_CHECKSUM: true
+  INPUT_FALLBACK: cargo-binstall
+  DEFAULT_GITHUB_TOKEN: ***
+  ACTION_USER_AGENT: taiki-e/install-action (861a07ce7084f55488e375df125cdc99bba60eb7)
+  RUNNER_OS: Linux
+  RUNNER_ARCH: X64
+##[endgroup]
+info: host platform: x86_64_linux
+##[group]Install packages required for installation (jq, curl, and/or tar)
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libjq1 libonig5
+The following NEW packages will be installed:
+  jq libjq1 libonig5
+0 upgraded, 3 newly installed, 0 to remove and 3 not upgraded.
+Need to get 436 kB of archives.
+After this operation, 1271 kB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian trixie/main amd64 libonig5 amd64 6.9.9-1+b1 [189 kB]
+Get:2 http://deb.debian.org/debian-security trixie-security/main amd64 libjq1 amd64 1.7.1-6+deb13u4 [168 kB]
+Get:3 http://deb.debian.org/debian-security trixie-security/main amd64 jq amd64 1.7.1-6+deb13u4 [78.9 kB]
+Fetched 436 kB in 0s (4481 kB/s)
+Selecting previously unselected package libonig5:amd64.
+(Reading database ... 26238 files and directories currently installed.)
+Preparing to unpack .../libonig5_6.9.9-1+b1_amd64.deb ...
+Unpacking libonig5:amd64 (6.9.9-1+b1) ...
+Selecting previously unselected package libjq1:amd64.
+Preparing to unpack .../libjq1_1.7.1-6+deb13u4_amd64.deb ...
+Unpacking libjq1:amd64 (1.7.1-6+deb13u4) ...
+Selecting previously unselected package jq.
+Preparing to unpack .../jq_1.7.1-6+deb13u4_amd64.deb ...
+Unpacking jq (1.7.1-6+deb13u4) ...
+Setting up libonig5:amd64 (6.9.9-1+b1) ...
+Setting up libjq1:amd64 (1.7.1-6+deb13u4) ...
+Setting up jq (1.7.1-6+deb13u4) ...
+Processing triggers for libc-bin (2.41-12+deb13u4) ...
+##[endgroup]
+info: installing cargo-llvm-cov@latest
+info: downloading https://github.com/taiki-e/cargo-llvm-cov/releases/download/v0.9.1/cargo-llvm-cov-x86_64-unknown-linux-musl.tar.gz
+info: verifying sha256 checksum for cargo-llvm-cov-x86_64-unknown-linux-musl.tar.gz
+info: cargo-llvm-cov installed at /usr/local/cargo/bin/cargo-llvm-cov
++ cargo-llvm-cov llvm-cov --version
+cargo-llvm-cov 0.9.1
+
+##[end-action id=__taiki-e_install-action.__run;outcome=success;conclusion=success;duration_ms=1886]
+##[start-action display=Run Set-StrictMode -Version Latest;id=__taiki-e_install-action.__run_2]
+##[end-action id=__taiki-e_install-action.__run_2;outcome=skipped;conclusion=skipped;duration_ms=0]
+##[group]Run Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6
+with:
+  save-if: false
+  shared-key: amd-ci
+  prefix-key: v0-rust
+  add-job-id-key: true
+  add-rust-environment-hash-key: true
+  cache-targets: true
+  cache-all-crates: false
+  cache-workspace-crates: false
+  cache-provider: github
+  cache-bin: true
+  lookup-only: false
+  cmd-format: {0}
+env:
+  RUST_BACKTRACE: 1
+  RUSTFLAGS: -C debuginfo=line-tables-only -C incremental=false
+  CARGO_HTTP_MULTIPLEXING: false
+  CARGO_NET_RETRY: 10
+  CARGO_HTTP_RETRY: 10
+##[endgroup]
+##[command]/usr/bin/docker exec  22388c0d5cc8282c49ba2cf79181181c0227a0262411df83ba7e4dfd04b4ce9f sh -c "cat /etc/*release | grep ^ID"
+##[group]Cache Configuration
+Cache Provider:
+    github
+Workspaces:
+    /__w/datafusion/datafusion
+Cache Paths:
+    /usr/local/cargo/bin
+    /usr/local/cargo/.crates.toml
+    /usr/local/cargo/.crates2.json
+    /usr/local/cargo/registry
+    /usr/local/cargo/git
+    /__w/datafusion/datafusion/target
+Restore Key:
+    v0-rust-amd-ci-Linux-x64-e25d9b4b
+Cache Key:
+    v0-rust-amd-ci-Linux-x64-e25d9b4b-b7492c11
+.. Prefix:
+  - v0-rust-amd-ci-Linux-x64
+.. Environment considered:
+  - Rust Versions:
+    - 1.99.0 x86_64-unknown-linux-gnu b940084d7eb6a299eb4bfeb8e34901bc051e7ac4
+  - CARGO_HOME
+  - CARGO_HTTP_MULTIPLEXING
+  - CARGO_HTTP_RETRY
+  - CARGO_INCREMENTAL
+  - CARGO_NET_RETRY
+  - RUST_BACKTRACE
+  - RUST_VERSION
+  - RUSTFLAGS
+  - RUSTUP_HOME
+.. Lockfiles considered:
+  - /__w/datafusion/datafusion/.cargo/config.toml
+  - /__w/datafusion/datafusion/benchmarks/Cargo.toml
+  - /__w/datafusion/datafusion/Cargo.lock
+  - /__w/datafusion/datafusion/datafusion-cli/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion-examples/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion-examples/examples/ffi/ffi_example_table_provider/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion-examples/examples/ffi/ffi_module_interface/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion-examples/examples/ffi/ffi_module_loader/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/catalog-listing/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/catalog/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/common-runtime/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/common/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/core/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/datasource-arrow/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/datasource-avro/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/datasource-csv/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/datasource-json/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/datasource-parquet/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/datasource/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/doc/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/execution/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/expr-common/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/expr/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/ffi/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/functions-aggregate-common/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/functions-aggregate/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/functions-nested/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/functions-table/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/functions-window-common/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/functions-window/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/functions/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/macros/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/optimizer/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/physical-expr-adapter/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/physical-expr-common/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/physical-expr/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/physical-optimizer/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/physical-plan/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/proto-common/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/proto-common/gen/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/proto-models/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/proto-models/gen/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/proto/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/pruning/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/session/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/spark/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/sql/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/sqllogictest/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/substrait/Cargo.toml
+  - /__w/datafusion/datafusion/datafusion/wasmtest/Cargo.toml
+  - /__w/datafusion/datafusion/dev/depcheck/rust-toolchain.toml
+  - /__w/datafusion/datafusion/rust-toolchain.toml
+  - /__w/datafusion/datafusion/test-utils/Cargo.toml
+  - /__w/datafusion/datafusion/xtask/Cargo.toml
+##[endgroup]
+
+... Restoring cache ...
+No cache found.
+##[group]Run cargo xtask ci step test workspace
+^[[36;1mcargo xtask ci step test workspace^[[0m
+shell: sh -e {0}
+env:
+  RUST_BACKTRACE: 1
+  RUSTFLAGS: -C debuginfo=line-tables-only -C incremental=false
+  CARGO_HTTP_MULTIPLEXING: false
+  CARGO_NET_RETRY: 10
+  CARGO_HTTP_RETRY: 10
+  CACHE_ON_FAILURE: false
+  CARGO_INCREMENTAL: 0
+##[endgroup]
++ cd /__w/datafusion/datafusion && \
+cargo llvm-cov \
+--profile ci \
+--exclude datafusion-examples \
+--exclude ffi_example_table_provider \
+--exclude datafusion-cli \
+--workspace \
+--lib \
+--tests \
+--bins \
+--features serde,avro,json,backtrace,integration-tests,parquet_encryption,substrait \
+--codecov \
+--output-path target/codecov.json
+info: cargo-llvm-cov currently setting cfg(coverage); you can opt-out it by passing --no-cfg-coverage
+ Downloading crates ...
+  Downloaded adler2 v2.0.1
+  Downloaded ahash v0.8.12
+  Downloaded alloca v0.4.0
+  Downloaded aho-corasick v1.1.4
+  Downloaded anstream v1.0.0
+  Downloaded anstyle-query v1.1.5
+  Downloaded arrayvec v0.7.6
+  Downloaded arrow-array v60.0.0
+  Downloaded arrow-cast v60.0.0
+  Downloaded arrow-data v60.0.0
+  Downloaded arrow-select v60.0.0
+  Downloaded arrow-ord v60.0.0
+  Downloaded async-ffi v0.5.1
+  Downloaded atoi v3.1.0
+  Downloaded base64 v0.23.1
+  Downloaded blake2 v0.11.0
+  Downloaded block-buffer v0.12.0
+  Downloaded bzip2 v0.6.1
+  Downloaded cfg-if v1.0.4
+  Downloaded bstr v1.12.1
+  Downloaded ciborium-io v0.2.2
+  Downloaded chrono v0.4.45
+  Downloaded cmov v0.5.4
+  Downloaded clap_builder v4.6.7
+  Downloaded compression-codecs v0.4.45
+  Downloaded const-oid v0.10.2
+  Downloaded crc-catalog v2.5.0
+  Downloaded constant_time_eq v0.4.2
+  Downloaded criterion-plot v0.8.2
+  Downloaded crossbeam-utils v0.8.21
+  Downloaded ctor v1.0.13
+  Downloaded crypto-common v0.2.1
+  Downloaded diff v0.1.13
+  Downloaded displaydoc v0.2.5
+  Downloaded educe v0.6.0
+  Downloaded enum-ordinalize-derive v4.3.2
+  Downloaded equivalent v1.0.2
+  Downloaded fastrand v2.4.1
+  Downloaded flatbuffers v25.12.19
+  Downloaded foldhash v0.2.0
+  Downloaded futures v0.3.34
+  Downloaded futures-executor v0.3.34
+  Downloaded futures-sink v0.3.34
+  Downloaded futures-util v0.3.34
+  Downloaded getrandom v0.3.4
+  Downloaded globset v0.4.18
+  Downloaded hashbrown v0.15.5
+  Downloaded heck v0.5.0
+  Downloaded humantime v2.3.0
+  Downloaded icu_collections v2.2.0
+  Downloaded icu_normalizer_data v2.2.0
+  Downloaded icu_provider v2.2.0
+  Downloaded indexmap v2.14.2
+  Downloaded is_terminal_polyfill v1.70.2
+  Downloaded itertools v0.15.0
+  Downloaded jobserver v0.1.34
+  Downloaded lexical-parse-float v1.0.6
+  Downloaded lexical-write-float v1.0.6
+  Downloaded libc v0.2.190
+  Downloaded libtest-mimic v0.8.2
+  Downloaded liblzma-sys v0.4.8
+  Downloaded log v0.4.34
+  Downloaded linux-raw-sys v0.12.1
+  Downloaded md-5 v0.11.0
+  Downloaded miniz_oxide v0.9.1
+  Downloaded nu-ansi-term v0.50.3
+  Downloaded num-complex v0.4.6
+  Downloaded object v0.37.3
+  Downloaded oorandom v11.1.5
+  Downloaded parking_lot v0.12.5
+  Downloaded pbjson v0.8.0
+  Downloaded pbjson-build v0.9.0
+  Downloaded petgraph v0.8.3
+  Downloaded pin-project v1.1.13
+  Downloaded pkg-config v0.3.33
+  Downloaded plotters-svg v0.3.7
+  Downloaded ppv-lite86 v0.2.21
+  Downloaded proc-macro-crate v3.5.0
+  Downloaded prost-build v0.14.4
+  Downloaded psm v0.1.31
+  Downloaded rand v0.9.4
+  Downloaded rand_chacha v0.9.0
+  Downloaded rand_core v0.10.1
+  Downloaded rayon-core v1.13.0
+  Downloaded regex v1.13.1
+  Downloaded regress v0.10.5
+  Downloaded rstest v0.27.0
+  Downloaded rustc_version v0.4.1
+  Downloaded ryu v1.0.23
+  Downloaded schemars_derive v0.8.22
+  Downloaded seq-macro v0.3.6
+  Downloaded serde_derive v1.0.229
+  Downloaded serde_spanned v1.1.1
+  Downloaded sha1 v0.11.0
+  Downloaded shlex v1.3.0
+  Downloaded similar v2.7.0
+  Downloaded smallvec v1.15.1
+  Downloaded stabby-abi v72.1.16
+  Downloaded sqlparser v0.63.0
+  Downloaded stacker v0.1.25
+  Downloaded strum_macros v0.28.0
+  Downloaded syn v2.0.119
+  Downloaded sysinfo v0.39.6
+  Downloaded thiserror-impl v2.0.21
+  Downloaded tinytemplate v1.2.1
+  Downloaded tokio-stream v0.1.19
+  Downloaded toml_datetime v1.1.1+spec-1.1.0
+  Downloaded toml_writer v1.1.2+spec-1.1.0
+  Downloaded tracing-core v0.1.36
+  Downloaded typify v0.5.0
+  Downloaded unicode-ident v1.0.24
+  Downloaded untrusted v0.9.0
+  Downloaded unicode-width v0.2.2
+  Downloaded vte v0.14.1
+  Downloaded utf8parse v0.2.2
+  Downloaded wasm-bindgen-futures v0.4.68
+  Downloaded wasm-bindgen-shared v0.2.118
+  Downloaded wasm-bindgen-test-shared v0.2.118
+  Downloaded yansi v1.0.1
+  Downloaded zerocopy v0.8.48
+  Downloaded zerofrom-derive v0.1.7
+  Downloaded zerovec-derive v0.11.3
+  Downloaded zstd v0.14.0
+  Downloaded alloc-no-stdlib v3.0.0
+  Downloaded anes v0.1.6
+  Downloaded anyhow v1.0.103
+  Downloaded arrow-arith v60.0.0
+  Downloaded arrow-cmp v60.0.0
+  Downloaded arrow-json v60.0.0
+  Downloaded arrow-string v60.0.0
+  Downloaded async-trait v0.1.92
+  Downloaded bigdecimal v0.4.11
+  Downloaded block-buffer v0.10.4
+  Downloaded bumpalo v3.20.2
+  Downloaded cc v1.2.61
+  Downloaded clap v4.6.7
+  Downloaded chrono-tz v0.10.4
+  Downloaded colorchoice v1.0.5
+  Downloaded console v0.16.4
+  Downloaded cpufeatures v0.3.0
+  Downloaded criterion v0.8.2
+  Downloaded crunchy v0.2.4
+  Downloaded csv-core v0.1.13
+  Downloaded digest v0.10.7
+  Downloaded dyn-clone v1.0.20
+  Downloaded env_filter v2.0.0
+  Downloaded escape8259 v0.5.3
+  Downloaded flate2 v1.1.10
+  Downloaded fs-err v3.3.0
+  Downloaded futures-timer v3.0.3
+  Downloaded futures-io v0.3.34
+  Downloaded getrandom v0.4.2
+  Downloaded hashbrown v0.14.5
+  Downloaded hex v0.4.3
+  Downloaded iana-time-zone v0.1.65
+  Downloaded icu_properties v2.2.0
+  Downloaded idna_adapter v1.2.1
+  Downloaded itertools v0.13.0
+  Downloaded jiff v0.2.24
+  Downloaded lexical-parse-integer v1.0.6
+  Downloaded libbz2-rs-sys v0.2.3
+  Downloaded libm v0.2.16
+  Downloaded lz4_flex v0.14.0
+  Downloaded linktime-proc-macro v0.2.3
+  Downloaded mimalloc v0.1.52
+  Downloaded num-bigint v0.4.6
+  Downloaded num-traits v0.2.19
+  Downloaded owo-colors v4.3.0
+  Downloaded pbjson-types v0.8.0
+  Downloaded parquet v60.0.0
+  Downloaded phf_shared v0.12.1
+  Downloaded plotters v0.3.7
+  Downloaded potential_utf v0.1.5
+  Downloaded proc-macro2 v1.0.106
+  Downloaded prost-types v0.14.4
+  Downloaded rand v0.10.1
+  Downloaded rand_core v0.9.5
+  Downloaded recursive v0.1.1
+  Downloaded regex-syntax v0.8.11
+  Downloaded rstest_macros v0.27.0
+  Downloaded scopeguard v1.2.0
+  Downloaded rustversion v1.0.22
+  Downloaded serde_core v1.0.229
+  Downloaded serde_tokenstream v0.2.3
+  Downloaded siphasher v1.0.2
+  Downloaded sqllogictest v0.29.1
+  Downloaded sha2-const-stable v0.1.0
+  Downloaded strsim v0.11.1
+  Downloaded stabby-macros v72.1.16
+  Downloaded syn v3.0.6
+  Downloaded thiserror v2.0.21
+  Downloaded toml v1.1.6+spec-1.1.0
+  Downloaded tokio v1.53.1
+  Downloaded typenum v1.20.0
+  Downloaded tracing v0.1.44
+  Downloaded unicode-segmentation v1.13.2
+  Downloaded unsafe-libyaml v0.2.11
+  Downloaded uuid v1.27.0
+  Downloaded wasm-bindgen v0.2.118
+  Downloaded wasm-bindgen-test v0.3.68
+  Downloaded writeable v0.6.3
+  Downloaded zerocopy-derive v0.8.48
+  Downloaded zerovec v0.11.6
+  Downloaded zstd-safe v8.0.0
+  Downloaded allocator-api2 v0.2.21
+  Downloaded ar_archive_writer v0.5.1
+  Downloaded arrow-buffer v60.0.0
+  Downloaded arrow-row v60.0.0
+  Downloaded async-recursion v1.1.1
+  Downloaded bitflags v2.11.1
+  Downloaded brotli-decompressor v6.0.0
+  Downloaded cfg_aliases v0.2.1
+  Downloaded ciborium-ll v0.2.2
+  Downloaded comfy-table v8.0.0
+  Downloaded const-random-macro v0.1.16
+  Downloaded crossbeam-deque v0.8.6
+  Downloaded csv v1.4.0
+  Downloaded digest v0.11.2
+  Downloaded find-msvc-tools v0.1.9
+  Downloaded enum-ordinalize v4.3.2
+  Downloaded futures-macro v0.3.34
+  Downloaded form_urlencoded v1.2.2
+  Downloaded getrandom v0.2.17
+  Downloaded hashbrown v0.16.1
+  Downloaded hybrid-array v0.4.11
+  Downloaded icu_properties_data v2.2.0
+  Downloaded insta v1.49.0
+  Downloaded js-sys v0.3.95
+  Downloaded lexical-write-integer v1.0.6
+  Downloaded libmimalloc-sys v0.1.49
+  Downloaded lock_api v0.4.14
+  Downloaded multimap v0.10.1
+  Downloaded num-integer v0.1.46
+  Downloaded page_size v0.6.0
+  Downloaded pbjson-build v0.8.0
+  Downloaded pin-project-internal v1.1.13
+  Downloaded prost v0.14.4
+  Downloaded portable-atomic v1.13.1
+  Downloaded rand v0.8.6
+  Downloaded rand_distr v0.5.1
+  Downloaded rstest_reuse v0.7.0
+  Downloaded regex-automata v0.4.16
+  Downloaded schemars v0.8.22
+  Downloaded serde_derive_internals v0.29.1
+  Downloaded slab v0.4.12
+  Downloaded sha2 v0.11.0
+  Downloaded stabby v72.1.16
+  Downloaded subst v0.3.8
+  Downloaded tempfile v3.27.0
+  Downloaded tokio-macros v2.7.0
+  Downloaded toml_parser v1.1.3+spec-1.1.0
+  Downloaded typify-impl v0.5.0
+  Downloaded unit-prefix v0.5.2
+  Downloaded version_check v0.9.5
+  Downloaded wasm-bindgen-macro-support v0.2.118
+  Downloaded yoke v0.8.2
+  Downloaded zerotrie v0.2.4
+  Downloaded zstd-sys v2.1.0+zstd.1.5.7
+  Downloaded anstyle-parse v1.0.0
+  Downloaded arrow-csv v60.0.0
+  Downloaded async-compression v0.4.50
+  Downloaded blake3 v1.8.7
+  Downloaded cast v0.3.0
+  Downloaded clap_derive v4.6.7
+  Downloaded const-random v0.1.18
+  Downloaded crossbeam-epoch v0.9.20
+  Downloaded dashmap v6.2.1
+  Downloaded env_logger v0.11.11
+  Downloaded foldhash v0.1.5
+  Downloaded futures-task v0.3.34
+  Downloaded half v2.7.1
+  Downloaded icu_locale_core v2.2.0
+  Downloaded indicatif v0.18.6
+  Downloaded liblzma v0.4.8
+  Downloaded lexical-core v1.0.6
+  Downloaded md-5 v0.10.6
+  Downloaded num-bigint v0.5.1
+  Downloaded parking_lot_core v0.9.12
+  Downloaded phf v0.12.1
+  Downloaded pretty_assertions v1.4.1
+  Downloaded quote v1.0.47
+  Downloaded rayon v1.12.0
+  Downloaded semver v1.0.28
+  Downloaded ring v0.17.14
+  Downloaded serde_yaml v0.9.34+deprecated
+  Downloaded snap v1.1.1
+  Downloaded strip-ansi-escapes v0.2.1
+  Downloaded tiny-keccak v2.0.2
+  Downloaded toml_edit v0.25.11+spec-1.1.0
+  Downloaded typify-macro v0.5.0
+  Downloaded utf8_iter v1.0.4
+  Downloaded wasm-bindgen-test-macro v0.3.68
+  Downloaded zerofrom v0.1.7
+  Downloaded alloc-stdlib v0.3.0
+  Downloaded arrow-avro v60.0.0
+  Downloaded autocfg v1.5.0
+  Downloaded bytes v1.12.1
+  Downloaded clap_lex v1.1.0
+  Downloaded crc32fast v1.5.2
+  Downloaded doc-comment v0.3.4
+  Downloaded fixedbitset v0.5.7
+  Downloaded generic-array v0.14.7
+  Downloaded http v1.4.0
+  Downloaded itertools v0.14.0
+  Downloaded libloading v0.9.0
+  Downloaded memchr v2.8.3
+  Downloaded once_cell v1.21.4
+  Downloaded pin-project-lite v0.2.17
+  Downloaded prost-derive v0.14.4
+  Downloaded recursive-proc-macro-impl v0.1.1
+  Downloaded same-file v1.0.6
+  Downloaded stable_deref_trait v1.2.1
+  Downloaded simd-adler32 v0.3.9
+  Downloaded twox-hash v2.1.4
+  Downloaded tinystr v0.8.3
+  Downloaded walkdir v2.5.0
+  Downloaded yoke-derive v0.8.2
+  Downloaded anstyle v1.0.14
+  Downloaded arrow-schema v60.0.0
+  Downloaded chacha20 v0.10.2
+  Downloaded crc v3.4.0
+  Downloaded either v1.15.0
+  Downloaded futures-core v0.3.34
+  Downloaded icu_normalizer v2.2.0
+  Downloaded lexical-util v1.0.7
+  Downloaded nix v0.31.3
+  Downloaded percent-encoding v2.3.2
+  Downloaded rand_chacha v0.3.1
+  Downloaded rustix v1.1.4
+  Downloaded simdutf8 v0.1.5
+  Downloaded synstructure v0.13.2
+  Downloaded unicode-width v0.1.14
+  Downloaded winnow v1.0.2
+  Downloaded arrow v60.0.0
+  Downloaded brotli v9.0.0
+  Downloaded crypto-common v0.1.7
+  Downloaded futures-channel v0.3.34
+  Downloaded idna v1.1.0
+  Downloaded litemap v0.8.2
+  Downloaded plotters-backend v0.3.7
+  Downloaded relative-path v1.9.3
+  Downloaded sqlparser_derive v0.6.0
+  Downloaded tracing-attributes v0.1.31
+  Downloaded base64 v0.22.1
+  Downloaded zlib-rs v0.6.3
+  Downloaded ctutils v0.4.2
+  Downloaded hashbrown v0.17.1
+  Downloaded rand_core v0.6.4
+  Downloaded object_store v0.14.2
+  Downloaded wasm-bindgen-macro v0.2.118
+  Downloaded substrait v0.63.0
+  Downloaded ciborium v0.2.2
+  Downloaded glob v0.3.4
+  Downloaded serde_json v1.0.151
+  Downloaded pbjson v0.9.0
+  Downloaded zmij v1.0.21
+  Downloaded errno v0.3.14
+  Downloaded url v2.5.8
+  Downloaded prettyplease v0.2.37
+  Downloaded tokio-util v0.7.19
+  Downloaded itoa v1.0.18
+  Downloaded link-section v0.19.3
+  Downloaded compression-core v0.4.33
+  Downloaded serde v1.0.229
+  Downloaded arrow-ipc v60.0.0
+   Compiling unicode-ident v1.0.24
+   Compiling quote v1.0.47
+   Compiling proc-macro2 v1.0.106
+   Compiling cfg-if v1.0.4
+   Compiling libc v0.2.190
+   Compiling memchr v2.8.3
+   Compiling equivalent v1.0.2
+   Compiling syn v2.0.119
+   Compiling syn v3.0.6
+   Compiling autocfg v1.5.0
+   Compiling jobserver v0.1.34
+   Compiling shlex v1.3.0
+   Compiling find-msvc-tools v0.1.9
+   Compiling serde_core v1.0.229
+   Compiling cc v1.2.61
+   Compiling libm v0.2.16
+   Compiling num-traits v0.2.19
+   Compiling allocator-api2 v0.2.21
+   Compiling bitflags v2.11.1
+   Compiling serde_derive v1.0.229
+   Compiling bytes v1.12.1
+   Compiling itoa v1.0.18
+   Compiling zerocopy v0.8.48
+   Compiling zmij v1.0.21
+   Compiling once_cell v1.21.4
+   Compiling zerocopy-derive v0.8.48
+   Compiling foldhash v0.2.0
+   Compiling hashbrown v0.17.1
+   Compiling either v1.15.0
+   Compiling serde v1.0.229
+   Compiling regex-syntax v0.8.11
+   Compiling indexmap v2.14.2
+   Compiling version_check v0.9.5
+   Compiling serde_json v1.0.151
+   Compiling semver v1.0.28
+   Compiling getrandom v0.3.4
+   Compiling num-integer v0.1.46
+   Compiling iana-time-zone v0.1.65
+   Compiling chrono v0.4.45
+   Compiling synstructure v0.13.2
+   Compiling pin-project-lite v0.2.17
+   Compiling siphasher v1.0.2
+   Compiling getrandom v0.4.2
+   Compiling half v2.7.1
+   Compiling rand_core v0.10.1
+   Compiling zerofrom-derive v0.1.7
+   Compiling phf_shared v0.12.1
+   Compiling num-bigint v0.5.1
+   Compiling ahash v0.8.12
+   Compiling smallvec v1.15.1
+   Compiling chrono-tz v0.10.4
+   Compiling futures-core v0.3.34
+   Compiling pkg-config v0.3.33
+   Compiling futures-sink v0.3.34
+   Compiling phf v0.12.1
+   Compiling zerofrom v0.1.7
+   Compiling arrow-buffer v60.0.0
+   Compiling yoke-derive v0.8.2
+   Compiling arrow-schema v60.0.0
+   Compiling aho-corasick v1.1.4
+   Compiling stable_deref_trait v1.2.1
+   Compiling yoke v0.8.2
+   Compiling arrow-data v60.0.0
+   Compiling regex-automata v0.4.16
+   Compiling rustc_version v0.4.1
+   Compiling num-complex v0.4.6
+   Compiling futures-channel v0.3.34
+   Compiling zerovec-derive v0.11.3
+   Compiling futures-macro v0.3.34
+   Compiling anyhow v1.0.103
+   Compiling parking_lot_core v0.9.12
+   Compiling futures-task v0.3.34
+   Compiling slab v0.4.12
+   Compiling futures-io v0.3.34
+   Compiling futures-util v0.3.34
+   Compiling zerovec v0.11.6
+   Compiling arrow-array v60.0.0
+   Compiling regex v1.13.1
+   Compiling displaydoc v0.2.5
+   Compiling scopeguard v1.2.0
+   Compiling lock_api v0.4.14
+   Compiling zstd-sys v2.1.0+zstd.1.5.7
+   Compiling itertools v0.14.0
+   Compiling thiserror v2.0.21
+   Compiling log v0.4.34
+   Compiling cpufeatures v0.3.0
+   Compiling thiserror-impl v2.0.21
+   Compiling prost-derive v0.14.4
+   Compiling arrow-cmp v60.0.0
+   Compiling parking_lot v0.12.5
+   Compiling tinystr v0.8.3
+   Compiling tokio-macros v2.7.0
+   Compiling unicode-width v0.2.2
+   Compiling object v0.37.3
+   Compiling writeable v0.6.3
+   Compiling litemap v0.8.2
+   Compiling ryu v1.0.23
+   Compiling zstd-safe v8.0.0
+   Compiling same-file v1.0.6
+   Compiling lexical-util v1.0.7
+   Compiling walkdir v2.5.0
+   Compiling icu_locale_core v2.2.0
+   Compiling tokio v1.53.1
+   Compiling arrow-select v60.0.0
+   Compiling zerotrie v0.2.4
+   Compiling potential_utf v0.1.5
+   Compiling utf8_iter v1.0.4
+   Compiling icu_normalizer_data v2.2.0
+   Compiling icu_properties_data v2.2.0
+   Compiling icu_collections v2.2.0
+   Compiling icu_provider v2.2.0
+   Compiling chacha20 v0.10.2
+   Compiling crc32fast v1.5.2
+   Compiling rand v0.10.1
+   Compiling ar_archive_writer v0.5.1
+   Compiling lexical-parse-integer v1.0.6
+   Compiling lexical-write-integer v1.0.6
+   Compiling futures-executor v0.3.34
+   Compiling getrandom v0.2.17
+   Compiling adler2 v2.0.1
+   Compiling simd-adler32 v0.3.9
+   Compiling psm v0.1.31
+   Compiling futures v0.3.34
+   Compiling miniz_oxide v0.9.1
+   Compiling lexical-write-float v1.0.6
+   Compiling lexical-parse-float v1.0.6
+   Compiling icu_properties v2.2.0
+   Compiling icu_normalizer v2.2.0
+   Compiling flatbuffers v25.12.19
+   Compiling unicode-segmentation v1.13.2
+   Compiling cfg_aliases v0.2.1
+   Compiling zlib-rs v0.6.3
+   Compiling base64 v0.23.1
+   Compiling idna_adapter v1.2.1
+   Compiling comfy-table v8.0.0
+   Compiling nix v0.31.3
+   Compiling zstd v0.14.0
+   Compiling lexical-core v1.0.6
+   Compiling twox-hash v2.1.4
+   Compiling arrow-ord v60.0.0
+   Compiling tracing-core v0.1.36
+   Compiling atoi v3.1.0
+   Compiling tracing-attributes v0.1.31
+   Compiling async-trait v0.1.92
+   Compiling stacker v0.1.25
+   Compiling alloc-no-stdlib v3.0.0
+   Compiling snap v1.1.1
+   Compiling percent-encoding v2.3.2
+   Compiling form_urlencoded v1.2.2
+   Compiling tracing v0.1.44
+   Compiling alloc-stdlib v0.3.0
+   Compiling flate2 v1.1.10
+   Compiling arrow-cast v60.0.0
+   Compiling lz4_flex v0.14.0
+   Compiling idna v1.1.0
+   Compiling ring v0.17.14
+   Compiling csv-core v0.1.13
+   Compiling humantime v2.3.0
+   Compiling simdutf8 v0.1.5
+   Compiling csv v1.4.0
+   Compiling url v2.5.8
+   Compiling arrow-ipc v60.0.0
+   Compiling brotli-decompressor v6.0.0
+   Compiling itertools v0.15.0
+   Compiling http v1.4.0
+   Compiling recursive-proc-macro-impl v0.1.1
+   Compiling untrusted v0.9.0
+   Compiling recursive v0.1.1
+   Compiling brotli v9.0.0
+   Compiling object_store v0.14.2
+   Compiling arrow-csv v60.0.0
+   Compiling arrow-json v60.0.0
+   Compiling arrow-string v60.0.0
+   Compiling prost v0.14.4
+   Compiling arrow-row v60.0.0
+   Compiling arrow-arith v60.0.0
+   Compiling uuid v1.27.0
+   Compiling sqlparser_derive v0.6.0
+   Compiling seq-macro v0.3.6
+   Compiling arrow v60.0.0
+   Compiling parquet v60.0.0
+   Compiling sqlparser v0.63.0
+   Compiling hex v0.4.3
+   Compiling base64 v0.22.1
+   Compiling rustix v1.1.4
+   Compiling linux-raw-sys v0.12.1
+   Compiling fastrand v2.4.1
+   Compiling pbjson v0.9.0
+   Compiling pin-project-internal v1.1.13
+   Compiling crossbeam-utils v0.8.21
+   Compiling foldhash v0.1.5
+   Compiling hashbrown v0.15.5
+   Compiling pin-project v1.1.13
+   Compiling fixedbitset v0.5.7
+   Compiling ppv-lite86 v0.2.21
+   Compiling typenum v1.20.0
+   Compiling tempfile v3.27.0
+   Compiling rand_core v0.9.5
+   Compiling datafusion-doc v55.1.0 (/__w/datafusion/datafusion/datafusion/doc)
+   Compiling rand_chacha v0.9.0
+   Compiling hybrid-array v0.4.11
+   Compiling rand v0.9.4
+   Compiling petgraph v0.8.3
+   Compiling cmov v0.5.4
+   Compiling ctutils v0.4.2
+   Compiling block-buffer v0.12.0
+   Compiling crypto-common v0.2.1
+   Compiling tokio-util v0.7.19
+   Compiling const-oid v0.10.2
+   Compiling hashbrown v0.14.5
+   Compiling digest v0.11.2
+   Compiling datafusion-macros v55.1.0 (/__w/datafusion/datafusion/datafusion/macros)
+   Compiling dashmap v6.2.1
+   Compiling blake3 v1.8.7
+   Compiling heck v0.5.0
+   Compiling arrayvec v0.7.6
+   Compiling constant_time_eq v0.4.2
+   Compiling blake2 v0.11.0
+   Compiling md-5 v0.11.0
+   Compiling sha2 v0.11.0
+   Compiling glob v0.3.4
+   Compiling liblzma-sys v0.4.8
+   Compiling datafusion-common-runtime v55.1.0 (/__w/datafusion/datafusion/datafusion/common-runtime)
+   Compiling libbz2-rs-sys v0.2.3
+   Compiling bzip2 v0.6.1
+   Compiling compression-core v0.4.33
+   Compiling crc-catalog v2.5.0
+   Compiling crc v3.4.0
+   Compiling strum_macros v0.28.0
+   Compiling datafusion-common v55.1.0 (/__w/datafusion/datafusion/datafusion/common)
+   Compiling bigdecimal v0.4.11
+   Compiling utf8parse v0.2.2
+   Compiling anstyle-parse v1.0.0
+   Compiling tokio-stream v0.1.19
+   Compiling num-bigint v0.4.6
+   Compiling colorchoice v1.0.5
+   Compiling anstyle v1.0.14
+   Compiling anstyle-query v1.1.5
+   Compiling is_terminal_polyfill v1.70.2
+   Compiling anstream v1.0.0
+   Compiling strsim v0.11.1
+   Compiling clap_lex v1.1.0
+   Compiling clap_builder v4.6.7
+   Compiling datafusion-proto-common v55.1.0 (/__w/datafusion/datafusion/datafusion/proto-common)
+   Compiling datafusion-expr-common v55.1.0 (/__w/datafusion/datafusion/datafusion/expr-common)
+   Compiling datafusion-proto-models v55.1.0 (/__w/datafusion/datafusion/datafusion/proto-models)
+   Compiling liblzma v0.4.8
+   Compiling compression-codecs v0.4.45
+   Compiling async-compression v0.4.50
+   Compiling arrow-avro v60.0.0
+   Compiling clap_derive v4.6.7
+   Compiling itertools v0.13.0
+   Compiling crossbeam-epoch v0.9.20
+   Compiling clap v4.6.7
+   Compiling rayon-core v1.13.0
+   Compiling winnow v1.0.2
+   Compiling cast v0.3.0
+   Compiling crossbeam-deque v0.8.6
+   Compiling alloca v0.4.0
+   Compiling oorandom v11.1.5
+   Compiling toml_datetime v1.1.1+spec-1.1.0
+   Compiling toml_parser v1.1.3+spec-1.1.0
+   Compiling plotters-backend v0.3.7
+   Compiling ciborium-io v0.2.2
+   Compiling ciborium-ll v0.2.2
+   Compiling plotters-svg v0.3.7
+   Compiling toml_edit v0.25.11+spec-1.1.0
+   Compiling proc-macro-crate v3.5.0
+   Compiling rayon v1.12.0
+   Compiling datafusion-physical-expr-common v55.1.0 (/__w/datafusion/datafusion/datafusion/physical-expr-common)
+   Compiling plotters v0.3.7
+   Compiling ciborium v0.2.2
+   Compiling datafusion-functions-window-common v55.1.0 (/__w/datafusion/datafusion/datafusion/functions-window-common)
+   Compiling datafusion-functions-aggregate-common v55.1.0 (/__w/datafusion/datafusion/datafusion/functions-aggregate-common)
+   Compiling criterion-plot v0.8.2
+   Compiling tinytemplate v1.2.1
+   Compiling page_size v0.6.0
+   Compiling anes v0.1.6
+   Compiling criterion v0.8.2
+   Compiling console v0.16.4
+   Compiling datafusion-expr v55.1.0 (/__w/datafusion/datafusion/datafusion/expr)
+   Compiling similar v2.7.0
+   Compiling env_filter v2.0.0
+   Compiling bstr v1.12.1
+   Compiling vte v0.14.1
+   Compiling jiff v0.2.24
+   Compiling globset v0.4.18
+   Compiling strip-ansi-escapes v0.2.1
+   Compiling rustversion v1.0.22
+   Compiling insta v1.49.0
+   Compiling datafusion-physical-expr v55.1.0 (/__w/datafusion/datafusion/datafusion/physical-expr)
+   Compiling datafusion-execution v55.1.0 (/__w/datafusion/datafusion/datafusion/execution)
+   Compiling datafusion-functions v55.1.0 (/__w/datafusion/datafusion/datafusion/functions)
+   Compiling env_logger v0.11.11
+   Compiling doc-comment v0.3.4
+   Compiling prettyplease v0.2.37
+   Compiling stabby-macros v72.1.16
+   Compiling stabby-abi v72.1.16
+   Compiling datafusion-functions-aggregate v55.1.0 (/__w/datafusion/datafusion/datafusion/functions-aggregate)
+   Compiling datafusion-functions-window v55.1.0 (/__w/datafusion/datafusion/datafusion/functions-window)
+   Compiling datafusion-physical-plan v55.1.0 (/__w/datafusion/datafusion/datafusion/physical-plan)
+   Compiling datafusion-physical-expr-adapter v55.1.0 (/__w/datafusion/datafusion/datafusion/physical-expr-adapter)
+   Compiling datafusion-functions-nested v55.1.0 (/__w/datafusion/datafusion/datafusion/functions-nested)
+   Compiling datafusion-optimizer v55.1.0 (/__w/datafusion/datafusion/datafusion/optimizer)
+   Compiling datafusion-sql v55.1.0 (/__w/datafusion/datafusion/datafusion/sql)
+   Compiling datafusion-session v55.1.0 (/__w/datafusion/datafusion/datafusion/session)
+   Compiling datafusion-datasource v55.1.0 (/__w/datafusion/datafusion/datafusion/datasource)
+   Compiling datafusion-pruning v55.1.0 (/__w/datafusion/datafusion/datafusion/pruning)
+   Compiling datafusion-catalog v55.1.0 (/__w/datafusion/datafusion/datafusion/catalog)
+   Compiling datafusion-datasource-json v55.1.0 (/__w/datafusion/datafusion/datafusion/datasource-json)
+   Compiling datafusion-datasource-parquet v55.1.0 (/__w/datafusion/datafusion/datafusion/datasource-parquet)
+   Compiling datafusion-catalog-listing v55.1.0 (/__w/datafusion/datafusion/datafusion/catalog-listing)
+   Compiling datafusion-functions-table v55.1.0 (/__w/datafusion/datafusion/datafusion/functions-table)
+   Compiling datafusion-datasource-arrow v55.1.0 (/__w/datafusion/datafusion/datafusion/datasource-arrow)
+   Compiling datafusion-datasource-csv v55.1.0 (/__w/datafusion/datafusion/datafusion/datasource-csv)
+   Compiling datafusion-datasource-avro v55.1.0 (/__w/datafusion/datafusion/datafusion/datasource-avro)
+   Compiling datafusion-physical-optimizer v55.1.0 (/__w/datafusion/datafusion/datafusion/physical-optimizer)
+   Compiling datafusion-proto v55.1.0 (/__w/datafusion/datafusion/datafusion/proto)
+   Compiling datafusion v55.1.0 (/__w/datafusion/datafusion/datafusion/core)
+   Compiling rstest_macros v0.27.0
+   Compiling sha2-const-stable v0.1.0
+   Compiling stabby v72.1.16
+   Compiling multimap v0.10.1
+   Compiling relative-path v1.9.3
+   Compiling prost-types v0.14.4
+   Compiling serde_derive_internals v0.29.1
+   Compiling libloading v0.9.0
+   Compiling async-ffi v0.5.1
+   Compiling linktime-proc-macro v0.2.3
+   Compiling link-section v0.19.3
+   Compiling futures-timer v3.0.3
+   Compiling schemars v0.8.22
+   Compiling ctor v1.0.13
+   Compiling rstest v0.27.0
+   Compiling hashbrown v0.16.1
+   Compiling schemars_derive v0.8.22
+   Compiling dyn-clone v1.0.20
+   Compiling prost-build v0.14.4
+   Compiling regress v0.10.5
+   Compiling pbjson-build v0.8.0
+   Compiling serde_tokenstream v0.2.3
+   Compiling libmimalloc-sys v0.1.49
+   Compiling typify-impl v0.5.0
+   Compiling unsafe-libyaml v0.2.11
+   Compiling serde_yaml v0.9.34+deprecated
+   Compiling pbjson-types v0.8.0
+   Compiling generic-array v0.14.7
+   Compiling wasm-bindgen-shared v0.2.118
+   Compiling pbjson v0.8.0
+   Compiling serde_spanned v1.1.1
+   Compiling toml_writer v1.1.2+spec-1.1.0
+   Compiling toml v1.1.6+spec-1.1.0
+   Compiling typify-macro v0.5.0
+   Compiling typify v0.5.0
+   Compiling substrait v0.63.0
+   Compiling mimalloc v0.1.52
+   Compiling test-utils v0.1.0 (/__w/datafusion/datafusion/test-utils)
+   Compiling rand_distr v0.5.1
+   Compiling sysinfo v0.39.6
+   Compiling async-recursion v1.1.1
+   Compiling bumpalo v3.20.2
+   Compiling wasm-bindgen-macro-support v0.2.118
+   Compiling block-buffer v0.10.4
+   Compiling crypto-common v0.1.7
+   Compiling datafusion-benchmarks v55.1.0 (/__w/datafusion/datafusion/benchmarks)
+   Compiling wasm-bindgen v0.2.118
+   Compiling rand_core v0.6.4
+   Compiling enum-ordinalize-derive v4.3.2
+   Compiling datafusion-ffi v55.1.0 (/__w/datafusion/datafusion/datafusion/ffi)
+   Compiling fs-err v3.3.0
+   Compiling portable-atomic v1.13.1
+   Compiling owo-colors v4.3.0
+   Compiling enum-ordinalize v4.3.2
+   Compiling rand_chacha v0.3.1
+   Compiling wasm-bindgen-macro v0.2.118
+   Compiling digest v0.10.7
+   Compiling datafusion-substrait v55.1.0 (/__w/datafusion/datafusion/datafusion/substrait)
+   Compiling sha1 v0.11.0
+   Compiling unicode-width v0.1.14
+   Compiling escape8259 v0.5.3
+   Compiling libtest-mimic v0.8.2
+   Compiling subst v0.3.8
+   Compiling md-5 v0.10.6
+   Compiling rand v0.8.6
+   Compiling educe v0.6.0
+   Compiling unit-prefix v0.5.2
+   Compiling indicatif v0.18.6
+   Compiling sqllogictest v0.29.1
+   Compiling js-sys v0.3.95
+   Compiling datafusion-spark v55.1.0 (/__w/datafusion/datafusion/datafusion/spark)
+   Compiling diff v0.1.13
+   Compiling yansi v1.0.1
+   Compiling pretty_assertions v1.4.1
+   Compiling wasm-bindgen-futures v0.4.68
+   Compiling pbjson-build v0.9.0
+   Compiling wasm-bindgen-test-macro v0.3.68
+   Compiling wasm-bindgen-test-shared v0.2.118
+   Compiling nu-ansi-term v0.50.3
+   Compiling wasm-bindgen-test v0.3.68
+   Compiling rstest_reuse v0.7.0
+   Compiling datafusion-wasmtest v55.1.0 (/__w/datafusion/datafusion/datafusion/wasmtest)
+   Compiling gen-common v0.1.0 (/__w/datafusion/datafusion/datafusion/proto-common/gen)
+   Compiling gen v0.1.0 (/__w/datafusion/datafusion/datafusion/proto-models/gen)
+   Compiling datafusion-sqllogictest v55.1.0 (/__w/datafusion/datafusion/datafusion/sqllogictest)
+   Compiling ffi_module_interface v0.1.0 (/__w/datafusion/datafusion/datafusion-examples/examples/ffi/ffi_module_interface)
+   Compiling ffi_module_loader v0.1.0 (/__w/datafusion/datafusion/datafusion-examples/examples/ffi/ffi_module_loader)
+   Compiling datafusion-xtask v0.1.0 (/__w/datafusion/datafusion/xtask)
+    Finished `ci` profile [unoptimized] target(s) in 5m 32s
+     Running unittests src/lib.rs (target/llvm-cov-target/ci/deps/datafusion-27f6b65d2dff80ba)
+
+running 488 tests
+test dataframe::parquet::tests::filter_pushdown_dataframe ... ok
+test dataframe::parquet::tests::test_file_output_mode_automatic ... ok
+test dataframe::parquet::tests::test_file_output_mode_directory ... ok
+test dataframe::parquet::tests::test_file_output_mode_single_file ... ok
+test dataframe::parquet::tests::create_physical_plan_does_not_consume_dataframe ... ok
+test dataframe::parquet::tests::test_parquet_sink_metrics_parallel ... ok
+test dataframe::parquet::tests::test_parquet_sink_metrics ... ok
+test dataframe::parquet::tests::test_parquet_sink_metrics_sequential ... ok
+test dataframe::parquet::tests::roundtrip_parquet_with_encryption::allow_single_file_parallelism_2_true ... ok
+test dataframe::parquet::tests::roundtrip_parquet_with_encryption::allow_single_file_parallelism_1_false ... ok
+test datasource::file_format::arrow::tests::test_write_empty_arrow_from_record_batch ... ok
+test datasource::file_format::arrow::tests::test_write_empty_arrow_from_sql ... ok
+test datasource::file_format::avro::tests::read_binary_alltypes_plain_avro ... ok
+test datasource::file_format::avro::tests::read_bool_alltypes_plain_avro ... ok
+test datasource::file_format::avro::tests::read_f32_alltypes_plain_avro ... ok
+test datasource::file_format::avro::tests::read_f64_alltypes_plain_avro ... ok
+test datasource::file_format::avro::tests::read_i32_alltypes_plain_avro ... ok
+test datasource::file_format::avro::tests::read_i96_alltypes_plain_avro ... ok
+test datasource::file_format::avro::tests::read_limit ... ok
+test datasource::file_format::avro::tests::read_null_binary_alltypes_plain_avro ... ok
+test datasource::file_format::avro::tests::read_null_bool_alltypes_plain_avro ... ok
+test datasource::file_format::avro::tests::read_null_i32_alltypes_plain_avro ... ok
+test datasource::file_format::avro::tests::read_null_string_alltypes_plain_avro ... ok
+test datasource::file_format::avro::tests::read_small_batches ... ok
+test dataframe::parquet::tests::write_parquet_with_compression ... ok
+test datasource::file_format::csv::tests::infer_schema ... ok
+test datasource::file_format::csv::tests::infer_schema_truncated_rows_false_error ... ok
+test datasource::file_format::csv::tests::infer_schema_rejects_duplicate_header_names ... ok
+test datasource::file_format::csv::tests::infer_schema_with_truncated_rows_true ... ok
+test datasource::file_format::csv::tests::infer_schema_with_null_regex ... ok
+test datasource::file_format::csv::tests::query_compress_data::case_1 ... ok
+test datasource::file_format::csv::tests::query_compress_data::case_2 ... ok
+test datasource::file_format::csv::tests::query_compress_data::case_3 ... ok
+test datasource::file_format::csv::tests::query_compress_data::case_4 ... ok
+test datasource::file_format::csv::tests::query_compress_data::case_5 ... ok
+test datasource::file_format::csv::tests::read_char_column ... ok
+test datasource::file_format::csv::tests::read_limit ... ok
+test datasource::file_format::avro::tests::read_alltypes_plain_avro ... ok
+test datasource::file_format::csv::tests::query_compress_csv ... ok
+test datasource::file_format::csv::tests::test_csv_deserializer_with_finish::batch_size_1_1::line_count_1_0 ... ok
+test datasource::file_format::csv::tests::test_csv_deserializer_with_finish::batch_size_1_1::line_count_2_5 ... ok
+test datasource::file_format::csv::tests::test_csv_deserializer_with_finish::batch_size_2_5::line_count_1_0 ... ok
+test datasource::file_format::csv::tests::test_csv_deserializer_with_finish::batch_size_1_1::line_count_3_93 ... ok
+test datasource::file_format::csv::tests::test_csv_deserializer_with_finish::batch_size_2_5::line_count_2_5 ... ok
+test datasource::file_format::csv::tests::test_csv_deserializer_with_finish::batch_size_2_5::line_count_3_93 ... ok
+test datasource::file_format::csv::tests::test_csv_deserializer_with_finish::batch_size_3_17::line_count_1_0 ... ok
+test datasource::file_format::csv::tests::test_csv_deserializer_with_finish::batch_size_3_17::line_count_2_5 ... ok
+test datasource::file_format::csv::tests::test_csv_deserializer_without_finish::batch_size_1_1::line_count_1_0 ... ok
+test datasource::file_format::csv::tests::read_small_batches ... ok
+test datasource::file_format::csv::tests::test_csv_deserializer_without_finish::batch_size_1_1::line_count_2_5 ... ok
+test datasource::file_format::csv::tests::test_csv_deserializer_with_finish::batch_size_3_17::line_count_3_93 ... ok
+test datasource::file_format::csv::tests::test_csv_deserializer_without_finish::batch_size_2_5::line_count_1_0 ... ok
+test datasource::file_format::csv::tests::test_csv_deserializer_without_finish::batch_size_2_5::line_count_2_5 ... ok
+test datasource::file_format::csv::tests::test_csv_deserializer_without_finish::batch_size_3_17::line_count_1_0 ... ok
+test datasource::file_format::csv::tests::test_csv_deserializer_without_finish::batch_size_1_1::line_count_3_93 ... ok
+test datasource::file_format::csv::tests::test_csv_deserializer_without_finish::batch_size_2_5::line_count_3_93 ... ok
+test datasource::file_format::csv::tests::test_csv_deserializer_without_finish::batch_size_3_17::line_count_2_5 ... ok
+test datasource::file_format::csv::tests::test_csv_deserializer_without_finish::batch_size_3_17::line_count_3_93 ... ok
+test datasource::file_format::csv::tests::test_csv_empty_file ... ok
+test datasource::file_format::csv::tests::test_csv_empty_with_header ... ok
+test datasource::file_format::csv::tests::test_csv_multiple_empty_files ... ok
+test datasource::file_format::csv::tests::test_csv_extension_compressed ... ok
+test datasource::file_format::csv::tests::test_csv_extension_uncompressed ... ok
+test datasource::file_format::csv::tests::test_csv_parallel_basic::case_1 ... ok
+test datasource::file_format::csv::tests::test_csv_parallel_basic::case_2 ... ok
+test datasource::file_format::csv::tests::test_csv_parallel_basic::case_3 ... ok
+test datasource::file_format::csv::tests::test_csv_parallel_compressed::case_1 ... ok
+test datasource::file_format::csv::tests::test_csv_parallel_basic::case_4 ... ok
+test datasource::file_format::csv::tests::test_csv_parallel_compressed::case_2 ... ok
+test datasource::file_format::csv::tests::test_csv_parallel_compressed::case_3 ... ok
+test datasource::file_format::csv::tests::test_csv_parallel_compressed::case_4 ... ok
+test datasource::file_format::csv::tests::test_csv_parallel_newlines_in_values::case_1 ... ok
+test dataframe::parquet::tests::write_parquet_with_small_rg_size ... ok
+test datasource::file_format::csv::tests::test_csv_parallel_newlines_in_values::case_2 ... ok
+test datasource::file_format::csv::tests::test_csv_parallel_newlines_in_values::case_3 ... ok
+test datasource::file_format::csv::tests::test_csv_parallel_newlines_in_values::case_4 ... ok
+test datasource::file_format::csv::tests::test_csv_parallel_one_col::case_1 ... ok
+test datasource::file_format::csv::tests::test_csv_parallel_one_col::case_2 ... ok
+test datasource::file_format::csv::tests::test_csv_parallel_one_col::case_3 ... ok
+test datasource::file_format::csv::tests::test_csv_parallel_one_col::case_4 ... ok
+test datasource::file_format::csv::tests::test_csv_parallel_one_col::case_5 ... ok
+test datasource::file_format::csv::tests::test_csv_parallel_some_file_empty::case_1 ... ok
+test datasource::file_format::csv::tests::test_csv_parallel_some_file_empty::case_2 ... ok
+test datasource::file_format::csv::tests::test_csv_parallel_one_col::case_6 ... ok
+test datasource::file_format::csv::tests::test_csv_parallel_some_file_empty::case_3 ... ok
+test datasource::file_format::csv::tests::test_csv_parallel_some_file_empty::case_4 ... ok
+test datasource::file_format::csv::tests::test_csv_parallel_wide_rows::case_1 ... ok
+test datasource::file_format::csv::tests::test_csv_serializer ... ok
+test datasource::file_format::csv::tests::test_csv_serializer_no_header ... ok
+test datasource::file_format::csv::tests::test_csv_parallel_wide_rows::case_2 ... ok
+test datasource::file_format::csv::tests::test_decoder_truncated_rows_runtime ... ok
+test datasource::file_format::csv::tests::test_infer_schema_escape_chars ... ok
+test datasource::file_format::csv::tests::test_csv_some_empty_with_header ... ok
+test datasource::file_format::csv::tests::test_infer_schema_stream_null_chunks ... ok
+test datasource::file_format::csv::tests::test_infer_schema_with_zero_max_records ... ok
+test datasource::file_format::csv::tests::test_infer_schema_stream ... ok
+test datasource::file_format::csv::tests::test_read_csv_truncated_rows_via_tempfile ... ok
+test datasource::file_format::csv::tests::test_write_empty_csv_from_record_batch ... ok
+test datasource::file_format::json::tests::infer_schema ... ok
+test datasource::file_format::csv::tests::test_write_empty_csv_from_sql ... ok
+test datasource::file_format::json::tests::infer_schema_with_limit ... ok
+test datasource::file_format::json::tests::it_can_read_empty_ndjson ... ok
+test datasource::file_format::json::tests::it_can_read_ndjson_in_parallel::case_1 ... ok
+test datasource::file_format::json::tests::it_can_read_ndjson_in_parallel::case_2 ... ok
+test datasource::file_format::json::tests::it_can_read_ndjson_in_parallel::case_3 ... ok
+test datasource::file_format::json::tests::read_int_column ... ok
+test datasource::file_format::json::tests::it_can_read_ndjson_in_parallel::case_4 ... ok
+test datasource::file_format::json::tests::read_limit ... ok
+test datasource::file_format::json::tests::read_small_batches ... ok
+test datasource::file_format::json::tests::test_json_array_empty ... ok
+test datasource::file_format::json::tests::test_json_array_basic_query ... ok
+test datasource::file_format::json::tests::test_json_array_list_of_structs ... ok
+test datasource::file_format::json::tests::test_json_array_list_type ... ok
+test datasource::file_format::json::tests::test_json_array_nested_struct ... ok
+test datasource::file_format::json::tests::test_json_array_schema_inference ... ok
+test datasource::file_format::json::tests::test_json_array_nested_struct_access ... ok
+test datasource::file_format::json::tests::test_json_array_unnest ... ok
+test datasource::file_format::json::tests::test_json_array_with_compression ... ok
+test datasource::file_format::json::tests::test_json_array_unnest_struct ... ok
+test datasource::file_format::json::tests::test_json_deserializer_finish ... ok
+test datasource::file_format::json::tests::test_json_deserializer_no_finish ... ok
+test datasource::file_format::json::tests::test_write_empty_json_from_record_batch ... ok
+test datasource::file_format::json::tests::test_json_array_with_nulls ... ok
+test datasource::file_format::json::tests::test_write_empty_json_from_sql ... ok
+test datasource::file_format::parquet::tests::capture_bytes_scanned_metric ... ok
+test datasource::file_format::parquet::tests::infer_schema_rejects_duplicate_field_names ... ok
+test datasource::file_format::parquet::tests::fetch_metadata_with_size_hint ... ok
+test datasource::file_format::parquet::tests::parquet_sink_parallel_write ... ok
+test datasource::file_format::parquet::tests::parquet_sink_write ... ok
+test datasource::file_format::parquet::tests::parquet_sink_write_insert_schema_into_metadata ... ok
+test datasource::file_format::parquet::tests::is_schema_stable ... ok
+test datasource::file_format::parquet::tests::parquet_sink_write_partitions ... ok
+test datasource::file_format::parquet::tests::parquet_sink_write_with_directory_name ... ok
+test datasource::file_format::parquet::tests::parquet_sink_write_with_extension ... ok
+test datasource::file_format::parquet::tests::parquet_sink_write_with_folder_ending ... ok
+test datasource::file_format::parquet::tests::read_alltypes_plain_parquet ... ok
+test datasource::file_format::parquet::tests::read_binary_alltypes_plain_parquet ... ok
+test datasource::file_format::parquet::tests::read_binaryview_alltypes_plain_parquet ... ok
+test datasource::file_format::parquet::tests::read_bool_alltypes_plain_parquet ... ok
+test datasource::file_format::csv::tests::test_csv_parallel_wide_rows::case_3 ... ok
+test datasource::file_format::parquet::tests::read_f32_alltypes_plain_parquet ... ok
+test datasource::file_format::parquet::tests::read_f64_alltypes_plain_parquet ... ok
+test datasource::file_format::parquet::tests::read_decimal_parquet ... ok
+test datasource::file_format::parquet::tests::read_i32_alltypes_plain_parquet ... ok
+test datasource::file_format::parquet::tests::read_i96_alltypes_plain_parquet ... ok
+test datasource::file_format::parquet::tests::read_limit ... ok
+test datasource::file_format::parquet::tests::read_small_batches ... ok
+test datasource::file_format::parquet::tests::test_read_empty_parquet ... ok
+test datasource::file_format::parquet::tests::test_read_parquet_page_index ... ok
+test datasource::file_format::parquet::tests::test_read_partitioned_empty_parquet ... ok
+test datasource::file_format::parquet::tests::parquet_sink_write_memory_reservation ... ok
+test datasource::file_format::parquet::tests::read_merged_batches ... ok
+test datasource::file_format::parquet::tests::test_statistics_from_parquet_metadata_dictionary ... ok
+test datasource::file_format::parquet::tests::test_write_empty_parquet_from_sql ... ok
+test datasource::file_format::parquet::tests::test_write_empty_recordbatch_creates_file ... ok
+test datasource::listing::table::tests::infer_preserves_provided_schema ... ok
+test datasource::listing::table::tests::read_empty_table ... ok
+test datasource::file_format::tests::write_parquet_results_error_handling ... ok
+test datasource::listing::table::tests::read_single_file ... ok
+test datasource::listing::table::tests::test_basic_table_scan ... ok
+test datasource::listing::table::tests::scan_with_args_skip_skips_correct_rows ... ok
+test datasource::file_format::parquet::tests::test_statistics_from_parquet_metadata ... ok
+test datasource::listing::table::tests::test_insert_into_append_new_parquet_files_invalid_session_fails ... ok
+test datasource::listing::table::tests::test_infer_options_compressed_csv ... ok
+test datasource::file_format::csv::tests::test_csv_parallel_wide_rows::case_4 ... ok
+test datasource::listing::table::tests::test_insert_into_sql_csv_defaults ... ok
+test datasource::listing::table::tests::test_insert_into_sql_csv_defaults_header_row ... ok
+test datasource::listing::table::tests::test_insert_into_append_new_parquet_files_session_overrides ... ok
+test datasource::listing::table::tests::test_insert_into_sql_json_defaults ... ok
+test datasource::listing::table::tests::test_insert_into_sql_parquet_defaults ... ok
+test datasource::listing::table::tests::test_insert_into_sql_parquet_session_overrides ... ok
+test datasource::listing::table::tests::test_list_files_uses_declared_output_partitioning_count ... ok
+test datasource::listing::table::tests::test_list_files_configurations ... ok
+test datasource::listing::table::tests::test_listing_table_prunes_extra_files_in_hive ... ok
+test datasource::listing::table::tests::test_overlapping_partition_columns_order ... ok
+test datasource::listing::table::tests::test_partition_column_present_in_file_schema_is_not_duplicated ... ok
+test datasource::listing::table::tests::test_listing_table_config_with_multiple_files_comprehensive ... ok
+test datasource::listing::table::tests::test_partition_filter_preserves_declared_output_partitioning ... ok
+test datasource::listing::table::tests::test_range_output_partitioning_normalizes_split_point_types ... ok
+test datasource::listing::table::tests::test_range_output_partitioning_rejects_invalid_split_point_type ... ok
+test datasource::listing::table::tests::test_range_output_partitioning_rejects_lossy_timestamp_split_point ... ok
+test datasource::listing::table::tests::test_schema_source_tracking_comprehensive ... ok
+test datasource::listing::table::tests::test_try_create_output_ordering ... ok
+test datasource::listing::table::tests::test_table_stats_behaviors ... ok
+test datasource::listing_table_factory::tests::test_create_using_folder_with_compression ... ok
+test datasource::listing_table_factory::tests::test_create_using_folder_without_compression ... ok
+test datasource::listing_table_factory::tests::test_create_using_non_std_file_ext ... ok
+test datasource::listing_table_factory::tests::test_create_with_duplicate_locations_errors ... ok
+test datasource::listing_table_factory::tests::test_create_using_non_std_file_ext_csv_options ... ok
+test datasource::listing_table_factory::tests::test_create_with_invalid_session ... ok
+test datasource::listing_table_factory::tests::test_create_with_locations_on_different_stores_errors ... ok
+test datasource::listing_table_factory::tests::test_create_with_hive_partitions ... ok
+test datasource::listing_table_factory::tests::test_create_with_multiple_locations ... ok
+test datasource::listing_table_factory::tests::test_create_with_no_locations_errors ... ok
+test datasource::listing_table_factory::tests::test_create_with_multiple_locations_mismatched_schema_errors ... ok
+test datasource::listing_table_factory::tests::test_odd_directory_names ... ok
+test datasource::listing_table_factory::tests::test_schema_comparison_ignores_schema_metadata ... ok
+test datasource::listing_table_factory::tests::test_create_with_overlapping_locations_reads_each_file_once ... ok
+test datasource::memory_test::tests::test_delete_exec_rejects_other_partition ... ok
+test datasource::memory_test::tests::test_delete_from_empty_batch ... ok
+test datasource::memory_test::tests::test_delete_from_non_boolean_filter ... ok
+test datasource::memory_test::tests::test_delete_from_zero_partition ... ok
+test datasource::memory_test::tests::test_dml_execution_lifecycle ... ok
+test datasource::memory_test::tests::test_dml_expression_visitors ... ok
+test datasource::memory_test::tests::test_insert_from_empty_table ... ok
+test datasource::listing_table_factory::tests::test_statistics_cache_prewarming ... ok
+test datasource::memory_test::tests::test_insert_into_multi_partition_with_multi_partition ... ok
+test datasource::memory_test::tests::test_insert_into_single_partition_with_multi_partition ... ok
+test datasource::memory_test::tests::test_insert_into_single_partition ... ok
+test datasource::memory_test::tests::test_insert_into_zero_partition ... ok
+test datasource::memory_test::tests::test_insert_overwrite_replaces_existing_data ... ok
+test datasource::memory_test::tests::test_insert_overwrite_with_empty_input_clears_table ... ok
+test datasource::memory_test::tests::test_insert_overwrite_replaces_multiple_partitions ... ok
+test datasource::memory_test::tests::test_invalid_projection ... ok
+test datasource::memory_test::tests::test_load_preserves_constraints ... ok
+test datasource::listing::table::tests::test_insert_into_parameterized ... ok
+test datasource::memory_test::tests::test_merged_schema ... ok
+test datasource::memory_test::tests::test_insert_replace_remains_unsupported ... ok
+test datasource::memory_test::tests::test_schema_validation_different_column_count ... ok
+test datasource::memory_test::tests::test_schema_validation_incompatible_column ... ok
+test datasource::memory_test::tests::test_load_without_constraints ... ok
+test datasource::memory_test::tests::test_update_empty_batch ... ok
+test datasource::memory_test::tests::test_update_column_missing_from_batch ... ok
+test datasource::memory_test::tests::test_update_assignment_type_mismatch ... ok
+test datasource::memory_test::tests::test_update_exec_rejects_other_partition ... ok
+test datasource::memory_test::tests::test_update_non_boolean_filter ... ok
+test datasource::memory_test::tests::test_update_unknown_set_column ... ok
+test datasource::memory_test::tests::test_without_projection ... ok
+test datasource::memory_test::tests::test_update_zero_partition ... ok
+test datasource::memory_test::tests::test_with_projection ... ok
+test datasource::physical_plan::avro::tests::avro_exec_with_partition ... ok
+test datasource::physical_plan::avro::tests::avro_exec_without_partition ... ok
+test datasource::physical_plan::avro::tests::avro_exec_missing_column ... ok
+test datasource::physical_plan::avro::tests::test_chunked_avro::chunk_size_3_30 ... ok
+test datasource::physical_plan::avro::tests::test_chunked_avro::chunk_size_2_20 ... ok
+test datasource::physical_plan::avro::tests::test_chunked_avro::chunk_size_1_10 ... ok
+test datasource::physical_plan::avro::tests::test_chunked_avro::chunk_size_4_40 ... ok
+test datasource::physical_plan::csv::tests::csv_exec_with_limit::case_1 ... ok
+test datasource::physical_plan::csv::tests::csv_exec_with_limit::case_2 ... ok
+test datasource::physical_plan::csv::tests::csv_exec_with_limit::case_3 ... ok
+test datasource::physical_plan::csv::tests::csv_exec_with_limit::case_4 ... ok
+test datasource::physical_plan::csv::tests::csv_exec_with_limit::case_5 ... ok
+test datasource::physical_plan::csv::tests::csv_exec_with_missing_column::case_1 ... ok
+test datasource::physical_plan::csv::tests::csv_exec_with_missing_column::case_2 ... ok
+test datasource::physical_plan::csv::tests::csv_exec_with_missing_column::case_3 ... ok
+test datasource::physical_plan::csv::tests::csv_exec_with_missing_column::case_5 ... ok
+test datasource::physical_plan::csv::tests::csv_exec_with_missing_column::case_4 ... ok
+test datasource::physical_plan::csv::tests::csv_exec_with_mixed_order_projection::case_1 ... ok
+test datasource::physical_plan::csv::tests::csv_exec_with_mixed_order_projection::case_2 ... ok
+test datasource::physical_plan::csv::tests::csv_exec_with_mixed_order_projection::case_5 ... ok
+test datasource::physical_plan::csv::tests::csv_exec_with_partition::case_1 ... ok
+test datasource::physical_plan::csv::tests::csv_exec_with_mixed_order_projection::case_3 ... ok
+test datasource::physical_plan::csv::tests::csv_exec_with_mixed_order_projection::case_4 ... ok
+test datasource::physical_plan::csv::tests::csv_exec_with_partition::case_2 ... ok
+test datasource::physical_plan::csv::tests::csv_exec_with_partition::case_5 ... ok
+test datasource::physical_plan::csv::tests::csv_exec_with_partition::case_3 ... ok
+test datasource::physical_plan::csv::tests::csv_exec_with_partition::case_4 ... ok
+test datasource::physical_plan::csv::tests::csv_exec_with_projection::case_1 ... ok
+test datasource::physical_plan::csv::tests::csv_exec_with_projection::case_2 ... ok
+test datasource::physical_plan::csv::tests::csv_exec_with_projection::case_5 ... ok
+test datasource::physical_plan::csv::tests::csv_exec_with_projection::case_4 ... ok
+test datasource::physical_plan::csv::tests::csv_exec_with_projection::case_3 ... ok
+test datasource::physical_plan::csv::tests::test_chunked_csv::case_1::chunk_size_3_30 ... ok
+test datasource::physical_plan::csv::tests::test_chunked_csv::case_1::chunk_size_2_20 ... ok
+test datasource::physical_plan::csv::tests::test_chunked_csv::case_1::chunk_size_1_10 ... ok
+test datasource::physical_plan::csv::tests::test_chunked_csv::case_1::chunk_size_4_40 ... ok
+test datasource::physical_plan::csv::tests::test_chunked_csv::case_2::chunk_size_3_30 ... ok
+test datasource::physical_plan::csv::tests::test_chunked_csv::case_2::chunk_size_2_20 ... ok
+test datasource::physical_plan::csv::tests::test_chunked_csv::case_2::chunk_size_1_10 ... ok
+test datasource::physical_plan::csv::tests::test_chunked_csv::case_2::chunk_size_4_40 ... ok
+test datasource::physical_plan::csv::tests::test_chunked_csv::case_3::chunk_size_2_20 ... ok
+test datasource::physical_plan::csv::tests::test_chunked_csv::case_3::chunk_size_1_10 ... ok
+test datasource::physical_plan::csv::tests::test_chunked_csv::case_3::chunk_size_3_30 ... ok
+test datasource::physical_plan::csv::tests::test_chunked_csv::case_3::chunk_size_4_40 ... ok
+test datasource::physical_plan::csv::tests::test_chunked_csv::case_4::chunk_size_2_20 ... ok
+test datasource::physical_plan::csv::tests::test_chunked_csv::case_4::chunk_size_1_10 ... ok
+test datasource::physical_plan::csv::tests::test_chunked_csv::case_4::chunk_size_3_30 ... ok
+test datasource::physical_plan::csv::tests::test_chunked_csv::case_4::chunk_size_4_40 ... ok
+test datasource::physical_plan::csv::tests::test_chunked_csv::case_5::chunk_size_1_10 ... ok
+test datasource::physical_plan::csv::tests::test_chunked_csv::case_5::chunk_size_2_20 ... ok
+test datasource::physical_plan::csv::tests::test_create_external_table_with_terminator ... ok
+test datasource::physical_plan::csv::tests::test_chunked_csv::case_5::chunk_size_4_40 ... ok
+test datasource::physical_plan::csv::tests::test_create_external_table_with_terminator_with_newlines_in_values ... ok
+test datasource::physical_plan::csv::tests::test_no_trailing_delimiter ... ok
+test datasource::physical_plan::csv::tests::test_terminator ... ok
+test datasource::physical_plan::csv::tests::test_chunked_csv::case_5::chunk_size_3_30 ... ok
+test datasource::physical_plan::json::tests::nd_json_exec_file_mixed_order_projection::case_1 ... ok
+test datasource::physical_plan::json::tests::nd_json_exec_file_mixed_order_projection::case_2 ... ok
+test datasource::physical_plan::csv::tests::write_csv_results_error_handling ... ok
+test datasource::physical_plan::json::tests::nd_json_exec_file_mixed_order_projection::case_3 ... ok
+test datasource::physical_plan::json::tests::nd_json_exec_file_mixed_order_projection::case_4 ... ok
+test datasource::physical_plan::csv::tests::write_csv_results ... ok
+test datasource::physical_plan::json::tests::nd_json_exec_file_projection::case_1 ... ok
+test datasource::physical_plan::json::tests::nd_json_exec_file_mixed_order_projection::case_5 ... ok
+test datasource::physical_plan::json::tests::nd_json_exec_file_projection::case_2 ... ok
+test datasource::physical_plan::json::tests::nd_json_exec_file_projection::case_3 ... ok
+test datasource::physical_plan::json::tests::nd_json_exec_file_projection::case_5 ... ok
+test datasource::physical_plan::json::tests::nd_json_exec_file_with_missing_column::case_1 ... ok
+test datasource::physical_plan::json::tests::nd_json_exec_file_with_missing_column::case_2 ... ok
+test datasource::physical_plan::json::tests::nd_json_exec_file_with_missing_column::case_3 ... ok
+test datasource::physical_plan::json::tests::nd_json_exec_file_projection::case_4 ... ok
+test datasource::physical_plan::json::tests::nd_json_exec_file_with_missing_column::case_5 ... ok
+test datasource::physical_plan::json::tests::nd_json_exec_file_with_missing_column::case_4 ... ok
+test datasource::physical_plan::json::tests::nd_json_exec_file_without_projection::case_1 ... ok
+test datasource::physical_plan::json::tests::nd_json_exec_file_without_projection::case_2 ... ok
+test datasource::physical_plan::json::tests::nd_json_exec_file_without_projection::case_5 ... ok
+test datasource::physical_plan::json::tests::nd_json_exec_file_without_projection::case_3 ... ok
+test datasource::physical_plan::json::tests::nd_json_exec_file_without_projection::case_4 ... ok
+test datasource::physical_plan::json::tests::ndjson_schema_infer_max_records ... ok
+test datasource::physical_plan::json::tests::test_chunked_json::case_1::chunk_size_1_10 ... ok
+test datasource::physical_plan::json::tests::test_chunked_json::case_1::chunk_size_2_20 ... ok
+test datasource::physical_plan::json::tests::test_chunked_json::case_1::chunk_size_3_30 ... ok
+test datasource::physical_plan::json::tests::test_chunked_json::case_1::chunk_size_4_40 ... ok
+test datasource::physical_plan::json::tests::test_chunked_json::case_2::chunk_size_3_30 ... ok
+test datasource::physical_plan::json::tests::test_chunked_json::case_2::chunk_size_1_10 ... ok
+test datasource::physical_plan::json::tests::test_chunked_json::case_2::chunk_size_2_20 ... ok
+test datasource::physical_plan::json::tests::test_chunked_json::case_2::chunk_size_4_40 ... ok
+test datasource::physical_plan::json::tests::test_chunked_json::case_3::chunk_size_1_10 ... ok
+test datasource::physical_plan::json::tests::test_chunked_json::case_3::chunk_size_3_30 ... ok
+test datasource::physical_plan::json::tests::test_chunked_json::case_3::chunk_size_4_40 ... ok
+test datasource::physical_plan::json::tests::test_chunked_json::case_3::chunk_size_2_20 ... ok
+test datasource::physical_plan::json::tests::test_chunked_json::case_4::chunk_size_2_20 ... ok
+test datasource::physical_plan::json::tests::test_chunked_json::case_4::chunk_size_3_30 ... ok
+test datasource::listing::table::tests::test_copy_respects_soft_max_bytes_per_output_file ... ok
+test datasource::physical_plan::json::tests::test_chunked_json::case_4::chunk_size_1_10 ... ok
+test datasource::physical_plan::json::tests::test_chunked_json::case_4::chunk_size_4_40 ... ok
+test datasource::physical_plan::json::tests::test_chunked_json::case_5::chunk_size_1_10 ... ok
+test datasource::physical_plan::json::tests::test_chunked_json::case_5::chunk_size_2_20 ... ok
+test datasource::physical_plan::json::tests::test_chunked_json::case_5::chunk_size_3_30 ... ok
+test datasource::physical_plan::json::tests::test_json_with_repartitioning::case_2_gzip ... ok
+test datasource::physical_plan::json::tests::test_chunked_json::case_5::chunk_size_4_40 ... ok
+test datasource::physical_plan::json::tests::test_json_with_repartitioning::case_1_uncompressed ... ok
+test datasource::physical_plan::json::tests::test_json_with_repartitioning::case_3_bzip2 ... ok
+test datasource::physical_plan::json::tests::test_json_with_repartitioning::case_5_zstd ... ok
+test datasource::physical_plan::json::tests::test_json_with_repartitioning::case_4_xz ... ok
+test datasource::physical_plan::json::tests::write_json_results_error_handling ... ok
+test datasource::physical_plan::json::tests::write_json_results ... ok
+test datasource::physical_plan::parquet::tests::evolved_schema_column_type_filter_ints ... ok
+test datasource::physical_plan::parquet::tests::evolved_schema_column_type_filter_strings ... ok
+test datasource::physical_plan::parquet::tests::evolved_schema ... ok
+test datasource::physical_plan::parquet::tests::evolved_schema_column_order_filter ... ok
+test datasource::physical_plan::parquet::tests::evolved_schema_column_type_filter_timestamp_units ... ok
+test datasource::physical_plan::parquet::tests::evolved_schema_disjoint_schema_filter ... ok
+test datasource::physical_plan::parquet::tests::evolved_schema_disjoint_schema_with_filter_pushdown ... ok
+test datasource::physical_plan::parquet::tests::evolved_schema_intersection ... ok
+test datasource::physical_plan::parquet::tests::evolved_schema_incompatible_types ... ok
+test datasource::physical_plan::parquet::tests::evolved_schema_inconsistent_order ... ok
+test datasource::physical_plan::parquet::tests::evolved_schema_disjoint_schema_with_page_index_pushdown ... ok
+test datasource::physical_plan::parquet::tests::multi_column_predicate_pushdown ... ok
+test datasource::physical_plan::parquet::tests::evolved_schema_intersection_filter ... ok
+test datasource::physical_plan::parquet::tests::evolved_schema_intersection_filter_with_filter_pushdown ... ok
+test datasource::physical_plan::parquet::tests::parquet_exec_display ... ok
+test datasource::physical_plan::parquet::tests::multi_column_predicate_pushdown_page_index_pushdown ... ok
+test datasource::physical_plan::parquet::tests::parquet_exec_has_no_pruning_predicate_if_can_not_prune ... ok
+test datasource::physical_plan::parquet::tests::evolved_schema_projection ... ok
+test datasource::physical_plan::parquet::tests::parquet_exec_with_error ... ok
+test datasource::physical_plan::parquet::tests::parquet_exec_has_pruning_predicate_for_guarantees ... ok
+test datasource::physical_plan::parquet::tests::parquet_exec_metrics ... ok
+test datasource::physical_plan::parquet::tests::parquet_exec_with_int96_from_spark ... ok
+test datasource::physical_plan::parquet::tests::parquet_exec_with_partition ... ok
+test datasource::physical_plan::parquet::tests::parquet_exec_with_int96_nested ... ok
+test datasource::physical_plan::parquet::tests::parquet_exec_with_projection ... ok
+test datasource::physical_plan::parquet::tests::parquet_exec_metrics_with_multiple_predicates ... ok
+test datasource::physical_plan::parquet::tests::parquet_exec_with_range ... ok
+test datasource::physical_plan::parquet::tests::test_metadata_size_hint ... ok
+test datasource::physical_plan::parquet::tests::test_constant_dictionary_column_parquet ... ok
+test datasource::physical_plan::parquet::tests::parquet_page_index_exec_metrics ... ok
+test datasource::physical_plan::parquet::tests::test_pushdown_with_missing_column_in_file ... ok
+test datasource::physical_plan::parquet::tests::test_pushdown_with_file_column_order_mismatch ... ok
+test datasource::physical_plan::parquet::tests::test_pushdown_with_missing_column_in_file_multiple_types ... ok
+test datasource::physical_plan::parquet::tests::parquet_page_index_exec_metrics_multiple_predicates ... ok
+test datasource::physical_plan::parquet::tests::test_struct_filter_parquet ... ok
+test datasource::physical_plan::parquet::tests::test_struct_filter_parquet_with_view_types ... ok
+test datasource::physical_plan::parquet::tests::test_pushdown_with_missing_column_nested_conditions ... ok
+test datasource::tests::can_override_physical_expr_adapter ... ok
+test datasource::physical_plan::parquet::tests::test_pushdown_with_missing_middle_column ... ok
+test datasource::view_test::tests::create_view_return_empty_dataframe ... ok
+test datasource::view_test::tests::create_or_replace_view ... ok
+test datasource::view_test::tests::create_view_plan ... ok
+test datasource::physical_plan::parquet::tests::write_table_results ... ok
+test datasource::view_test::tests::issue_3242 ... ok
+test datasource::view_test::tests::filter_pushdown_view ... ok
+test datasource::view_test::tests::limit_pushdown_view ... ok
+test datasource::view_test::tests::query_view_with_alias ... ok
+test datasource::view_test::tests::query_view ... ok
+test datasource::view_test::tests::query_join_views ... ok
+test datasource::view_test::tests::query_view_with_filter ... ok
+test datasource::view_test::tests::query_view_with_inline_alias ... ok
+test execution::context::parquet::tests::read_dummy_folder ... ok
+test datasource::view_test::tests::query_view_with_projection ... ok
+test execution::context::parquet::tests::read_from_parquet_folder ... ok
+test execution::context::parquet::tests::read_from_parquet_folder_table ... ok
+test execution::context::parquet::tests::read_from_different_file_extension ... ok
+test execution::context::parquet::tests::read_with_glob_path ... ok
+test execution::context::parquet::tests::read_from_registered_table_with_glob_path ... ok
+test execution::context::tests::catalogs_not_leaked ... ok
+test execution::context::tests::create_variable_err ... ok
+test execution::context::csv::tests::query_csv_with_custom_partition_extension ... ok
+test execution::context::parquet::tests::read_with_glob_path_issue_2465 ... ok
+test execution::context::tests::create_variable_expr ... ok
+test execution::context::parquet::tests::register_parquet_respects_collect_statistics_config ... ok
+test execution::context::tests::custom_catalog_and_schema_and_information_schema ... ok
+test execution::context::tests::custom_catalog_and_schema ... ok
+test execution::context::tests::custom_query_planner ... ok
+test execution::context::tests::custom_type_planner ... ok
+test execution::context::tests::disabled_default_catalog_and_schema ... ok
+test execution::context::tests::preserve_session_context_id ... ok
+test execution::context::tests::remove_optimizer_rule ... ok
+test execution::context::tests::register_deregister ... ok
+test execution::context::tests::shared_memory_and_disk_manager ... ok
+test execution::context::tests::send_context_to_threads ... ok
+test execution::context::tests::sql_create_schema ... ok
+test execution::context::tests::sql_create_catalog ... ok
+test execution::context::tests::test_parse_capacity_limit ... ok
+test execution::context::tests::test_parse_duration ... ok
+test execution::context::tests::test_parse_duration_with_overflow_check ... ok
+test execution::context::tests::cross_catalog_access ... ok
+test execution::context::tests::custom_catalog_and_schema_no_default ... ok
+test execution::session_state::tests::test_configured_dialect_names_are_accepted_by_sqlparser ... ok
+test execution::context::tests::test_parse_memory_limit ... ok
+test execution::session_state::tests::test_from_existing ... ok
+test execution::session_state::tests::test_create_logical_expr_from_sql_expr ... ok
+test execution::session_state::tests::test_session_state_with_optimizer_rules ... ok
+test execution::session_state::tests::test_session_state_with_default_features ... ok
+test execution::session_state::tests::test_with_default_features_not_override ... ok
+test execution::session_state::tests::test_with_table_factories ... ok
+test optimizer_rule_reference::analyzer_rules_match_documented_order ... ok
+test optimizer_rule_reference::logical_rules_match_documented_order ... FAILED
+test optimizer_rule_reference::physical_rules_match_documented_order ... ok
+test execution::context::tests::test_dynamic_file_query ... ok
+test physical_planner::tests::bad_extension_planner ... ok
+test execution::session_state::tests::test_with_expr_planners ... ok
+test physical_planner::tests::default_extension_planner ... ok
+test physical_planner::tests::error_during_extension_planning ... ok
+test physical_planner::tests::aggregate_with_alias ... ok
+test execution::context::tests::with_listing_schema_provider ... ok
+test physical_planner::tests::errors ... ok
+test physical_planner::tests::hash_agg_group_by_partitioned_on_dicts ... ok
+test physical_planner::tests::correlated_not_in_is_null_uses_null_aware_hash_mark_join ... ok
+test physical_planner::tests::hash_agg_grouping_set_by_partitioned ... ok
+test physical_planner::tests::hash_agg_group_by_partitioned ... ok
+test physical_planner::tests::hash_agg_grouping_set_input_schema ... ok
+test physical_planner::tests::logical_range_repartition_plans_output_partitioning ... ok
+test physical_planner::tests::merge_into_provider_receives_combined_logical_schema ... ok
+test physical_planner::tests::plans_with_non_session_state_implementation ... ok
+test physical_planner::tests::in_list_types_struct_literal ... ok
+test physical_planner::tests::in_list_types_mixed_string_int_error ... ok
+test physical_planner::tests::hash_agg_input_schema ... ok
+test physical_planner::tests::scalar_subquery_in_extension_expr_plans ... ok
+test physical_planner::tests::scalar_subquery_in_projection_and_filter_plans ... ok
+test physical_planner::tests::scalar_subquery_in_join_on_plans ... ok
+test physical_planner::tests::scalar_subquery_in_aggregate_arg_executes ... ok
+test physical_planner::tests::scalar_subquery_in_aggregate_arg_plans ... ok
+test physical_planner::tests::scalar_subquery_in_sort_expr_executes ... ok
+test physical_planner::tests::scalar_subquery_in_sort_expr_plans ... ok
+test physical_planner::tests::test_aggregate_explain_shows_aliased_custom_human_display ... ok
+test physical_planner::tests::subquery_alias_confusing_the_optimizer ... ok
+test physical_planner::tests::test_aggregate_explain_shows_aliased_respect_nulls ... ok
+test physical_planner::tests::test_aggregate_count_all_with_alias ... ok
+test physical_planner::tests::test_aggregate_explain_shows_count_all ... ok
+test physical_planner::tests::test_aggregate_explain_shows_aliased_filter_expression ... ok
+test physical_planner::tests::test_aggregate_schema_check_passes ... ok
+test physical_planner::tests::test_aggregate_explain_shows_count_all_with_user_alias ... ok
+test physical_planner::tests::test_aggregate_schema_mismatch_field_count ... ok
+test physical_planner::tests::test_aggregate_schema_mismatch_field_metadata ... ok
+test physical_planner::tests::scalar_subquery_mixed_correlated_and_uncorrelated_executes ... ok
+test physical_planner::tests::test_aggregate_schema_mismatch_field_type ... ok
+test physical_planner::tests::test_aggregate_schema_mismatch_field_nullability ... ok
+test physical_planner::tests::test_aggregate_schema_mismatch_field_name ... ok
+test physical_planner::tests::test_aggregate_schema_mismatch_metadata ... ok
+test physical_planner::tests::test_aggregate_schema_mismatch_multiple ... ok
+test physical_planner::tests::test_aggregate_explain_shows_quoted_user_alias ... ok
+test physical_planner::tests::test_create_cube_expr ... ok
+test physical_planner::tests::test_create_window_expr_unwraps_alias_with_metadata ... ok
+test physical_planner::tests::test_display_graphviz_with_statistics ... ok
+test physical_planner::tests::test_create_rollup_expr ... ok
+test physical_planner::tests::test_explain ... ok
+test physical_planner::tests::test_display_plan_in_graphviz_format ... ok
+test physical_planner::tests::test_all_operators ... ok
+test physical_planner::tests::test_invariant_checker_levels ... ok
+test physical_planner::tests::test_optimization_invariant_checker ... ok
+test physical_planner::tests::test_explain_indent_err ... ok
+test physical_planner::tests::test_limit_with_partitions ... ok
+test physical_planner::tests::test_projection_preserves_field_metadata_for_aggregate ... ok
+test physical_planner::tests::test_table_scan_extension_planner ... ok
+test physical_planner::tests::test_create_not ... ok
+test physical_planner::tests::test_with_zero_offset_plan ... ok
+test physical_planner::tests::test_with_csv_plan ... ok
+
+failures:
+
+---- optimizer_rule_reference::logical_rules_match_documented_order stdout ----
+
+thread 'optimizer_rule_reference::logical_rules_match_documented_order' (50431) panicked at datafusion/core/src/optimizer_rule_reference.rs:73:5:
+assertion `left == right` failed
+  left: ["rewrite_set_comparison", "optimize_unions", "unions_to_filter", "simplify_expressions", "replace_distinct_aggregate", "eliminate_join", "decorrelate_predicate_subquery", "scalar_subquery_to_join", "decorrelate_lateral_join", "extract_equijoin_predicate", "eliminate_duplicated_expr", "eliminate_filter", "eliminate_cross_join", "eliminate_limit", "propagate_empty_relation", "filter_null_join_keys", "eliminate_outer_join", "push_down_limit", "push_down_filter", "eliminate_aggregate_distinct", "single_distinct_aggregation_to_group_by", "eliminate_group_by_constant", "common_sub_expression_eliminate", "extract_leaf_expressions", "push_down_leaf_projections", "optimize_projections"]
+ right: ["rewrite_set_comparison", "optimize_unions", "unions_to_filter", "simplify_expressions", "replace_distinct_aggregate", "eliminate_join", "decorrelate_predicate_subquery", "scalar_subquery_to_join", "decorrelate_lateral_join", "extract_equijoin_predicate", "eliminate_duplicated_expr", "eliminate_filter", "eliminate_cross_join", "eliminate_limit", "propagate_empty_relation", "filter_null_join_keys", "eliminate_outer_join", "push_down_limit", "push_down_filter", "push_down_semi_join", "eliminate_aggregate_distinct", "single_distinct_aggregation_to_group_by", "eliminate_group_by_constant", "common_sub_expression_eliminate", "extract_leaf_expressions", "push_down_leaf_projections", "optimize_projections"]
+stack backtrace:
+   0: __rustc::rust_begin_unwind
+   1: core::panicking::panic_fmt
+   2: core::panicking::assert_failed_inner
+   3: core::panicking::assert_failed::<alloc::vec::Vec<alloc::string::String>, alloc::vec::Vec<alloc::string::String>>
+   4: datafusion::optimizer_rule_reference::logical_rules_match_documented_order
+   5: datafusion::optimizer_rule_reference::logical_rules_match_documented_order::{closure#0}
+   6: <datafusion::optimizer_rule_reference::logical_rules_match_documented_order::{closure#0} as core::ops::function::FnOnce<()>>::call_once
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+
+failures:
+    optimizer_rule_reference::logical_rules_match_documented_order
+
+test result: FAILED. 487 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.58s
+
+error: test failed, to rerun pass `-p datafusion --lib`
+error: process didn't exit successfully: `/usr/local/rustup/toolchains/1.99.0-x86_64-unknown-linux-gnu/bin/cargo test --profile ci --manifest-path /__w/datafusion/datafusion/Cargo.toml --target-dir /__w/datafusion/datafusion/target/llvm-cov-target --exclude datafusion-examples --exclude ffi_example_table_provider --exclude datafusion-cli --workspace --lib --tests --bins --features serde,avro,json,backtrace,integration-tests,parquet_encryption,substrait` (exit status: 101)
+error: Cargo test step failed: exit status: 101
+##[error]Process completed with exit code 1.
+Waiting for background step(s) to complete: __parallel_0_0, __parallel_0_1
+Finished waiting for background step(s).
+Post job cleanup.
+Post job cleanup.
+##[command]/usr/bin/docker exec  22388c0d5cc8282c49ba2cf79181181c0227a0262411df83ba7e4dfd04b4ce9f sh -c "cat /etc/*release | grep ^ID"
+[command]/usr/bin/git version
+git version 2.47.3
+Copying '/github/home/.gitconfig' to '/__w/_temp/b5e2cec3-4fae-4450-9e99-e68f331ca436/.gitconfig'
+Temporarily overriding HOME='/__w/_temp/b5e2cec3-4fae-4450-9e99-e68f331ca436' before making global git config changes
+Adding repository directory to the temporary git global config as a safe directory
+[command]/usr/bin/git config --global --add safe.directory /__w/datafusion/datafusion
+Removing SSH command configuration
+[command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Entering 'datafusion-testing'
+Entering 'parquet-testing'
+Entering 'testing'
+Removing HTTP extra header
+[command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+[command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Entering 'datafusion-testing'
+Entering 'parquet-testing'
+Entering 'testing'
+Removing includeIf entries pointing to credentials config files
+[command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+includeif.gitdir:/__w/datafusion/datafusion/.git.path
+includeif.gitdir:/__w/datafusion/datafusion/.git/worktrees/*.path
+includeif.gitdir:/github/workspace/.git.path
+includeif.gitdir:/github/workspace/.git/worktrees/*.path
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/__w/datafusion/datafusion/.git.path
+/__w/_temp/git-credentials-809619bf-84cc-4068-bfa2-0683e71001b6.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/__w/datafusion/datafusion/.git.path \/__w\/_temp\/git\-credentials\-809619bf\-84cc\-4068\-bfa2\-0683e71001b6\.config
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/__w/datafusion/datafusion/.git/worktrees/*.path
+/__w/_temp/git-credentials-809619bf-84cc-4068-bfa2-0683e71001b6.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/__w/datafusion/datafusion/.git/worktrees/*.path \/__w\/_temp\/git\-credentials\-809619bf\-84cc\-4068\-bfa2\-0683e71001b6\.config
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+/github/runner_temp/git-credentials-809619bf-84cc-4068-bfa2-0683e71001b6.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-809619bf\-84cc\-4068\-bfa2\-0683e71001b6\.config
+[command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+/github/runner_temp/git-credentials-809619bf-84cc-4068-bfa2-0683e71001b6.config
+[command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-809619bf\-84cc\-4068\-bfa2\-0683e71001b6\.config
+[command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Entering 'datafusion-testing'
+file:/__w/datafusion/datafusion/.git/modules/datafusion-testing/config	remote.origin.url
+Entering 'parquet-testing'
+file:/__w/datafusion/datafusion/.git/modules/parquet-testing/config	remote.origin.url
+Entering 'testing'
+file:/__w/datafusion/datafusion/.git/modules/testing/config	remote.origin.url
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/datafusion-testing/config --name-only --get-regexp ^includeIf\.gitdir:
+includeif.gitdir:/__w/datafusion/datafusion/.git/modules/datafusion-testing.path
+includeif.gitdir:/github/workspace/.git/modules/datafusion-testing.path
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/datafusion-testing/config --get-all includeif.gitdir:/__w/datafusion/datafusion/.git/modules/datafusion-testing.path
+/__w/_temp/git-credentials-809619bf-84cc-4068-bfa2-0683e71001b6.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/datafusion-testing/config --unset includeif.gitdir:/__w/datafusion/datafusion/.git/modules/datafusion-testing.path \/__w\/_temp\/git\-credentials\-809619bf\-84cc\-4068\-bfa2\-0683e71001b6\.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/datafusion-testing/config --get-all includeif.gitdir:/github/workspace/.git/modules/datafusion-testing.path
+/github/runner_temp/git-credentials-809619bf-84cc-4068-bfa2-0683e71001b6.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/datafusion-testing/config --unset includeif.gitdir:/github/workspace/.git/modules/datafusion-testing.path \/github\/runner_temp\/git\-credentials\-809619bf\-84cc\-4068\-bfa2\-0683e71001b6\.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/parquet-testing/config --name-only --get-regexp ^includeIf\.gitdir:
+includeif.gitdir:/__w/datafusion/datafusion/.git/modules/parquet-testing.path
+includeif.gitdir:/github/workspace/.git/modules/parquet-testing.path
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/parquet-testing/config --get-all includeif.gitdir:/__w/datafusion/datafusion/.git/modules/parquet-testing.path
+/__w/_temp/git-credentials-809619bf-84cc-4068-bfa2-0683e71001b6.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/parquet-testing/config --unset includeif.gitdir:/__w/datafusion/datafusion/.git/modules/parquet-testing.path \/__w\/_temp\/git\-credentials\-809619bf\-84cc\-4068\-bfa2\-0683e71001b6\.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/parquet-testing/config --get-all includeif.gitdir:/github/workspace/.git/modules/parquet-testing.path
+/github/runner_temp/git-credentials-809619bf-84cc-4068-bfa2-0683e71001b6.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/parquet-testing/config --unset includeif.gitdir:/github/workspace/.git/modules/parquet-testing.path \/github\/runner_temp\/git\-credentials\-809619bf\-84cc\-4068\-bfa2\-0683e71001b6\.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/testing/config --name-only --get-regexp ^includeIf\.gitdir:
+includeif.gitdir:/__w/datafusion/datafusion/.git/modules/testing.path
+includeif.gitdir:/github/workspace/.git/modules/testing.path
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/testing/config --get-all includeif.gitdir:/__w/datafusion/datafusion/.git/modules/testing.path
+/__w/_temp/git-credentials-809619bf-84cc-4068-bfa2-0683e71001b6.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/testing/config --unset includeif.gitdir:/__w/datafusion/datafusion/.git/modules/testing.path \/__w\/_temp\/git\-credentials\-809619bf\-84cc\-4068\-bfa2\-0683e71001b6\.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/testing/config --get-all includeif.gitdir:/github/workspace/.git/modules/testing.path
+/github/runner_temp/git-credentials-809619bf-84cc-4068-bfa2-0683e71001b6.config
+[command]/usr/bin/git config --file /__w/datafusion/datafusion/.git/modules/testing/config --unset includeif.gitdir:/github/workspace/.git/modules/testing.path \/github\/runner_temp\/git\-credentials\-809619bf\-84cc\-4068\-bfa2\-0683e71001b6\.config
+Removing credentials config '/__w/_temp/git-credentials-809619bf-84cc-4068-bfa2-0683e71001b6.config'
+Post job cleanup.
+##[command]/usr/bin/docker exec  22388c0d5cc8282c49ba2cf79181181c0227a0262411df83ba7e4dfd04b4ce9f sh -c "cat /etc/*release | grep ^ID"
+This action is only meant to be run on RunsOn (https://runs-on.com) runners, skipping all operations
+Stop and remove container: 48e79663c2674405b280b2f1e5e207f7_amd64rust_4ba21f
+##[command]/usr/bin/docker rm --force 22388c0d5cc8282c49ba2cf79181181c0227a0262411df83ba7e4dfd04b4ce9f
+22388c0d5cc8282c49ba2cf79181181c0227a0262411df83ba7e4dfd04b4ce9f
+Remove container network: github_network_f0bd5c0b21824a91984432424a334e39
+##[command]/usr/bin/docker network rm github_network_f0bd5c0b21824a91984432424a334e39
+github_network_f0bd5c0b21824a91984432424a334e39
+Cleaning up orphan processes
