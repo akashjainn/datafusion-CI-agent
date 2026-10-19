@@ -11,14 +11,16 @@ def get_log(ctx, pattern = None, context = 3, start=0, limit=200):
     if start < 0:
         return "Start must be at least 0"
 
-    if start >= len(lines):
-        return f"start {start} is past the end (log has {len(lines)} lines, 0-{len(lines) - 1})"
     
     limit = min(limit, 200)
     with open(ctx.log_path, encoding="utf-8-sig", errors="replace") as f:
         text = f.read()
         clean = ANSI.sub("", text)
         lines = clean.splitlines()
+
+    if start >= len(lines):
+        return f"start {start} is past the end (log has {len(lines)} lines, 0-{len(lines) - 1})"
+
     if pattern:
         try:
             rx = re.compile(pattern)
